@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .menu{
+        @apply pr-6 text-2xl text-red-300
+    }
+}
