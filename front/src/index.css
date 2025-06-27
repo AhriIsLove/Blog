@@ -1,9 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@config "../tailwind.config.js";
+/* @import './tailwindAnimation.css'; */
+
+/* https://tailwindcss.com/plus/ui-blocks */
 
 @layer components {
-    .menu{
-        @apply pr-6 text-2xl text-red-300
+    .menu {
+        @apply bg-myMainColor-50 text-myMainColor-950 p-3 text-3xl text-center animate-slideDown
     }
+
+    .menu .ani_line {
+        @apply bg-myMainColor-300 h-1
+    }
+    
 }

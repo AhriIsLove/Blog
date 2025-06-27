@@ -1,9 +1,48 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors');
+// const { keyframes, animation } = require('./src');
+const { keyframes, animation } = require('./src/tailwindAnimation')
+
+// 색상코드 팔레트 : https://uicolors.app/generate/d41212
+
 module.exports = {
   content:["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      keyframes,
+      animation,
+      colors: {
+        'myMainColor': {
+          // 수능형리레(212.18.18) 메인컬러
+          50: "#fff1f1",//배경
+          100: "#ffe0e0",
+          200: "#ffc6c6",
+          300: "#ff9f9f",
+          400: "#ff6767",
+          500: "#fb3838",
+          600: "#e91919",
+          700: "#d41212",//수능형리레
+          800: "#a21212",
+          900: "#861616",
+          950: "#490606",//폰트
+        },
+        'myPointColor':{
+          // 바나나(255.224.98) 메인컬러
+          50: "#fefbe8",//배경
+          100: "#fff8c2",
+          200: "#ffed89",
+          300: "#ffe062",//바나나
+          400: "#fdc512",
+          500: "#ecab06",
+          600: "#cc8302",
+          700: "#a35c05",
+          800: "#86480d",
+          900: "#723b11",
+          950: "#431e05",//폰트
+        }
+      },
+    },
   },
   plugins: [],
-}
+};
 
