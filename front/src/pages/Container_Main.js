@@ -1,11 +1,11 @@
 import BasicLayout from "../layouts/BasicLayout";
 
-const MainPage = () => {
+const Container_Main = () => {
     //화면 리턴
     return (
         <BasicLayout>
             {/* children */}
-            <div className="text-3xl">MainPage</div>
+            <div className="text-3xl">Container_Main</div>
             {/* <div class="bg-white">
                 <header class="absolute inset-x-0 top-0 z-50">
                     <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -95,4 +95,4 @@ const MainPage = () => {
     );
 }
 
-export default MainPage;
+export default Container_Main;

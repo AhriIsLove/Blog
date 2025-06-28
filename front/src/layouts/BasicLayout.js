@@ -1,11 +1,11 @@
-import BasicMenu from "../components/BasicMenu";
+import Header_Main from "../pages/Header_Main";
 
 const BasicLayout = ({ children }) => {
     return (
         <>
-            {/* 기존 헤더 대신 BasicMenu */}
-            <div>
-                <BasicMenu></BasicMenu>
+            {/* 기존 헤더 대신 Header_Main */}
+            <div className="bg-myMainColor-50">
+                <Header_Main></Header_Main>
             </div>
 
             {/* 

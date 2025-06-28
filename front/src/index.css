@@ -2,17 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 @config "../tailwind.config.js";
-/* @import './tailwindAnimation.css'; */
 
+
+
+/* 애니메이션 참고 영상
+https://www.youtube.com/watch?v=iW-PSTzvVNQ&t=368s */
 /* https://tailwindcss.com/plus/ui-blocks */
 
 @layer components {
-    .menu {
-        @apply bg-myMainColor-50 text-myMainColor-950 p-3 text-3xl text-center animate-slideDown
+    .header{
+        @apply flex items-center gap-3 
+        h-16 md:h-20 lg:h-24 
     }
 
-    .menu .ani_line {
-        @apply bg-myMainColor-300 h-1
+    .logo {
+        /* object-contain : 이미지 잘림 없이 채우기
+        h-full : height에 맞춰서 */
+        @apply object-contain 
+        h-full w-auto
     }
-    
+
+    /* md가 발동되면 햄부기로 합쳐버리자 */
+    .menu {
+        /* 
+        flex items-center justify-center : 내용물을 가운데로 
+        ml-auto : left margin auto */
+        @apply ml-auto gap-3 md:gap-6 lg:gap-9 flex items-center justify-center 
+        h-full w-full 
+    }
+    .menu .content {
+        /* 
+        relative : 자식태그가 absolute 사용하게 함
+        - absolute : top,bottom,left,right가 부모기준으로 작동하게 함(default:html기준)
+        flex-1 : 
+        cursor-pointer : 마우스 오버시 손가락 포인터 커서 표시 */
+        @apply relative h-full flex items-center justify-center flex-1
+        text-[clamp(0.75rem,2vw,1.25rem)] font-extrabold text-myMainColor-950 
+        cursor-pointer
+    }
+    .menu .ani_line {
+        /* 
+        transition-all : 모든 속성에 대해 transition 적용
+        duration-300 : 	300ms 동안 애니메이션
+        left-0 top-[0%] : 시작 위치(-20% 안보임)
+        w-[100%] h-[5px] : 라인 크기
+        group-hover:top-[100%] : 끝 위치(120% 안보임)
+        */
+        /* @apply absolute left-0 top-[0%] w-[100%] h-[5px] opacity-0 bg-blue-600 transition-all duration-300 rounded-full */
+        @apply absolute left-0 top-[0%] w-[100%] h-[5px] 
+        opacity-0 bg-myMainColor-300 
+    }
 }

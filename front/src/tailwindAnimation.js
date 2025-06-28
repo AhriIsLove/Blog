@@ -1,7 +1,17 @@
 const keyframes = {
   slideDown: {
-    '0%': {transform: 'translateY(-100%)'},
-    '100%': {transform: 'translateY(100%)'},
+    '0%': {
+      opacity:0,
+      top: '0%',
+    },
+    '99%': {
+      opacity:100,
+      top: '100%',
+    },
+    '100%': {
+      opacity:0,
+      top: '100%',
+    },
   },
   fadeIn: {
     '0%': { opacity: '0' },
@@ -14,7 +24,7 @@ const keyframes = {
 };
 
 const animation = {
-  slideDown: 'slideDown 1s linear infinite',
+  slideDown: 'slideDown 0.3s linear forwards',
   fadeIn: 'fadeIn 1s ease-in-out forwards',
   wiggle: 'wiggle 0.5s ease-in-out infinite',
 };
