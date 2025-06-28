@@ -9,24 +9,29 @@ const keyframes = {
       top: '100%',
     },
     '100%': {
-      opacity:0,
+      opacity:100,
       top: '100%',
     },
   },
-  fadeIn: {
-    '0%': { opacity: '0' },
-    '100%': { opacity: '1' },
-  },
-  wiggle: {
-    '0%, 100%': { transform: 'rotate(-3deg)' },
-    '50%': { transform: 'rotate(3deg)' },
+  slideUp: {
+    '100%': {
+      opacity:0,
+      top: '100%',
+    },
+    '99%': {
+      opacity:100,
+      top: '100%',
+    },
+    '0%': {
+      opacity:0,
+      top: '0%',
+    },
   },
 };
 
 const animation = {
-  slideDown: 'slideDown 0.3s linear forwards',
-  fadeIn: 'fadeIn 1s ease-in-out forwards',
-  wiggle: 'wiggle 0.5s ease-in-out infinite',
+  slideDown: 'slideDown 0.3s ease-in forwards',
+  slideUp: 'slideDown 0.3s ease-in forwards',
 };
 
 module.exports = { keyframes, animation }

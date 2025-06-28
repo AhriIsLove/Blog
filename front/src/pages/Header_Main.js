@@ -21,23 +21,23 @@ const Header_Main = () => {
                 <div className="content"/> {/* 공백 */}
                 <div className="content group">
                     인물소개
-                    <span className="ani_line group-hover:animate-slideDown"></span>
+                    <span className="ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100"></span>
                 </div>
                 <div className="content group">
                     포트폴리오
-                    <span className="ani_line group-hover:animate-slideDown"></span>
+                    <span className="ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100"></span>
                 </div>
                 <div className="content group">
                     공부
-                    <span className="ani_line group-hover:animate-slideDown"></span>
+                    <span className="ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100"></span>
                 </div>
                 <div className="content group">
                     취미
-                    <span className="ani_line group-hover:animate-slideDown"></span>
+                    <span className="ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100"></span>
                 </div>
                 <div className="content group">
                     커뮤니티
-                    <span className="ani_line group-hover:animate-slideDown"></span>
+                    <span className="ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100"></span>
                 </div>
             </nav>
         </div>
