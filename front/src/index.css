@@ -3,44 +3,71 @@
 @tailwind utilities;
 @config "../tailwind.config.js";
 
-
-
 /* 애니메이션 참고 영상
 https://www.youtube.com/watch?v=iW-PSTzvVNQ&t=368s */
 /* https://tailwindcss.com/plus/ui-blocks */
 
-@layer components {
-    .header{
-        @apply flex items-center gap-3 
-        h-16 md:h-20 lg:h-24 
-    }
+/* 
+2xl: 1536 이상
+xl : 1280 이상
+lg : large(width:1024) 사이즈 이상일 경우
+md : 768 이상
+sm : 640 이상
+그외 :  */
 
+/* 
+display 속성들
+block : 항상 새로운 줄에서 시작하고, 가능한 최대 너비를 차지해
+inline : 새 줄을 시작하지 않고, 필요한 만큼의 너비만 차지해
+inline-block : inline이지만 너비 조절 가능
+flex : 유연하게 배치
+grid : 행 열배치
+hidden/none : 숨기기(none은 @apply로 안써짐)
+ */
+
+@layer components {
+    /* 헤더 */
+    .header{
+        @apply flex items-center gap-3 px-3
+        h-16 md:h-20 lg:h-24
+    }
+    /* 로고 */
     .logo {
-        /* object-contain : 이미지 잘림 없이 채우기
+        /* 
+        object-contain : 이미지 잘림 없이 채우기
         h-full : height에 맞춰서 */
         @apply object-contain 
         h-full w-auto
     }
 
-    /* md가 발동되면 햄부기로 합쳐버리자 */
+    /* 메뉴 */
     .menu {
         /* 
-        flex items-center justify-center : 내용물을 가운데로 
+        flex : 
+        items-center justify-center : 내용물을 가운데로 
         ml-auto : left margin auto */
-        @apply ml-auto gap-3 md:gap-6 lg:gap-9 flex items-center justify-center 
+        @apply flex 
+        items-center justify-center
+        ml-auto md:gap-6 lg:gap-9 
         h-full w-full 
     }
+    /* 메뉴 - 항목 */
     .menu .content {
         /* 
         relative : 자식태그가 absolute 사용하게 함
         - absolute : top,bottom,left,right가 부모기준으로 작동하게 함(default:html기준)
         flex-1 : 
-        cursor-pointer : 마우스 오버시 손가락 포인터 커서 표시 */
-        @apply relative h-full flex items-center justify-center flex-1
-        md:text-lg lg:text-xl font-extrabold text-myMainColor-950 
-        cursor-pointer border-2
+        cursor-pointer : 마우스 오버시 손가락 포인터 커서 표시 
+        hidden sm:flex : 숨기기 기본, sm 이상은 flex 
+        hidden과 flex가 같은 그룹인듯...
+        */
+        @apply hidden sm:flex
+        relative h-full items-center justify-center flex-1
+        md:text-base lg:text-xl xl:text-3xl font-extrabold text-myMainColor-950 
+        /* cursor-pointer */
     }
-    .menu .ani_line {
+    /* 메뉴 - 항목 - 애니메이션:라인 */
+    .menu .content .ani_line {
         /* 
         transition-all : 모든 속성에 대해 transition 적용
         duration-300 : 	300ms 동안 애니메이션
@@ -51,5 +78,11 @@ https://www.youtube.com/watch?v=iW-PSTzvVNQ&t=368s */
         /* @apply absolute left-0 top-[0%] w-[100%] h-[5px] opacity-0 bg-blue-600 transition-all duration-300 rounded-full */
         @apply absolute left-0 top-[0%] w-[100%] h-[5px] 
         opacity-0 bg-myMainColor-300 
+    }
+    /* 메뉴 - 햄버거버튼 */
+    .menu .hamburger {
+        @apply flex sm:hidden 
+        ml-auto
+        items-center outline-none
     }
 }

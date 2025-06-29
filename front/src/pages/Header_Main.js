@@ -4,6 +4,7 @@ import '../App.css';
 
 // 이미지
 import logo from '../images/logo.png';//로고
+import { Design_Hamburger } from '../designs/Design_Hamburger';
 
 // 헤더
 const Header_Main = () => {
@@ -39,9 +40,14 @@ const Header_Main = () => {
                     커뮤니티
                     <span className="ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100"></span>
                 </div>
+                
+                <button className="hamburger">
+                    <Design_Hamburger/>
+                </button>
             </nav>
-        </div>
 
+        </div>
+        
 
 
 
