@@ -27,6 +27,14 @@ const Header_Main = () => {
             
             {/* 메뉴 */}
             <nav className='menu'>
+                {/* 상세메뉴 */}
+                {ShowDropMenu && (
+                    <div className='dropmenubg' onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                )}
                 {/* 
                 group : group-hover 제어용
                 - 자식태그가 group-hover사용 가능하게 함
@@ -41,26 +49,56 @@ const Header_Main = () => {
                             인물소개<br/>
                             인물소개<br/>
                             인물소개<br/>
-                            <div className='dropmenubg'>
-                            </div>
                         </div>
                     )}
                 </div>
                 <div className='content group' onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
                     포트폴리오
                     <span className='ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100'></span>
+                    {/* 상세메뉴 */}
+                    {ShowDropMenu && (
+                        <div className='dropmenu'>
+                            포트폴리오<br/>
+                            포트폴리오<br/>
+                            포트폴리오<br/>
+                        </div>
+                    )}
                 </div>
                 <div className='content group' onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
                     공부
                     <span className='ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100'></span>
+                    {/* 상세메뉴 */}
+                    {ShowDropMenu && (
+                        <div className='dropmenu'>
+                            공부<br/>
+                            공부<br/>
+                            공부<br/>
+                        </div>
+                    )}
                 </div>
                 <div className='content group' onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
                     취미
                     <span className='ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100'></span>
+                    {/* 상세메뉴 */}
+                    {ShowDropMenu && (
+                        <div className='dropmenu'>
+                            취미<br/>
+                            취미<br/>
+                            취미<br/>
+                        </div>
+                    )}
                 </div>
                 <div className='content group' onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
                     커뮤니티
                     <span className='ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100'></span>
+                    {/* 상세메뉴 */}
+                    {ShowDropMenu && (
+                        <div className='dropmenu'>
+                            커뮤니티<br/>
+                            커뮤니티<br/>
+                            커뮤니티<br/>
+                        </div>
+                    )}
                 </div>
 
                 <button className='hamburger'>
