@@ -138,8 +138,6 @@ const Header_Main = () => {
                     </div>
                 </div>
 
-                {/* framer-motion 이라는 라이브러리로 애니메이션 구현 가능하대요 나중에 물어봅시다*/}
-
                 <div className={`hamburgerBackground transition-all duration-500 ease-in-out transform origin-right 
                     ${ShowHamburgerMenu ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"}`}>
                     <div className='hamburgerContent' onClick={() => showDropHamburgerMenu(0)}>
@@ -192,7 +190,6 @@ const Header_Main = () => {
                     <Design_Hamburger/>
                 </button>
             </nav>
-
         </div>
         
 

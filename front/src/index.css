@@ -23,7 +23,13 @@ inline-block : inline이지만 너비 조절 가능
 flex : 유연하게 배치
 grid : 행 열배치
 hidden/none : 숨기기(none은 @apply로 안써짐)
- */
+*/
+
+/* 
+애니메이션 구현방식
+transition : 간단 빠름
+keyframes : 반복 용도
+AnimatePresence/Framer Motion : 고성능, react전용 */
 
 @layer components {
     /* 헤더 */
