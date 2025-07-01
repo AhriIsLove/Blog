@@ -108,28 +108,26 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         text-myMainColor-950
         cursor-pointer
     }
+
     /* 메뉴 - 햄버거버튼 */
-    .menu .hamburger {
-        @apply flex sm:hidden 
-        ml-auto
-        items-center outline-none
+    .hamburger {
+        @apply relative sm:hidden 
         /* 
         z-0 : 상호작용 레벨 */
-        z-0
     }
-    .menu .hamburgerBackground {
+    .hamburgerBackground {
         @apply fixed left-2/4 top-0 w-screen h-screen 
         p-10
         bg-myMainColor-300 opacity-90 
         flex-row items-center 
     }
-    .menu .hamburgerContent {
+    .hamburgerContent {
         @apply 
         h-auto
         text-3xl text-myMainColor-950
         cursor-pointer
     }
-    .menu .hamburgerContent .hamburgerContentDetail {
+    .hamburgerContent .hamburgerContentDetail {
         @apply 
         text-xl text-myMainColor-950 ml-5
     }
