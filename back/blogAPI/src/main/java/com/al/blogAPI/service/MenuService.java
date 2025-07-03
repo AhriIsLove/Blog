@@ -1,13 +1,11 @@
 package com.al.blogAPI.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import com.al.blogAPI.repository.MenuRepository;
+import com.al.blogAPI.dto.MenuDTO;
 
-import lombok.RequiredArgsConstructor;
+public interface MenuService {
 
-@Service
-@RequiredArgsConstructor
-public class MenuService {
-	private final MenuRepository menuRepository;
+	List<MenuDTO> getRootMenus();
+
 }

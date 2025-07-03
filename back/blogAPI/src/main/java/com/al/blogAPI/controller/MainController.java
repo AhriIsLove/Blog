@@ -1,7 +1,6 @@
 package com.al.blogAPI.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,9 @@ public class MainController {
 	private final MenuService menuService;
 
 	@GetMapping("/menu")
-	public String testMenu() {
-	    return "메뉴 호출 성공";
+	public List<MenuDTO> testMenu() {
+		List<MenuDTO> menuDTOs = menuService.getRootMenus();
+		
+	    return menuDTOs;
 	}
 }
