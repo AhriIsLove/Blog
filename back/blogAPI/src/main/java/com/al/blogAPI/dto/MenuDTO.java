@@ -1,5 +1,8 @@
 package com.al.blogAPI.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +19,6 @@ public class MenuDTO {
 	private Long parent_id;
 	
 	//DTO 추가 속성들
-	
+	@Builder.Default
+	private List<MenuDTO> sub_menus = new ArrayList<>();
 }

@@ -8,4 +8,6 @@ public interface MenuRepository {
 
 	List<Menu> findRootMenus();
 
+	List<Menu> findSubMenus(Long id);
+
 }

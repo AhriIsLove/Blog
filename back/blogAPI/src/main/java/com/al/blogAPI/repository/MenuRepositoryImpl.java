@@ -30,4 +30,16 @@ public class MenuRepositoryImpl implements MenuRepository {
 		return menus;
 	}
 
+	@Override
+	public List<Menu> findSubMenus(Long id) {
+		List<Menu> subMenus = entityManager.createQuery
+				("SELECT m FROM Menu m " + "WHERE m.parent_id = :id", Menu.class)
+				.setParameter("id", id)
+				.getResultList();
+		
+		System.out.println(id + " => subMenus count : " + subMenus.size());
+		
+		return subMenus;
+	}
+
 }

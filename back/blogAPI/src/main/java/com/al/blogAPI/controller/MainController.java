@@ -18,7 +18,7 @@ public class MainController {
 	private final MenuService menuService;
 
 	@GetMapping("/menu")
-	public List<MenuDTO> testMenu() {
+	public List<MenuDTO> getMenu() {
 		List<MenuDTO> menuDTOs = menuService.getRootMenus();
 		
 	    return menuDTOs;

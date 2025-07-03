@@ -38,6 +38,16 @@ public class MenuServiceImpl implements MenuService {
 		menuDTO.setName(menu.getName());
 		menuDTO.setParent_id(menu.getParent_id());
 		
+		//하위 메뉴
+		List<MenuDTO> subMenuDTOs = null;
+		List<Menu> subMenus = menuRepository.findSubMenus(menu.getId());
+		subMenuDTOs = subMenus.stream()
+				.map(subMenu -> menuToDTO(subMenu))
+				.collect(Collectors.toList());
+
+		
+		menuDTO.setSub_menus(subMenuDTOs);
+		
 		return menuDTO;
 	}
 }
