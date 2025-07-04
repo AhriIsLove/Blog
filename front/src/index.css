@@ -96,7 +96,7 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         /* 
         bg-myMainColor-300/50 : 색상에 50%투명 */
         @apply absolute left-0 top-full w-full h-auto
-        flex items-center justify-center
+        flex flex-col items-center justify-center
         text-myMainColor-950
         cursor-pointer
     }

@@ -11,7 +11,10 @@ export const getMenu = async() => {
     // get방식은 URL로 요청됨
     const res = await axios.get(`${prefix}/menu`);
 
-    console.log('getMenu res.data : ' , res.data);
+    // console.log('getMenus res.data : ' , res.data);
 
     return res.data;
+    // 반환되는 데이터타입
+    // dtoList: [],
+    // maxSubMenuCount: 0,
 };

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.al.blogAPI.dto.MenuDTO;
+import com.al.blogAPI.dto.MenuResponseDTO;
 import com.al.blogAPI.entity.Menu;
 import com.al.blogAPI.repository.MenuRepository;
 
@@ -19,17 +20,22 @@ public class MenuServiceImpl implements MenuService {
 
 	// 최상위 메뉴 조회
 	@Override
-	public List<MenuDTO> getRootMenus() {
-		List<MenuDTO> menuDTOs = null;
-
+	public MenuResponseDTO<MenuDTO> getMenus() {
 		// 최상위 메뉴 조회
 		List<Menu> menus = menuRepository.findRootMenus();
-		
-		menuDTOs = menus.stream()
+		List<MenuDTO> menuDTOs = menus.stream()
 				.map(menu -> menuToDTO(menu))
 				.collect(Collectors.toList());
+		
+		MenuResponseDTO<MenuDTO> menuResponseDTOs = MenuResponseDTO.<MenuDTO>builder()
+				.dtoList(menuDTOs)
+				.build();
+		
+//		menuDTOs = menus.stream()
+//				.map(menu -> menuToDTO(menu))
+//				.collect(Collectors.toList());
 
-		return menuDTOs;
+		return menuResponseDTOs;
 	}
 
 	private MenuDTO menuToDTO(Menu menu) {

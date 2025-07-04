@@ -11,16 +11,15 @@ import HamburgerComponent from '../components/header/HamburgerComponent';
 import { getMenu } from '../api/MainAPI';
 
 //API : MenuDTO
-const initMenuDTO = [{
-    id: 0,
-    name: '',
-    parent_id:0
-}];
+const initMenuDTO = {
+    dtoList: [],
+    maxSubMenuCount: 0,
+};
 
 // 헤더
 const Header_Main = () => {
     //API : 메뉴
-    const [menuDTO, setMenuDTO] = useState([...initMenuDTO]);
+    const [menuDTO, setMenuDTO] = useState(initMenuDTO);
     useEffect(() => {
         getMenu().then(data => {
             setMenuDTO(data);
@@ -53,9 +52,14 @@ const Header_Main = () => {
                 <div className={`dropmenuBackground transition-all duration-500 ease-in-out transform origin-top 
                 ${ShowDropMenu ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"}`}
                     onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
-                    <br />
-                    <br />
-                    <br />
+                    {(() => {
+                        // 여기서 for문 사용 가능!
+                        const elements = [];
+                        for (let i = 0; i < menuDTO.maxSubMenuCount; i++) {
+                            elements.push(<br key={i}/>);
+                        }
+                        return elements;
+                    })()}
                 </div>
                 {/* 
                 group : group-hover 제어용
@@ -64,18 +68,20 @@ const Header_Main = () => {
                 <div className='menuContent' /> {/* 공백 */}
 
                 {/* 메뉴 */}
-                {menuDTO.map(menu => 
-                    <div className='menuContent group' 
-                    key={menu.id}
-                    onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
+                {menuDTO.dtoList.map(menu =>
+                    <div className='menuContent group'
+                        key={menu.id}
+                        onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
                         {menu.name}
                         <span className='ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100'></span>
                         {/* 상세메뉴 */}
                         <div className={`dropmenu transition-all duration-500 ease-in-out transform origin-top 
                         ${ShowDropMenu ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"}`}>
-                            인물소개<br />
-                            인물소개<br />
-                            인물소개<br />
+                            {menu.sub_menus.map(sub_menu =>
+                                <div key={sub_menu.id}>
+                                    {sub_menu.name}
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}
