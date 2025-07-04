@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-// const { createBrowserRouter } = "react-router-dom";
 
 //로딩 페이지 생성
 const Loading = <div>Loading...</div>

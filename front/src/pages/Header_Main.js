@@ -26,7 +26,6 @@ const Header_Main = () => {
         });
     }, []);
 
-
     //상세메뉴 여부
     const [ShowDropMenu, setShowDropMenu] = useState(false);
     const showDropMenu = () => {
