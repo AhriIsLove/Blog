@@ -2,13 +2,14 @@
 import '../../index.css';
 import '../../App.css';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // 이미지
 import logo from '../../images/logo.png';//로고
 // 디자인
 import HamburgerComponent from './HamburgerComponent';
 import { getMenu } from '../../api/MainAPI';
+import { Link, useNavigate } from 'react-router-dom';
 
 //API : MenuDTO
 const initMenuDTO = {
@@ -22,6 +23,7 @@ const HeaderComponent = () => {
     const [menuDTO, setMenuDTO] = useState(initMenuDTO);
     useEffect(() => {
         getMenu().then(data => {
+            console.log(data);
             setMenuDTO(data);
         });
     }, []);
@@ -35,10 +37,22 @@ const HeaderComponent = () => {
         setShowDropMenu(false);
     };
 
+    const navigate = useNavigate();
+    //이벤트 생성 : List 클릭
+    const handleClickMenu = useCallback((menu) => {
+        switch (menu) {
+            case -1:
+                navigate({ pathname: '/' });
+                break;
+        };
+    });
+
     return (
         <div className='header'>
             {/* 로고 */}
-            <img alt='logo' src={logo} className='logo'></img>
+            <Link to='/' className='logo'>
+                <img alt='logo' src={logo}/>
+            </Link>
 
             {/* 메뉴 */}
             <nav className='menu'>
@@ -55,7 +69,7 @@ const HeaderComponent = () => {
                         // 여기서 for문 사용 가능!
                         const elements = [];
                         for (let i = 0; i < menuDTO.maxSubMenuCount; i++) {
-                            elements.push(<br key={i}/>);
+                            elements.push(<br key={i} />);
                         }
                         return elements;
                     })()}
@@ -76,12 +90,12 @@ const HeaderComponent = () => {
                         {/* 상세메뉴 */}
                         <div className={`dropmenu transition-all duration-500 ease-in-out transform origin-top
                         ${ShowDropMenu ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"}`}>
-                            {menu.sub_menus.map(sub_menu => 
+                            {menu.sub_menus.map(sub_menu =>
                                 <div className='bg-myMainColor-300 bg-opacity-0 rounded-md w-full 
                                 text-center
                                 hover:bg-opacity-80 transition-all duration-300'
-                                 key={sub_menu.id}>
-                                    {sub_menu.name}
+                                    key={sub_menu.id}>
+                                    <Link to={`${menu.link}${sub_menu.link}`}>{sub_menu.name}</Link>
                                 </div>
                             )}
                         </div>

@@ -36,15 +36,15 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
     .header{
         @apply h-16 md:h-20 lg:h-24 px-3 
         relative flex items-center gap-3 
-        
     }
     /* 로고 */
     .logo {
         /* 
         object-contain : 이미지 잘림 없이 채우기
         h-full : height에 맞춰서 */
-        @apply object-contain 
+        @apply flex 
         h-full w-auto
+        object-contain 
     }
 
     /* 메뉴 */

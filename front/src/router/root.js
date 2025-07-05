@@ -1,11 +1,12 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import IntroRouter from "./introduction";
 
 //로딩 페이지 생성
 const Loading = <div>Loading...</div>
 //메인 페이지 가져오기
 const HomePage = lazy(() => import("../pages/HomePage"));
-const IntroPage = lazy(() => import("../pages/IntroPage"));
+const IntroductionPage = lazy(() => import("../pages/IntroductionPage"));
 
 //createBrowserRouter : DispatcherServlet의 Controller 같은 친구
 const root = createBrowserRouter([
@@ -13,14 +14,15 @@ const root = createBrowserRouter([
         //path : @mapping 같은 친구
         path:"",
         //element : return 같은 친구
-        element:<Suspense fallback={Loading}><HomePage/></Suspense>
+        element:<Suspense fallback={Loading}><HomePage/></Suspense>,
         //Suspense : 로딩창 구현 및 로딩 개선
         // - fallback : 로딩창 호출
         // - lazy : 로딩 개선
     },
     {
-        path:"intro",
-        element:<Suspense fallback={Loading}><IntroPage/></Suspense>
+        path:"introduction",
+        element:<Suspense fallback={Loading}><IntroductionPage/></Suspense>,
+        children:IntroRouter()
     }
 ])
 

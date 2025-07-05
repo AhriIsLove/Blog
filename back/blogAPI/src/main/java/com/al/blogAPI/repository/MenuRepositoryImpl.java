@@ -37,8 +37,6 @@ public class MenuRepositoryImpl implements MenuRepository {
 				.setParameter("id", id)
 				.getResultList();
 		
-		System.out.println(id + " => subMenus count : " + subMenus.size());
-		
 		return subMenus;
 	}
 

@@ -16,6 +16,7 @@ public class MenuDTO {
 	//Entity 속성들
 	private Long id;
 	private String name;
+	private String link;
 	private Long parent_id;
 	
 	//DTO 추가 속성들

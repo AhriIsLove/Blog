@@ -31,10 +31,6 @@ public class MenuServiceImpl implements MenuService {
 				.dtoList(menuDTOs)
 				.build();
 		
-//		menuDTOs = menus.stream()
-//				.map(menu -> menuToDTO(menu))
-//				.collect(Collectors.toList());
-
 		return menuResponseDTOs;
 	}
 
@@ -42,6 +38,7 @@ public class MenuServiceImpl implements MenuService {
 		MenuDTO menuDTO = new MenuDTO();
 		menuDTO.setId(menu.getId());
 		menuDTO.setName(menu.getName());
+		menuDTO.setLink(menu.getLink());
 		menuDTO.setParent_id(menu.getParent_id());
 		
 		//하위 메뉴
@@ -50,7 +47,6 @@ public class MenuServiceImpl implements MenuService {
 		subMenuDTOs = subMenus.stream()
 				.map(subMenu -> menuToDTO(subMenu))
 				.collect(Collectors.toList());
-
 		
 		menuDTO.setSub_menus(subMenuDTOs);
 		

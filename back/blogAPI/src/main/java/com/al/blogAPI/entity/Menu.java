@@ -16,5 +16,6 @@ public class Menu {
 	@Id
 	private Long id;
 	private String name;
+	private String link;
 	private Long parent_id;
 }

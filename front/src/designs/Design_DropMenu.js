@@ -7,7 +7,7 @@ export const Design_DropMenu = ({ DropShowHamburgerMenu, id}) => {
     return (
         <div>
             <motion.svg
-                className="w-10 h-10 text-gray-500 cursor-pointer"
+                className="w-10 h-10 p-2 text-myMainColor-900 cursor-pointer"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
