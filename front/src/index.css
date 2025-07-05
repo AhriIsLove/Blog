@@ -116,19 +116,20 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         z-0 : 상호작용 레벨 */
     }
     .hamburgerBackground {
-        @apply fixed left-2/4 top-0 w-screen h-screen 
+        @apply fixed left-2/4 top-0 w-2/4 h-screen 
         p-10
         bg-myMainColor-300 opacity-90 
         flex-row items-center 
     }
     .hamburgerContent {
-        @apply 
-        h-auto
+        @apply flex
+        h-auto w-full
         text-3xl text-myMainColor-950
         cursor-pointer
     }
     .hamburgerContent .hamburgerContentDetail {
         @apply 
+        overflow-hidden 
         text-xl text-myMainColor-950 ml-5
     }
 }

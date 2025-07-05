@@ -74,10 +74,13 @@ const Header_Main = () => {
                         {menu.name}
                         <span className='ani_line duration-300 group-hover:top-[95%] group-hover:opacity-100'></span>
                         {/* 상세메뉴 */}
-                        <div className={`dropmenu transition-all duration-500 ease-in-out transform origin-top 
+                        <div className={`dropmenu transition-all duration-500 ease-in-out transform origin-top
                         ${ShowDropMenu ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"}`}>
-                            {menu.sub_menus.map(sub_menu =>
-                                <div key={sub_menu.id}>
+                            {menu.sub_menus.map(sub_menu => 
+                                <div className='bg-myMainColor-300 bg-opacity-0 rounded-md w-full 
+                                text-center
+                                hover:bg-opacity-80 transition-all duration-300'
+                                 key={sub_menu.id}>
                                     {sub_menu.name}
                                 </div>
                             )}

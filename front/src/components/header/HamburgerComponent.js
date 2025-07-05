@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Design_Hamburger } from "../../designs/Design_Hamburger"
 import { getMenu } from "../../api/MainAPI";
+import { Design_DropMenu } from "../../designs/Design_DropMenu";
 
 //API : MenuDTO
 const initMenuDTO = {
@@ -62,15 +63,24 @@ const HamburgerComponent = () => {
                     <div className='hamburgerContent'
                         onClick={() => showDropHamburgerMenu(menu.id)}
                         key={menu.id}>
-                        {menu.name}
-                        {/* 상세메뉴 */}
-                        <div className={`hamburgerContentDetail overflow-hidden transition-all duration-300 ease-in-out transform origin-top
+                        <Design_DropMenu DropShowHamburgerMenu={DropShowHamburgerMenu} id={menu.id}></Design_DropMenu>
+                        <div className="w-full">
+                            <div className="
+                            bg-myMainColor-400 bg-opacity-0 rounded-md w-full hover:bg-opacity-80 transition-all duration-300">
+                                {menu.name}
+                            </div>
+                            {/* 상세메뉴 */}
+                            <div className={`hamburgerContentDetail 
+                            transition-all duration-300 ease-in-out transform origin-top
                             ${DropShowHamburgerMenu === menu.id ? "opacity-100 scale-y-100 max-h-full" : "opacity-0 scale-y-0 max-h-0"}`}>
-                            {menu.sub_menus.map(sub_menu =>
-                                <div key={sub_menu.id}>
-                                    {sub_menu.name}
-                                </div>
-                            )}
+                                {menu.sub_menus.map(sub_menu =>
+                                    <div className="bg-myMainColor-400 bg-opacity-0 rounded-md w-full
+                                        hover:bg-opacity-80 transition-all duration-300"
+                                        key={sub_menu.id}>
+                                        {sub_menu.name}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 )}
