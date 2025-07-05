@@ -1,14 +1,14 @@
 // import { Link } from 'react-router-dom';
-import '../index.css';
-import '../App.css';
+import '../../index.css';
+import '../../App.css';
 
 import { useEffect, useState } from 'react';
 
 // 이미지
-import logo from '../images/logo.png';//로고
+import logo from '../../images/logo.png';//로고
 // 디자인
-import HamburgerComponent from '../components/header/HamburgerComponent';
-import { getMenu } from '../api/MainAPI';
+import HamburgerComponent from './HamburgerComponent';
+import { getMenu } from '../../api/MainAPI';
 
 //API : MenuDTO
 const initMenuDTO = {
@@ -17,7 +17,7 @@ const initMenuDTO = {
 };
 
 // 헤더
-const Header_Main = () => {
+const HeaderComponent = () => {
     //API : 메뉴
     const [menuDTO, setMenuDTO] = useState(initMenuDTO);
     useEffect(() => {
@@ -94,4 +94,4 @@ const Header_Main = () => {
     );
 };
 
-export default Header_Main;
+export default HeaderComponent;
