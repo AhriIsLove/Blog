@@ -1,12 +1,20 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import IntroRouter from "./introduction";
+import IntroRouter from "./IntroRouter";
+import PortfolioRouter from "./PortfolioRouter";
+import StudyRouter from "./StudyRouter";
+import HobbyRouter from "./HobbyRouter";
+import CommunityRouter from "./CommunityRouter";
 
 //로딩 페이지 생성
 const Loading = <div>Loading...</div>
 //메인 페이지 가져오기
 const HomePage = lazy(() => import("../pages/HomePage"));
 const IntroductionPage = lazy(() => import("../pages/IntroductionPage"));
+const PortfolioPage = lazy(() => import("../pages/PortfolioPage"));
+const StudyPage = lazy(() => import("../pages/StudyPage"));
+const HobbyPage = lazy(() => import("../pages/HobbyPage"));
+const CommunityPage = lazy(() => import("../pages/CommunityPage"));
 
 //createBrowserRouter : DispatcherServlet의 Controller 같은 친구
 const root = createBrowserRouter([
@@ -23,7 +31,27 @@ const root = createBrowserRouter([
         path:"introduction",
         element:<Suspense fallback={Loading}><IntroductionPage/></Suspense>,
         children:IntroRouter()
-    }
+    },
+    {
+        path:"portfolio",
+        element:<Suspense fallback={Loading}><PortfolioPage/></Suspense>,
+        children:PortfolioRouter()
+    },
+    {
+        path:"study",
+        element:<Suspense fallback={Loading}><StudyPage/></Suspense>,
+        children:StudyRouter()
+    },
+    {
+        path:"hobby",
+        element:<Suspense fallback={Loading}><HobbyPage/></Suspense>,
+        children:HobbyRouter()
+    },
+    {
+        path:"community",
+        element:<Suspense fallback={Loading}><CommunityPage/></Suspense>,
+        children:CommunityRouter()
+    },
 ])
 
 //외부 참조 허락

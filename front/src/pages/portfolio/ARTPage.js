@@ -1,10 +1,10 @@
-const InfoPage = () => {
+const ARTPage = () => {
     //화면 리턴
     return (
         <div>
-            InfoPage
+            ARTPage
         </div>
     );
 }
 
-export default InfoPage;
+export default ARTPage;

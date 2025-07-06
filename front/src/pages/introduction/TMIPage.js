@@ -1,10 +1,10 @@
-const InfoPage = () => {
+const TMIPage = () => {
     //화면 리턴
     return (
         <div>
-            InfoPage
+            TMIPage
         </div>
     );
 }
 
-export default InfoPage;
+export default TMIPage;

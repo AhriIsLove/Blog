@@ -1,10 +1,10 @@
-const InfoPage = () => {
+const GamePage = () => {
     //화면 리턴
     return (
         <div>
-            InfoPage
+            GamePage
         </div>
     );
 }
 
-export default InfoPage;
+export default GamePage;
