@@ -1,3 +1,4 @@
+import SearchComponent from "../components/container/SearchComponent";
 import BasicLayout from "../layouts/BasicLayout";
 
 const HomePage = () => {
@@ -5,7 +6,7 @@ const HomePage = () => {
     return (
         <BasicLayout>
             {/* children */}
-            <div className="text-3xl">HomePage</div>
+            <SearchComponent/>
         </BasicLayout>
     );
 }

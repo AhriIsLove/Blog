@@ -40,7 +40,6 @@ const HamburgerComponent = () => {
     };
     //항상
     useEffect(() => {
-        console.log()
         const handleResize = () => {
             //sm:햄버거메뉴 닫기
             if (window.innerWidth >= 640) {

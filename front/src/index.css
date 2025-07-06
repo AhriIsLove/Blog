@@ -32,11 +32,15 @@ keyframes : 반복 용도
 AnimatePresence/Framer Motion : 고성능, react전용 */
 
 @layer components {
+    body {
+        @apply bg-myMainColor-50 
+    }
     /* 헤더 */
     .header{
-        @apply h-16 md:h-20 lg:h-24 px-3 
+        @apply h-16 md:h-20 lg:h-24 px-3
         relative flex items-center gap-3 
     }
+
     /* 로고 */
     .logo {
         /* 
@@ -46,7 +50,6 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         h-full w-auto
         object-contain 
     }
-
     /* 메뉴 */
     .menu {
         /* 
@@ -108,7 +111,6 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         text-myMainColor-950
         cursor-pointer
     }
-
     /* 메뉴 - 햄버거버튼 */
     .hamburger {
         @apply relative sm:hidden 
