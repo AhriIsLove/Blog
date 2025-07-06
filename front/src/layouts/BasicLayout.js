@@ -20,8 +20,14 @@ const BasicLayout = ({ children }) => {
             5. 하위 항목과의 관계
 
             */}
-            
-            <div className="relative 
+
+            {/*
+            hidden sm:flex
+            relative h-full items-center justify-center flex-1
+            md:text-base lg:text-xl xl:text-3xl font-extrabold text-myMainColor-950  
+            */}
+
+            <div className="relative
             z-10 
             bg-myMainColor-50 ">
                 <HeaderComponent></HeaderComponent>
