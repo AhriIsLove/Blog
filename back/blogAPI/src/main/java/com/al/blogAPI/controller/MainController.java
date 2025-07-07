@@ -45,6 +45,8 @@ public class MainController {
 	
 	@GetMapping("/search/{keyword}")
 	public MenuResponseDTO<MenuDTO> search(@PathVariable(name="keyword") String keyword){
+		System.out.println("keyword : " + keyword);
+		
 		MenuResponseDTO<MenuDTO> menuResponseDTO = menuService.search(keyword);
 
 		return menuResponseDTO;

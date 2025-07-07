@@ -23,7 +23,7 @@ const HeaderComponent = () => {
     const [menuDTO, setMenuDTO] = useState(initMenuDTO);
     useEffect(() => {
         getMenu().then(data => {
-            console.log(data);
+            // console.log(data);
             setMenuDTO(data);
         });
     }, []);

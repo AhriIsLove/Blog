@@ -18,3 +18,12 @@ export const getMenu = async() => {
     // dtoList: [],
     // maxSubMenuCount: 0,
 };
+
+export const getSearch = async(keyword) => {
+    const res = await axios.get(`${prefix}/search/${keyword}`);
+
+    return res.data;
+    // 반환되는 데이터타입
+    // dtoList: [],
+    // maxSubMenuCount: 0,
+};
