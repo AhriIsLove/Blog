@@ -12,8 +12,11 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Repository;
 
 import com.al.blogAPI.entity.Menu;
+import com.al.blogAPI.entity.Search;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -39,5 +42,40 @@ public class MenuRepositoryImpl implements MenuRepository {
 		
 		return subMenus;
 	}
+	
+	@Override
+	public Menu findMenu(Long id) {
+		Menu menu = entityManager.find(Menu.class, id);
+		
+		if (menu == null) {
+            throw new EntityNotFoundException("ID가 " + id + "인 메뉴를 찾을 수 없습니다.");
+        }
+		
+		return menu;
+	}
+
+	@Override
+	public boolean regist(Search search) {
+		try {
+			entityManager.persist(search);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		
+		return true;
+	}
+
+	@Override
+	public List<Menu> findMenusByKeyword(String keyword) {
+		List<Menu> menus = entityManager.createQuery
+				("SELECT m FROM Menu m WHERE m.id IN ("
+						+ "SELECT DISTINCT s.menu.id FROM Search s WHERE s.keyword LIKE :keyword)", Menu.class)
+				.setParameter("keyword", "%" + keyword + "%")
+				.getResultList();
+		
+		return menus;
+	}
+
 
 }
