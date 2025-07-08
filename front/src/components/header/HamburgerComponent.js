@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Design_Hamburger } from "../../designs/Design_Hamburger"
 import { getMenu } from "../../api/MainAPI";
 import { Design_DropMenu } from "../../designs/Design_DropMenu";
+import { Link } from "react-router-dom";
 
 //API : MenuDTO
 const initMenuDTO = {
@@ -80,10 +81,13 @@ const HamburgerComponent = () => {
                             ${DropShowHamburgerMenu === menu.id ? "opacity-100 scale-y-100 max-h-full" : "opacity-0 scale-y-0 max-h-0"} 
                             overflow-hidden`}>
                                 {menu.sub_menus.map(sub_menu =>
-                                    <div className="bg-myMainColor-400 bg-opacity-0 rounded-md w-full
+                                    <div className="
+                                    bg-myMainColor-400 bg-opacity-0 rounded-md w-full
                                         hover:bg-opacity-80 transition-all duration-300"
                                         key={sub_menu.id}>
-                                        {sub_menu.name}
+                                        {/* e.stopPropagation() : 버블링 방지(부모의 onClick방지) */}
+                                        <Link className="flex w-full" 
+                                        to={`${menu.link}${sub_menu.link}`} onClick={(e) => {e.stopPropagation(); showHamburgerMenu();}}>{sub_menu.name}</Link>
                                     </div>
                                 )}
                             </div>
