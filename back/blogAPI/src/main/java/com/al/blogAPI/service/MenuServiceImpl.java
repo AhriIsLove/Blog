@@ -12,6 +12,7 @@ import com.al.blogAPI.dto.SearchDTO;
 import com.al.blogAPI.entity.Menu;
 import com.al.blogAPI.entity.Search;
 import com.al.blogAPI.repository.MenuRepository;
+import com.al.blogAPI.repository.MenuRepository2;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class MenuServiceImpl implements MenuService {
 	private final MenuRepository menuRepository;
+	private final MenuRepository2 menuRepository2;//Repository는 쿼리만 날리는 방식으로 바꿔보자
 
 	// 최상위 메뉴 조회
 	@Override
@@ -40,7 +42,9 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public MenuDTO getMenu(Long menu_id) {
-		Menu menu = menuRepository.findMenu(menu_id);
+//		Menu menu = menuRepository.findMenu(menu_id);
+		Optional<Menu> optional = menuRepository2.selectOne(menu_id);
+		Menu menu = optional.orElseThrow();
 		
 		MenuDTO menuDTO = menuToDTO(menu, true);
 		
