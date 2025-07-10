@@ -2,7 +2,7 @@ import axios from "axios";//Terminal : yarn add axios
 
 export const API_SERVER_HOST = 'http://localhost:8081';
 
-const prefix = `${API_SERVER_HOST}/blog`;
+export const prefix = `${API_SERVER_HOST}/blog`;
 
 //서버에게 목록 요청
 export const getMenu = async() => {

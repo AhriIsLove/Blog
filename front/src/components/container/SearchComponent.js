@@ -1,7 +1,17 @@
-import { getSearch } from "../../api/MainAPI";
+import { useEffect, useState } from "react";
+import { getMenu, getSearch } from "../../api/MainAPI";
 import SearchResultComponent from "./home/SearchResultComponent";
 
+//API : MenuDTO
+const initMenuDTO = {
+    dtoList: [],
+    maxSubMenuCount: 0,
+};
+
 const SearchComponent = () => {
+    const [keyword, setKeyword] = useState("");
+    const [menuDTO, setMenuDTO] = useState(initMenuDTO);
+
     const handleChange = (e) => {
         //e.target.value에 따라 검색해서 자동완성 도움을 준다
 
@@ -9,8 +19,8 @@ const SearchComponent = () => {
     const handleEnter = (e) => {
         if (e.key === 'Enter') {
             getSearch(e.target.value).then(data => {
-                
-
+                setKeyword(e.target.value);
+                setMenuDTO(data);
                 console.log(data);
             });
         }
@@ -36,7 +46,7 @@ const SearchComponent = () => {
             </div>
 
             {/* 검색결과 */}
-            <SearchResultComponent/>
+            <SearchResultComponent searchKeyword={keyword} searchResult={menuDTO}/>
         </div>
     );
 };
