@@ -12,7 +12,7 @@ import com.al.blogAPI.dto.SearchDTO;
 import com.al.blogAPI.entity.Menu;
 import com.al.blogAPI.entity.Search;
 import com.al.blogAPI.repository.MenuRepository;
-import com.al.blogAPI.repository.MenuRepository2;
+import com.al.blogAPI.repository.SearchRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +21,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 public class MenuServiceImpl implements MenuService {
-	private final MenuRepository menuRepository;
-	private final MenuRepository2 menuRepository2;//Repository는 쿼리만 날리는 방식으로 바꿔보자
+	private final MenuRepository menuRepository;//Repository는 쿼리만 날리는 방식으로 바꿔보자
+	private final SearchRepository searchRepository;
 
 	// 최상위 메뉴 조회
 	@Override
 	public MenuResponseDTO<MenuDTO> getMenus() {
 		// 최상위 메뉴 조회
-		List<Menu> menus = menuRepository.findRootMenus();
+		List<Menu> menus = menuRepository.readListRoot();
 		List<MenuDTO> menuDTOs = menus.stream()
 				.map(menu -> menuToDTO(menu, true))
 				.collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public MenuDTO getMenu(Long menu_id) {
 //		Menu menu = menuRepository.findMenu(menu_id);
-		Optional<Menu> optional = menuRepository2.selectOne(menu_id);
+		Optional<Menu> optional = menuRepository.selectOne(menu_id);
 		Menu menu = optional.orElseThrow();
 		
 		MenuDTO menuDTO = menuToDTO(menu, true);
@@ -62,7 +62,7 @@ public class MenuServiceImpl implements MenuService {
 		List<MenuDTO> subMenuDTOs = null;
 		if(getSubMenu)
 		{
-			List<Menu> subMenus = menuRepository.findSubMenus(menu.getId());
+			List<Menu> subMenus = menuRepository.readListSub(menu.getId());
 			subMenuDTOs = subMenus.stream()
 					.map(subMenu -> menuToDTO(subMenu, true))
 					.collect(Collectors.toList());
@@ -76,16 +76,25 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public boolean registSearch(SearchDTO searchDTO) {
 		Search search = dtoToSearch(searchDTO);
-		
-		boolean result = menuRepository.regist(search);
+
+		boolean result = false;
+		try {
+			searchRepository.save(search);
+			result = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		return result;
 	}
 	
 	private Search dtoToSearch(SearchDTO searchDTO) {
+		Optional<Menu> optional = menuRepository.findById(searchDTO.getMenu_id());
+		Menu menu = optional.orElseThrow();
+		
 		Search search = Search.builder()
 				.keyword(searchDTO.getKeyword())
-				.menu(menuRepository.findMenu(searchDTO.getMenu_id()))
+				.menu(menu)//여기
 				.build();
 		
 		return search;
@@ -94,7 +103,7 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public MenuResponseDTO<MenuDTO> search(String keyword) {
 //		키워드에 해당하는 메뉴들 가져오기
-		List<Menu> menus = menuRepository.findMenusByKeyword(keyword);
+		List<Menu> menus = searchRepository.readList(keyword);
 		
 //		DTO로 만들기
 		List<MenuDTO> menuDTOs = menus.stream()

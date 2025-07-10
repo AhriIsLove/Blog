@@ -37,6 +37,7 @@ public class MainController {
 	
 	@PostMapping("/regist/search")
 	public Map<String, Boolean> registSearch(@RequestBody SearchDTO searchDTO){
+		System.out.println(searchDTO);
 		boolean result = menuService.registSearch(searchDTO);
 		
 		return Map.of("result", result);
