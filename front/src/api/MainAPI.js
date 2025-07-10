@@ -19,6 +19,21 @@ export const getMenu = async() => {
     // maxSubMenuCount: 0,
 };
 
+//서버에게 목록 요청
+export const getMenuOne = async() => {
+    // 메뉴 ID로 메뉴 하나만 받는 API를 사용해야 해요
+    // 여기서 부터 해야 해요
+    // const res = await axios.get(`${prefix}/menu/read/{id}`);
+
+    // console.log('getMenus res.data : ' , res.data);
+
+    // return res.data;
+    return null;
+    // 반환되는 데이터타입
+    // dtoList: [],
+    // maxSubMenuCount: 0,
+};
+
 export const getSearch = async(keyword) => {
     const res = await axios.get(`${prefix}/search/${keyword}`);
 

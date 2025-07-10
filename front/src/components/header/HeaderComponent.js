@@ -73,7 +73,7 @@ const HeaderComponent = () => {
                 ${ShowDropMenu ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"}`}
                     onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>
                     {(() => {
-                        // 여기서 for문 사용 가능!
+                        // 이렇게 for문 사용 가능!
                         const elements = [];
                         for (let i = 0; i < menuDTO.maxSubMenuCount; i++) {
                             elements.push(<br key={i} />);

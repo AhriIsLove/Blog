@@ -1,7 +1,22 @@
 import Design_TreeBranch from "../../../designs/Design_TreeBranch";
-import { prefix } from "../../../api/MainAPI";
+import { getMenu, prefix } from "../../../api/MainAPI";
+import { useEffect, useState } from "react";
+
+const initMenuDTO = {
+    dtoList: [],
+    maxSubMenuCount: 0,
+};
 
 const SearchResultComponent = ({ searchKeyword, searchResult }) => {
+    // 여기도
+    // const [parentMenuDTO, setParentMenuDTO] = useState(initMenuDTO);
+    // useEffect(() => {
+    //     getMenuOne().then(data => {
+    //         console.log("data", data);
+    //         setParentMenuDTO(data);
+    //     });
+    // }, []);
+
     return (
         <div>
             <div className='mt-10 mb-5
@@ -19,8 +34,8 @@ const SearchResultComponent = ({ searchKeyword, searchResult }) => {
                             <div className="flex flex-row">
                                 <div className="w-11/12">
                                     <div className="text-xs">
-                                        {/* getMenu() 함수를 써야 합니다. */}
-                                        {`${prefix}/menu/${menu.parent_id}`}
+                                        {/* 여기도 */}
+                                        {/* {parentMenuDTO ? "abc" : "123"} */}
                                     </div>
                                     <div className="flex flex-row">
                                         <Design_TreeBranch></Design_TreeBranch>
