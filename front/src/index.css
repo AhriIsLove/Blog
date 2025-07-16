@@ -43,10 +43,10 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         - absolute : top,bottom,left,right가 부모기준으로 작동하게 함(default:html기준)
         flex-1 : 
         cursor-pointer : 마우스 오버시 손가락 포인터 커서 표시 
-        hidden sm:flex : 숨기기 기본, sm 이상은 flex 
+        hidden md:flex : 숨기기 기본, md 이상은 flex 
         hidden과 flex가 같은 그룹인듯...
         */
-        @apply hidden sm:flex
+        @apply hidden md:flex
         relative h-full items-center justify-center flex-1
         md:text-base lg:text-xl xl:text-3xl font-extrabold text-myMainColor-950 
         /* cursor-pointer */

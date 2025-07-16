@@ -1,6 +1,7 @@
 import Design_TreeBranch from "../../../designs/Design_TreeBranch";
 import { getMenu, getMenuOne, getSubMenus, prefix } from "../../../api/MainAPI";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SearchResultComponent = ({ searchKeyword, searchResult }) => {
     {/* 부모의 메뉴 */ }
@@ -16,7 +17,7 @@ const SearchResultComponent = ({ searchKeyword, searchResult }) => {
             const fetches = searchResult.dtoList.map(async (menu) => {
                 if (menu.parent_id) {
                     const data = await getMenuOne(menu.parent_id);
-                    tempMap[menu.parent_id] = data.name;
+                    tempMap[menu.parent_id] = data;
                 }
             });
 
@@ -63,14 +64,19 @@ const SearchResultComponent = ({ searchKeyword, searchResult }) => {
                     const key = index + 1;
                     const parentData = parentMenuDataMap[menu.parent_id];
                     const childData = childMenuDataMap[menu.id];
+                    let link = "";
+                    if (parentData) {
+                        link = parentData.link + menu.link;
+                    } else {
+                        link = menu.link;
+                    }
                     return (
-                        <div key={key} className="my-4 p-4 border-2 border-myPointColor-400 
+                        <div key={key} className="my-4 border-2 border-myPointColor-400 
                         text-myMainColor-950">
-                            <div className="items-center
-                            flex flex-row">
-                                <div className="w-11/12">
+                            <div className="h-24 items-center flex flex-row">
+                                <div className="p-4 w-11/12">
                                     <div className="text-xs">
-                                        {parentData ? parentData : ""}
+                                        {parentData ? parentData.name : ""}
                                     </div>
                                     <div className="flex flex-row">
                                         {parentData ? <Design_TreeBranch></Design_TreeBranch> : <></>}
@@ -92,9 +98,15 @@ const SearchResultComponent = ({ searchKeyword, searchResult }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-1/12">
-                                    바로가기
-                                </div>
+                                {/* {parentData.link}{menu.link} */}
+
+                                <Link className="h-full w-1/12 bg-myPointColor-400
+                                md:text-xl text-xs
+                                flex flex-col items-center justify-center"
+                                    to={`${link}`} onClick={(e) => { }}>
+                                    <div className="whitespace-nowrap">바로</div>
+                                    <div className="whitespace-nowrap">가기</div>
+                                </Link>
                             </div>
                         </div>
                     )

@@ -22,7 +22,7 @@ const BasicLayout = ({ children }) => {
             */}
 
             {/*
-            hidden sm:flex
+            hidden md:flex
             relative h-full items-center justify-center flex-1
             md:text-base lg:text-xl xl:text-3xl font-extrabold text-myMainColor-950  
             */}

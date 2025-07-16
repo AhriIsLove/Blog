@@ -42,7 +42,7 @@ const HamburgerComponent = () => {
     //항상
     useEffect(() => {
         const handleResize = () => {
-            //sm:햄버거메뉴 닫기
+            //md:햄버거메뉴 닫기
             if (window.innerWidth >= 640) {
                 setShowHamburgerMenu(false);
             }
@@ -95,7 +95,7 @@ const HamburgerComponent = () => {
                     </div>
                 )}
             </div>
-            <div className="relative sm:hidden "
+            <div className="relative md:hidden "
                 onClick={showHamburgerMenu}>
                 <Design_Hamburger ShowHamburgerMenu={ShowHamburgerMenu}></Design_Hamburger>
             </div>
