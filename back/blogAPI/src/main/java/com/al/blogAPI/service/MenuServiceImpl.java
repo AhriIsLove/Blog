@@ -118,4 +118,20 @@ public class MenuServiceImpl implements MenuService {
 		return menuResponseDTOs;
 	}
 
+	//하위 메뉴 조회
+	@Override
+	public MenuResponseDTO<MenuDTO> getSubMenus(Long menu_id) {
+		//하위 메뉴
+		List<Menu> subMenus = menuRepository.readListSub(menu_id);
+		List<MenuDTO> subMenuDTOs = subMenus.stream()
+				.map(subMenu -> menuToDTO(subMenu, false))
+				.collect(Collectors.toList());
+
+		MenuResponseDTO<MenuDTO> menuResponseDTOs = MenuResponseDTO.<MenuDTO>builder()
+				.dtoList(subMenuDTOs)
+				.build();
+		
+		return menuResponseDTOs;
+	}
+
 }

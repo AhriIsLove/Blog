@@ -16,5 +16,7 @@ public interface MenuService {
 
 	MenuResponseDTO<MenuDTO> search(String keyword);
 
+	MenuResponseDTO<MenuDTO> getSubMenus(Long menu_id);
+
 
 }

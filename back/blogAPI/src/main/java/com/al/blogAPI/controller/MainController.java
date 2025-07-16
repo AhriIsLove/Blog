@@ -34,6 +34,12 @@ public class MainController {
 		
 		return menuDTO;
 	}
+	@GetMapping("/submenus/{menu_id}")
+	public MenuResponseDTO<MenuDTO> getSubMenus(@PathVariable(name="menu_id") Long menu_id) {
+		MenuResponseDTO<MenuDTO> menuDTO = menuService.getSubMenus(menu_id);
+		
+		return menuDTO;
+	}
 	
 	@PostMapping("/regist/search")
 	public Map<String, Boolean> registSearch(@RequestBody SearchDTO searchDTO){
