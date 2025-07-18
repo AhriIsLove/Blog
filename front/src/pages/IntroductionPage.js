@@ -9,7 +9,6 @@ const IntroductionPage = () => {
     //화면 리턴
     return (
         <BasicLayout>
-            <div className="text-3xl">IntroductionPage</div>
             <Outlet />
         </BasicLayout>
     );
