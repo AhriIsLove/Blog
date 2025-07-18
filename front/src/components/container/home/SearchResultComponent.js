@@ -53,11 +53,15 @@ const SearchResultComponent = ({ searchKeyword, searchResult }) => {
 
     return (
         <div>
-            <div className='mt-10 mb-5
-            text-md'>
-                '{searchKeyword}'에 대한 검색결과 {searchResult.dtoList.length}건
-            </div>
-
+            {
+                searchKeyword == "" ?
+                    <></>
+                    :
+                    <div className='mt-10 mb-5 
+                    text-md'>
+                        '{searchKeyword}'에 대한 검색결과 {searchResult.dtoList.length}건
+                    </div>
+            }
             {/* 검색결과 */}
             {
                 searchResult.dtoList.map((menu, index) => {
