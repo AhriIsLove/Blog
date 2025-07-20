@@ -3,9 +3,7 @@ import PersonalInformationComponent from "../../components/container/introductio
 const InfoPage = () => {
     //화면 리턴
     return (
-        <div>
-            <PersonalInformationComponent/>
-        </div>
+        <PersonalInformationComponent />
     );
 }
 

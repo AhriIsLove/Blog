@@ -27,18 +27,33 @@ const BasicLayout = ({ children }) => {
             md:text-base lg:text-xl xl:text-3xl font-extrabold text-myMainColor-950  
             */}
 
+            {/* 헤더 */}
             <div className="relative
             z-10 
             bg-myMainColor-50 ">
                 <HeaderComponent></HeaderComponent>
             </div>
 
-            <div className="absolute 
-            z-0 
-            top-0 w-full h-screen 
-            bg-myMainColor-50 
-            flex items-center justify-center">
-                {children}
+            {/* 메인 */}
+            <div className="flex flex-row flex-1">
+                {/* 사이드-좌 */}
+                <div className="w-1/12">
+
+                </div>
+
+                {/* 컨테이너 */}
+                <div className="relative 
+                z-0 
+                top-0 w-10/12 h-screen 
+                bg-myMainColor-50 
+                flex items-center justify-center">
+                    {children}
+                </div>
+
+                {/* 사이드-우 */}
+                <div className="w-1/12">
+
+                </div>
             </div>
         </>
     )

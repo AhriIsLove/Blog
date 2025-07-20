@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getMenu, getSearch } from "../../api/MainAPI";
+import { useState } from "react";
+import { getSearch } from "../../api/MainAPI";
 import SearchResultComponent from "./home/SearchResultComponent";
 
 //API : MenuDTO
@@ -20,7 +20,7 @@ const SearchComponent = () => {
         if (e.key === 'Enter') {
             const searchWord = e.target.value;
             setKeyword(searchWord);
-            if (!searchWord == "") {
+            if (!searchWord === "") {
                 getSearch(searchWord).then(data => {
                     setMenuDTO(data);
                     console.log(data);
