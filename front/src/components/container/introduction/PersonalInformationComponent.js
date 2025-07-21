@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import logo from '../../../images/info_profile.png';//로고
 import { getInfo } from '../../../api/IntroductionAPI';
+import { prefix } from '../../../api/MainAPI';
 
 const PersonalInformationComponent = () => {
     //API : InfoDTO
@@ -21,7 +22,9 @@ const PersonalInformationComponent = () => {
 
     useEffect(() => {
         getInfo().then(data => {
-            // console.log(data);
+            //이미지 경로 수정
+            data.profile = prefix + "/image/" + data.profile;
+
             setInfoDTO(data);
         });
     }, []);
@@ -31,7 +34,7 @@ const PersonalInformationComponent = () => {
         flex flex-col gap-5">
             <div className='flex flex-row'>
                 <img className="tableData w-1/4 p-0"
-                    alt="사진" src={logo}>
+                    alt="사진" src={infoDTO.profile ? infoDTO.profile : "default.png"}>
                 </img>
 
                 <table className="w-3/4">

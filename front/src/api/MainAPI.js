@@ -53,3 +53,9 @@ export const getSearch = async (keyword) => {
     // dtoList: [],
     // maxSubMenuCount: 0,
 };
+
+export const getImage = async(filename) => {
+    const res = await axios.get(`${prefix}/image/${filename}`);
+
+    return res.data;
+}
