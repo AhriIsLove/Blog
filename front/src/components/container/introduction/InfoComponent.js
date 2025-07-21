@@ -3,7 +3,7 @@ import logo from '../../../images/info_profile.png';//로고
 import { getInfo } from '../../../api/IntroductionAPI';
 import { prefix } from '../../../api/MainAPI';
 
-const PersonalInformationComponent = () => {
+const InfoComponent = () => {
     //API : InfoDTO
     const initInfoDTO = {
         infoId: "",
@@ -97,4 +97,4 @@ const PersonalInformationComponent = () => {
     );
 };
 
-export default PersonalInformationComponent;
+export default InfoComponent;

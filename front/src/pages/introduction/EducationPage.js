@@ -1,8 +1,10 @@
+import EducationComponent from "../../components/container/introduction/EducationComponent";
+
 const EducationPage = () => {
     //화면 리턴
     return (
         <div>
-            EducationPage
+            <EducationComponent/>
         </div>
     );
 }

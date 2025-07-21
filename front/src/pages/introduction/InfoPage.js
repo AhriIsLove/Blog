@@ -1,9 +1,9 @@
-import PersonalInformationComponent from "../../components/container/introduction/PersonalInformationComponent";
+import InfoComponent from "../../components/container/introduction/InfoComponent";
 
 const InfoPage = () => {
     //화면 리턴
     return (
-        <PersonalInformationComponent />
+        <InfoComponent />
     );
 }
 
