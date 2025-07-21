@@ -20,8 +20,6 @@ public class IntroductionController {
 
 	@GetMapping("/info")
 	public InfoDTO getInfo() {
-		System.out.println("abc");
-		
 		InfoDTO infoDTO = introductionService.getInfo();
 		
 		return infoDTO;

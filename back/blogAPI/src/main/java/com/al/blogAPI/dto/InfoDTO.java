@@ -2,6 +2,8 @@ package com.al.blogAPI.dto;
 
 import java.time.LocalDate;
 
+import com.al.blogAPI.entity.InfoId;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InfoDTO {
-	private boolean pri;
-	private String name;
+	private InfoId infoId;
+	
 	private String e_name;
 	private String c_name;
 	private int age;

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Info {
 	@EmbeddedId
-	private InfoId id;
+	private InfoId infoId;
 //	private boolean pri;
 //	private String name;
 	
