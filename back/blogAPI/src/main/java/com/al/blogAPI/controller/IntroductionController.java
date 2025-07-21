@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.al.blogAPI.dto.InfoDTO;
 import com.al.blogAPI.dto.MenuDTO;
 import com.al.blogAPI.dto.MenuResponseDTO;
 import com.al.blogAPI.service.IntroductionService;
@@ -17,10 +18,12 @@ import lombok.RequiredArgsConstructor;
 public class IntroductionController {
 	private final IntroductionService introductionService;
 
-	@GetMapping("/")
-	public MenuResponseDTO<MenuDTO> getInfo() {
-//		MenuResponseDTO<MenuDTO> menuDTOs = introductionService.getInfo();
+	@GetMapping("/info")
+	public InfoDTO getInfo() {
+		System.out.println("abc");
 		
-		return null;
+		InfoDTO infoDTO = introductionService.getInfo();
+		
+		return infoDTO;
 	}
 }
