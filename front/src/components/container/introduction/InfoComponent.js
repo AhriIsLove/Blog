@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import logo from '../../../images/info_profile.png';//로고
 import { getInfo } from '../../../api/IntroductionAPI';
 import { prefix } from '../../../api/MainAPI';
 
@@ -32,6 +31,9 @@ const InfoComponent = () => {
     return (
         <div className="relative w-full h-full mt-5
         flex flex-col gap-5">
+            <div className='w-full text-5xl text-myPointColor-800'>
+                인적사항
+            </div>
             <div className='flex flex-row'>
                 <img className="tableData w-1/4 p-0"
                     alt="사진" src={infoDTO.profile ? infoDTO.profile : "default.png"}>
