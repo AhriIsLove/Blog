@@ -31,7 +31,10 @@ const InfoComponent = () => {
     return (
         <div className="relative w-full h-full mt-5
         flex flex-col gap-5">
-            <div className='w-full text-5xl text-myPointColor-800'>
+            <div className='w-full mt-10
+            text-5xl text-myFontColor-900 
+            flex flex-row'>
+                <div className="w-6 h-6 bg-myFontColor-900 rounded-full my-auto mx-2"></div>
                 인적사항
             </div>
             <div className='flex flex-row'>
@@ -73,7 +76,6 @@ const InfoComponent = () => {
                     </tbody>
                 </table>
             </div>
-
             <table className="w-full">
                 <tbody>
                     <tr>
@@ -95,6 +97,13 @@ const InfoComponent = () => {
 
                 </tbody>
             </table>
+            <div className='w-full mt-10
+            text-5xl text-myFontColor-900 
+            flex flex-row'>
+                <div className="w-6 h-6 rounded-full my-auto mx-2
+                bg-myFontColor-900"></div>
+                학력
+            </div>
         </div>
     );
 };
