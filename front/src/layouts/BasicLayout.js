@@ -43,9 +43,10 @@ const BasicLayout = ({ children }) => {
                 </div>
 
                 {/* 컨테이너 */}
+                {/* min-h-screen : 최소 높이는 화면 높이로 설정하되, 내용이 많아지면 자동으로 늘어나게 함 */}
                 <div className="relative 
                 z-0 
-                top-0 w-10/12 h-screen 
+                top-0 w-10/12 min-h-screen my-5
                 bg-myMainColor-50 
                 flex items-center justify-center">
                     {children}

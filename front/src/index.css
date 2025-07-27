@@ -56,6 +56,11 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         @apply md:text-base lg:text-lg xl:text-xl
     }
 
+    .tableHeader {
+        @apply bg-myMainColor-100 
+        border border-slate-400 p-2 
+        text-center
+    }
     .tableData {
         @apply border border-slate-400 p-2
     }
