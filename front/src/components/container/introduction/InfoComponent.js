@@ -30,6 +30,7 @@ const InfoComponent = () => {
 
     return (
         <div className="relative w-full h-full mt-5
+        max-w-[700px]
         flex flex-col gap-5">
             <div className='w-full mt-10
             text-5xl text-myFontColor-900 
@@ -104,6 +105,57 @@ const InfoComponent = () => {
                 bg-myFontColor-900"></div>
                 학력
             </div>
+            <table className="w-full">
+                <tbody>
+                    <tr>
+                        <td className="tableData w-5/12">기간</td>
+                        <td className="tableData w-5/12">학교명</td>
+                        <td className="tableData w-2/12">전공</td>
+                    </tr>
+                    <tr>
+                        <td className="tableData">2013.03 ~ 2020.02</td>
+                        <td className="tableData">배재대학교</td>
+                        <td className="tableData">게임공학과</td>
+                    </tr>
+                    <tr>
+                        <td className="tableData">2009.03 ~ 2012.02</td>
+                        <td className="tableData">단국대학교 사범대학 부속 고등학교</td>
+                        <td className="tableData">게임공학과</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div className='w-full mt-10
+            text-5xl text-myFontColor-900 
+            flex flex-row'>
+                <div className="w-6 h-6 rounded-full my-auto mx-2
+                bg-myFontColor-900"></div>
+                경력
+            </div>
+            <table className="w-full">
+                <tbody>
+                    <tr>
+                        <td className="tableData w-3/12">기간</td>
+                        <td className="tableData w-2/12">회사명</td>
+                        <td className="tableData w-2/12">부서</td>
+                        <td className="tableData w-2/12">직급</td>
+                        <td className="tableData w-3/12">담당업무</td>
+                    </tr>
+                    <tr>
+                        <td className="tableData">2013.03 ~ 2020.02</td>
+                        <td className="tableData">에이알테크놀로지</td>
+                        <td className="tableData">SW 개발팀</td>
+                        <td className="tableData">대리</td>
+                        <td className="tableData">SW 개발</td>
+                    </tr>
+                    <tr>
+                        <td className="tableData">2013.03 ~ 2020.02</td>
+                        <td className="tableData">유토비즈</td>
+                        <td className="tableData">M&S 개발팀</td>
+                        <td className="tableData">사원</td>
+                        <td className="tableData">M&S 개발</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 };
