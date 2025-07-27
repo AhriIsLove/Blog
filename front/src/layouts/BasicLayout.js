@@ -28,7 +28,8 @@ const BasicLayout = ({ children }) => {
             */}
 
             {/* 헤더 */}
-            <div className="relative
+            {/* sticky : 헤더 상단 고정(고정하기위해 위치(top), 크기(w) 고정 필요) */}
+            <div className="sticky top-0 w-full
             z-10 
             bg-myMainColor-50 ">
                 <HeaderComponent></HeaderComponent>
