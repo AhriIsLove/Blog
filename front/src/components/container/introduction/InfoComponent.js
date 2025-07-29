@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getInfo } from '../../../api/IntroductionAPI';
 import { prefix } from '../../../api/MainAPI';
+import { useLocation } from 'react-router-dom';
 
 const InfoComponent = () => {
     //API : InfoDTO
@@ -18,7 +19,6 @@ const InfoComponent = () => {
     };
 
     const [infoDTO, setInfoDTO] = useState(initInfoDTO);
-
     useEffect(() => {
         getInfo().then(data => {
             //이미지 경로 수정
@@ -28,13 +28,26 @@ const InfoComponent = () => {
         });
     }, []);
 
+    // 앵커 위치로 스크롤
+    const location = useLocation();
+    useEffect(() => {
+        if (location.hash) {
+            const el = document.querySelector(location.hash);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+    }, [location]);
+
     return (
         <div className="relative w-full h-full
         max-w-[700px]
         flex flex-col gap-5">
             <div className='w-full
             text-5xl text-myFontColor-900 
-            flex flex-row'>
+            flex flex-row
+            scroll-mt-16 md:scroll-mt-20 lg:scroll-mt-24'
+                id='info'>
                 <div className="w-6 h-6 bg-myFontColor-900 rounded-full my-auto mx-2"></div>
                 인적사항
             </div>
@@ -100,7 +113,9 @@ const InfoComponent = () => {
             </table>
             <div className='w-full mt-10
             text-5xl text-myFontColor-900 
-            flex flex-row'>
+            flex flex-row
+            scroll-mt-16 md:scroll-mt-20 lg:scroll-mt-24'
+                id='education'>
                 <div className="w-6 h-6 rounded-full my-auto mx-2
                 bg-myFontColor-900"></div>
                 학력
@@ -126,7 +141,9 @@ const InfoComponent = () => {
             </table>
             <div className='w-full mt-10
             text-5xl text-myFontColor-900 
-            flex flex-row'>
+            flex flex-row
+            scroll-mt-16 md:scroll-mt-20 lg:scroll-mt-24'
+                id='career'>
                 <div className="w-6 h-6 rounded-full my-auto mx-2
                 bg-myFontColor-900"></div>
                 경력
@@ -158,7 +175,9 @@ const InfoComponent = () => {
             </table>
             <div className='w-full mt-10
             text-5xl text-myFontColor-900 
-            flex flex-row'>
+            flex flex-row
+            scroll-mt-16 md:scroll-mt-20 lg:scroll-mt-24'
+                id='license'>
                 <div className="w-6 h-6 rounded-full my-auto mx-2
                 bg-myFontColor-900"></div>
                 자격증
