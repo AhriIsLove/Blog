@@ -1,9 +1,9 @@
+import SelfintroductionComponent from "../../components/container/introduction/SelfintroductionComponent";
+
 const SelfIntroductionPage = () => {
     //화면 리턴
     return (
-        <div>
-            SelfIntroductionPage
-        </div>
+        <SelfintroductionComponent />
     );
 }
 

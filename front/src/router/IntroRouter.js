@@ -3,9 +3,6 @@ import { Navigate } from "react-router-dom";
 
 const Loading = <div>Loading...</div>
 const InfoPage = lazy(() => import("../pages/introduction/InfoPage"));
-const EducationPage = lazy(() => import("../pages/introduction/EducationPage"));
-const CareerPage = lazy(() => import("../pages/introduction/CareerPage"));
-const LicensePage = lazy(() => import("../pages/introduction/LicensePage"));
 const SelfIntroductionPagePage = lazy(() => import("../pages/introduction/SelfIntroductionPagePage"));
 const TMIPage = lazy(() => import("../pages/introduction/TMIPage"));
 
@@ -21,21 +18,6 @@ const IntroRouter = () => {
             // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할
             path:"info",
             element:<Suspense fallback={Loading}><InfoPage/></Suspense>
-        },
-        {
-            // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할
-            path:"education",
-            element:<Suspense fallback={Loading}><EducationPage/></Suspense>
-        },
-        {
-            // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할
-            path:"career",
-            element:<Suspense fallback={Loading}><CareerPage/></Suspense>
-        },
-        {
-            // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할
-            path:"license",
-            element:<Suspense fallback={Loading}><LicensePage/></Suspense>
         },
         {
             // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할
