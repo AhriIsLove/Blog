@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 const Loading = <div>Loading...</div>
 const InfoPage = lazy(() => import("../pages/introduction/InfoPage"));
-const SelfIntroductionPagePage = lazy(() => import("../pages/introduction/SelfIntroductionPagePage"));
+const SelfIntroductionPage = lazy(() => import("../pages/introduction/SelfIntroductionPage"));
 const TMIPage = lazy(() => import("../pages/introduction/TMIPage"));
 
 const IntroRouter = () => {
@@ -22,7 +22,7 @@ const IntroRouter = () => {
         {
             // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할
             path:"selfintroduction",
-            element:<Suspense fallback={Loading}><SelfIntroductionPagePage/></Suspense>
+            element:<Suspense fallback={Loading}><SelfIntroductionPage/></Suspense>
         },
         {
             // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할
