@@ -36,7 +36,14 @@ const BasicLayout = ({ children }) => {
             </div>
 
             {/* 메인 */}
-            <div className="flex flex-row flex-1">
+            {/* 
+            min-h : 화면 크기100vh에서 헤더의 크기만큼 뺀 높이를 최소 높이로 설정
+            4rem : h-16 
+            5rem : md:h-20 
+            6rem : lg:h-24
+             */}
+            <div className="flex flex-row flex-1
+            min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] lg:min-h-[calc(100vh-6rem)]">
                 {/* 사이드-좌 */}
                 <div className="w-1/12">
 
@@ -46,9 +53,9 @@ const BasicLayout = ({ children }) => {
                 {/* min-h-screen : 최소 높이는 화면 높이로 설정하되, 내용이 많아지면 자동으로 늘어나게 함 */}
                 <div className="relative 
                 z-0 
-                top-0 w-10/12 min-h-screen my-5
+                top-0 w-10/12 my-5
                 bg-myMainColor-50 
-                flex items-center justify-center">
+                flex justify-center">
                     {children}
                 </div>
 

@@ -158,14 +158,14 @@ const InfoComponent = () => {
                         <td className="tableHeader w-2/12">담당업무</td>
                     </tr>
                     <tr>
-                        <td className="tableData text-center">2013.03 ~ 2020.02</td>
+                        <td className="tableData text-center">2022.07 ~ 2025.01</td>
                         <td className="tableData text-center">에이알테크놀로지</td>
                         <td className="tableData text-center">SW 개발팀</td>
                         <td className="tableData text-center">대리</td>
                         <td className="tableData text-center">SW 개발</td>
                     </tr>
                     <tr>
-                        <td className="tableData text-center">2013.03 ~ 2020.02</td>
+                        <td className="tableData text-center">2020.06 ~ 2022.03</td>
                         <td className="tableData text-center">유토비즈</td>
                         <td className="tableData text-center">M&S 개발팀</td>
                         <td className="tableData text-center">사원</td>
