@@ -12,7 +12,7 @@ const PortfolioRouter = () => {
             // Navigate : 마치 링크를 클릭한 것처럼 다른 페이지로 이동
             //            어떤 조건이 만족되었을 때 특정 페이지로 강제로 보내버리고 싶을 때
             path:"",
-            element:<Navigate replace to="personal"></Navigate>
+            element:<Navigate replace to="#personal"></Navigate>
         },
         {
             // Suspense : 비동기 작업이 끝날 때까지 기다려주는 역할

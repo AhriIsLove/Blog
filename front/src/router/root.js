@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import IntroRouter from "./IntroRouter";
-import PortfolioRouter from "./PortfolioRouter";
+// import PortfolioRouter from "./PortfolioRouter";
 import StudyRouter from "./StudyRouter";
 import HobbyRouter from "./HobbyRouter";
 import CommunityRouter from "./CommunityRouter";
@@ -34,8 +34,7 @@ const root = createBrowserRouter([
     },
     {
         path:"portfolio",
-        element:<Suspense fallback={Loading}><PortfolioPage/></Suspense>,
-        children:PortfolioRouter()
+        element:<Suspense fallback={Loading}><PortfolioPage/></Suspense>
     },
     {
         path:"study",

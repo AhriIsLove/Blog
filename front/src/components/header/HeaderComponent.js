@@ -2,14 +2,14 @@
 import '../../index.css';
 import '../../App.css';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // 이미지
 import logo from '../../images/logo.png';//로고
 // 디자인
 import HamburgerComponent from './HamburgerComponent';
 import { getMenu } from '../../api/MainAPI';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //API : MenuDTO
 const initMenuDTO = {
@@ -36,16 +36,6 @@ const HeaderComponent = () => {
     const hideDropMenu = () => {
         setShowDropMenu(false);
     };
-
-    const navigate = useNavigate();
-    //이벤트 생성 : List 클릭
-    const handleClickMenu = useCallback((menu) => {
-        switch (menu) {
-            case -1:
-                navigate({ pathname: '/' });
-                break;
-        };
-    });
 
     return (
         <div className='h-16 md:h-20 lg:h-24

@@ -8,10 +8,14 @@ const PersonalPage = () => {
             </div>
             
             <div>
-                AssemERP
-                Righteous crime
-                MSTD(Metal Slug Tower Defence)
-                ???모모도라 러너???
+                <div className="text-xl font-semibold mt-6 mb-2">AssemERP</div>
+                <ul className="list-disc list-inside text-base ml-4">
+                    <li>1. 프로젝트 개요</li>
+                    <li>2. 주요 기능</li>
+                    <li>3. 사용 기술</li>
+                    <li>4. 개발 과정</li>
+                    <li>5. 결과 및 느낀점</li>
+                </ul>
             </div>
         </div>
     );
