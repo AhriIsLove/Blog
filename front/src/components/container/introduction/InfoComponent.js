@@ -1,44 +1,6 @@
-import { useEffect, useState } from 'react';
-import { getInfo } from '../../../api/IntroductionAPI';
-import { prefix } from '../../../api/MainAPI';
-import { useLocation } from 'react-router-dom';
+import infoProfileImg from '../../../images/info_profile.png';
 
 const InfoComponent = () => {
-    //API : InfoDTO
-    const initInfoDTO = {
-        infoId: "",
-        e_name: "",
-        c_name: "",
-        age: 0,
-        birth: "",
-        profile: "",
-        address: "",
-        email: "",
-        tel: "",
-        link_youtube: "",
-    };
-
-    const [infoDTO, setInfoDTO] = useState(initInfoDTO);
-    useEffect(() => {
-        getInfo().then(data => {
-            //이미지 경로 수정
-            data.profile = prefix + "/image/" + data.profile;
-
-            setInfoDTO(data);
-        });
-    }, []);
-
-    // 앵커 위치로 스크롤
-    const location = useLocation();
-    useEffect(() => {
-        if (location.hash) {
-            const el = document.querySelector(location.hash);
-            if (el) {
-                el.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-        }
-    }, [location]);
-
     return (
         <div className="relative w-full h-full
         max-w-[700px]
@@ -53,38 +15,37 @@ const InfoComponent = () => {
             </div>
             <div className='flex flex-row'>
                 <img className="tableData w-1/4 p-0"
-                    alt="사진" src={infoDTO.profile ? infoDTO.profile : "default.png"}>
-                </img>
+                    alt="사진" src={infoProfileImg} />
 
                 <table className="w-3/4">
                     <tbody>
                         <tr>
                             <td></td>
                             <td className="tableHeader">이름</td>
-                            <td className="tableData" colSpan={3}>{infoDTO.infoId.name}</td>
+                            <td className="tableData" colSpan={3}>안도건</td>
                             {/* <td></td> */}
                             {/* <td></td> */}
                         </tr>
                         <tr>
                             <td></td>
                             <td className="tableHeader" >영문</td>
-                            <td className="tableData" colSpan={3}>{infoDTO.e_name}</td>
+                            <td className="tableData" colSpan={3}>An Do Geun</td>
                             {/* <td></td> */}
                             {/* <td></td> */}
                         </tr>
                         <tr>
                             <td></td>
                             <td className="tableHeader" >한자</td>
-                            <td className="tableData" colSpan={3}>{infoDTO.c_name}</td>
+                            <td className="tableData" colSpan={3}>安度建</td>
                             {/* <td></td> */}
                             {/* <td></td> */}
                         </tr>
                         <tr>
                             <td></td>
                             <td className="tableHeader" >나이</td>
-                            <td className="tableData" >{infoDTO.age}</td>
+                            <td className="tableData" >35</td>
                             <td className="tableHeader" >생년월일</td>
-                            <td className="tableData" >{infoDTO.birth}</td>
+                            <td className="tableData" >1993.09.19</td>
                         </tr>
 
                     </tbody>
@@ -94,19 +55,19 @@ const InfoComponent = () => {
                 <tbody>
                     <tr>
                         <td className="tableHeader w-1/4" >주소</td>
-                        <td className="tableData w-3/4" >{infoDTO.address}</td>
+                        <td className="tableData w-3/4" >서울 송파구 송파대로 345</td>
                     </tr>
                     <tr>
                         <td className="tableHeader" >이메일</td>
-                        <td className="tableData" >{infoDTO.email}</td>
+                        <td className="tableData" >dgan123@naver.com</td>
                     </tr>
                     <tr>
                         <td className="tableHeader" >TEL</td>
-                        <td className="tableData" >{infoDTO.tel}</td>
+                        <td className="tableData" >010-2944-3756</td>
                     </tr>
                     <tr>
-                        <td className="tableHeader" >유투브</td>
-                        <td className="tableData" >{infoDTO.link_youtube}</td>
+                        <td className="tableHeader" >Youtube</td>
+                        <td className="tableData" >https://www.youtube.com/@AhriLove</td>
                     </tr>
 
                 </tbody>
