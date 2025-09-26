@@ -10,6 +10,7 @@ const PersonalPage = () => {
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">프로젝트 개요</h3>
                         <p className="ml-4 text-myFontColor-700">
+                            <b>컴퓨터 조립 판매 ERP</b><br />
                             컴퓨터 조립 업체의 업무 효율성과 데이터 관리를 향상시키기 위해 ERP 시스템을 개발하였습니다.<br />
                             품목 관리, 재고 관리, 조립 공정, 주문 처리, 거래처 관리, 월마감 등 전반적인 비즈니스 프로세스를 하나의 플랫폼에서 체계적으로 운영할 수 있도록 지원합니다.
                         </p>
@@ -84,6 +85,8 @@ const PersonalPage = () => {
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">프로젝트 개요</h3>
                         <p className="ml-4 text-myFontColor-700">
+                            <b>MetalSlug Tower Defense</b><br />
+                            <b>메탈슬러그 타워 디펜스</b><br />
                             플레이어가 다양한 타워를 전략적으로 설치해 끊임없이 몰려오는 적의 공격을 막는 방어형 전략 게임입니다. <br/>
                             자원을 효율적으로 관리하고 적의 예상 경로와 타워의 공격 범위를 고려한 미로를 설계하여 방어 전략을 수립하는 과정에서 오는 성취감을 제공합니다.
                         </p>
@@ -145,6 +148,7 @@ const PersonalPage = () => {
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">프로젝트 개요</h3>
                         <p className="ml-4 text-myFontColor-700">
+                            <b>정의로운 범죄</b><br />
                             플레이어가 몰입감 넘치는 3D 환경에서 적을 피해 임무를 수행하는 게임입니다. <br />
                             실시간 전투와 AI 적군 구현, 다양한 잠입 기술 등 핵심 기능을 통해 긴장감과 재미를 극대화하는 데 중점을 두었습니다.
                         </p>
