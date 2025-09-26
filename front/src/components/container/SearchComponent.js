@@ -19,8 +19,9 @@ const SearchComponent = () => {
     const handleEnter = (e) => {
         if (e.key === 'Enter') {
             const searchWord = e.target.value;
+            console.log("Enter Key" + (!searchWord === ""));
             setKeyword(searchWord);
-            if (!searchWord === "") {
+            if (searchWord !== "") {
                 getSearch(searchWord).then(data => {
                     setMenuDTO(data);
                     console.log(data);

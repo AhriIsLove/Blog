@@ -3,9 +3,6 @@
 @tailwind utilities;
 @config "../tailwind.config.js";
 
-/* CDN(폰트) : Cafe24Ssurround */
-@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Cafe24Ssurround.woff') format('woff');
-
 /* 애니메이션 참고 영상
 https://www.youtube.com/watch?v=iW-PSTzvVNQ&t=368s */
 /* https://tailwindcss.com/plus/ui-blocks */

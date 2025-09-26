@@ -61,23 +61,19 @@ const UtobizPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">결과 및 성과</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li>DB 설계 및 구축을 통하여 교육생의 강점/약점을 축적 및 맞춤형 훈련 시나리오를 추천하는 기능을 추가해 교육 효율성 상승</li>
-                                <li>훈련 데이터의 체계적 관리 및 장기 분석을 통하여 교육생 숙련도 변화 추적 및 훈련 효과성 검증으로 신뢰도 증가</li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li>DB 설계 및 구축을 통하여 교육생의 강점/약점을 축적 및 맞춤형 훈련 시나리오를 추천하는 기능을 추가해 교육 효율성 상승</li>
+                            <li>훈련 데이터의 체계적 관리 및 장기 분석을 통하여 교육생 숙련도 변화 추적 및 훈련 효과성 검증으로 신뢰도 증가</li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>프로젝트 전반의 분석 과정 참여를 통해 시스템 이해력과 분석력은 물론, 명확한 기술 문서 작성 능력까지 종합적인 개발 역량을 성장시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>PM 회의에 참여하며 프로젝트의 큰 그림을 이해하고, 다양한 요구사항을 유연하게 조율하는 역량을 키웠습니다.</p></li>
-                                <li><b>문제해결</b><p>고객 요구사항을 정확히 이해하고 팀원에게 명확히 전달하며, 복잡한 요구사항 분석부터 팀 조율까지 주도하여 프로젝트를 완료하였습니다.</p></li>
-                                <li><b>지식</b><p>헬기 작동 및 정비에 대한 지식과 훈련 시스템에 대한 흐름을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>프로젝트 전반의 분석 과정 참여를 통해 시스템 이해력과 분석력은 물론, 명확한 기술 문서 작성 능력까지 종합적인 개발 역량을 성장시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>PM 회의에 참여하며 프로젝트의 큰 그림을 이해하고, 다양한 요구사항을 유연하게 조율하는 역량을 키웠습니다.</p></li>
+                            <li><b>문제해결</b><p>고객 요구사항을 정확히 이해하고 팀원에게 명확히 전달하며, 복잡한 요구사항 분석부터 팀 조율까지 주도하여 프로젝트를 완료하였습니다.</p></li>
+                            <li><b>지식</b><p>헬기 작동 및 정비에 대한 지식과 훈련 시스템에 대한 흐름을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -149,14 +145,12 @@ const UtobizPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>C# 및 WPF 기반 자동화 시스템 구현을 통해 MVVM 패턴 이해를 심화하고, 다중 스레드 처리를 통한 시스템 최적화 역량을 성장시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>다양한 외부 기업들과의 소통 및 기록 관리의 중요성을 체감하며, 복잡한 협업 속에서 효과적인 소통 기술을 향상시켰습니다.</p></li>
-                                <li><b>문제해결</b><p>방대한 데이터 검증 시간 문제 해결을 위해 기록 데이터를 가공, 검증 시간을 단축하여 데이터 기반의 효율적 프로세스 구축 역량을 성장시켰습니다.</p></li>
-                                <li><b>지식</b><p>위성 신호 송수신 기술 및 분석에 대한 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>C# 및 WPF 기반 자동화 시스템 구현을 통해 MVVM 패턴 이해를 심화하고, 다중 스레드 처리를 통한 시스템 최적화 역량을 성장시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>다양한 외부 기업들과의 소통 및 기록 관리의 중요성을 체감하며, 복잡한 협업 속에서 효과적인 소통 기술을 향상시켰습니다.</p></li>
+                            <li><b>문제해결</b><p>방대한 데이터 검증 시간 문제 해결을 위해 기록 데이터를 가공, 검증 시간을 단축하여 데이터 기반의 효율적 프로세스 구축 역량을 성장시켰습니다.</p></li>
+                            <li><b>지식</b><p>위성 신호 송수신 기술 및 분석에 대한 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -250,14 +244,12 @@ const UtobizPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>C++(Qt) 기반 시뮬레이션 시스템과 C#(Unity) VR 콘텐츠 연동을 통해 이종 기술 통합 및 효율적 데이터 연동 역량의 고도화 기술 역량을 성장시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>이종 기술 연동 과정의 꾸준하고 밀도 있는 팀원 소통으로 복잡한 프로젝트를 안정적으로 이끌고 성공적인 통합을 구현했습니다.</p></li>
-                                <li><b>문제해결</b><p>VR 통신 불안정 문제를 정확하고 단순화한 통신 규약 설정으로 해결하며, 대용량 데이터 전송 안정성을 확보하여 문제를 해결했습니다.</p></li>
-                                <li><b>지식</b><p>VR, 테이저건 작동 원리 및 발사 시 주의사항에 대한 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>C++(Qt) 기반 시뮬레이션 시스템과 C#(Unity) VR 콘텐츠 연동을 통해 이종 기술 통합 및 효율적 데이터 연동 역량의 고도화 기술 역량을 성장시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>이종 기술 연동 과정의 꾸준하고 밀도 있는 팀원 소통으로 복잡한 프로젝트를 안정적으로 이끌고 성공적인 통합을 구현했습니다.</p></li>
+                            <li><b>문제해결</b><p>VR 통신 불안정 문제를 정확하고 단순화한 통신 규약 설정으로 해결하며, 대용량 데이터 전송 안정성을 확보하여 문제를 해결했습니다.</p></li>
+                            <li><b>지식</b><p>VR, 테이저건 작동 원리 및 발사 시 주의사항에 대한 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -345,14 +337,12 @@ const UtobizPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>C++와 Qt 기반의 시뮬레이션 시스템 구현 및 사내 라이브러리 UTOESim™의 분석을 통해 코드 분석 역량을 성장시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>팀원 간의 투명한 업무 공유와 적극적인 소통을 통해 효율적인 협업을 이끌고 프로젝트를 안정적으로 완수하는 팀워크 역량을 강화하였습니다.</p></li>
-                                <li><b>문제해결</b><p>초기 UTOESim™에 대한 이해 부족을 선임 연구원과 소통하고 이해하여 주어진 환경에 빠르게 적응하여 능동적으로 문제를 해결하였습니다.</p></li>
-                                <li><b>지식</b><p>GIS, 잠수함의 승무원별 역할(음탐사의 역할), 소리(Sound)의 속도에 따른 피치(높낮이) 변동 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>C++와 Qt 기반의 시뮬레이션 시스템 구현 및 사내 라이브러리 UTOESim™의 분석을 통해 코드 분석 역량을 성장시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>팀원 간의 투명한 업무 공유와 적극적인 소통을 통해 효율적인 협업을 이끌고 프로젝트를 안정적으로 완수하는 팀워크 역량을 강화하였습니다.</p></li>
+                            <li><b>문제해결</b><p>초기 UTOESim™에 대한 이해 부족을 선임 연구원과 소통하고 이해하여 주어진 환경에 빠르게 적응하여 능동적으로 문제를 해결하였습니다.</p></li>
+                            <li><b>지식</b><p>GIS, 잠수함의 승무원별 역할(음탐사의 역할), 소리(Sound)의 속도에 따른 피치(높낮이) 변동 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>

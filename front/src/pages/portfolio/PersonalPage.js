@@ -53,14 +53,12 @@ const PersonalPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>Java/Spring 기반으로 ERP 핵심인 재고 관리 프로세스를 성공적으로 구축하여, 엔터프라이즈 시스템 개발 역량을 향상시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>짧은 시간 안에 내 프로젝트 완수를 위해 기능적 우선순위를 명확히 하고, 합리적인 조율을 통해 실질적 제약 속 최적 결과를 도출하는 협업 능력을 길렀습니다.</p></li>
-                                <li><b>문제해결</b><p>웹 시스템의 동시 접속 안정성 문제를 기본 원리와 설계 패턴에 충실한 아키텍처 구현으로 해결하며, 안정적인 서비스 구축 역량을 입증했습니다.</p></li>
-                                <li><b>지식</b><p>WEB 기술과 ERP의 핵심인 재고/물류 관리 프로세스에 대한 비즈니스 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>Java/Spring 기반으로 ERP 핵심인 재고 관리 프로세스를 성공적으로 구축하여, 엔터프라이즈 시스템 개발 역량을 향상시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>짧은 시간 안에 내 프로젝트 완수를 위해 기능적 우선순위를 명확히 하고, 합리적인 조율을 통해 실질적 제약 속 최적 결과를 도출하는 협업 능력을 길렀습니다.</p></li>
+                            <li><b>문제해결</b><p>웹 시스템의 동시 접속 안정성 문제를 기본 원리와 설계 패턴에 충실한 아키텍처 구현으로 해결하며, 안정적인 서비스 구축 역량을 입증했습니다.</p></li>
+                            <li><b>지식</b><p>WEB 기술과 ERP의 핵심인 재고/물류 관리 프로세스에 대한 비즈니스 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -118,12 +116,10 @@ const PersonalPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>재사용 가능한 템플릿 객체 구조 활용으로 UI/UX 구현 효율성과 최적화 기술 역량을 성장시켰습니다. 이를 통해 코드 재사용성과 유지보수성을 높이는 설계 역량을 강화했습니다.</p></li>
-                                <li><b>문제해결</b><p>초반 지루한 플레이를 극복하기 위해 사용자 관점의 레벨 디자인 연구를 하여 플레이 다양성 증대 방안을 모색하며 게임 기획 역량을 향상시켰습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>재사용 가능한 템플릿 객체 구조 활용으로 UI/UX 구현 효율성과 최적화 기술 역량을 성장시켰습니다. 이를 통해 코드 재사용성과 유지보수성을 높이는 설계 역량을 강화했습니다.</p></li>
+                            <li><b>문제해결</b><p>초반 지루한 플레이를 극복하기 위해 사용자 관점의 레벨 디자인 연구를 하여 플레이 다양성 증대 방안을 모색하며 게임 기획 역량을 향상시켰습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -180,13 +176,11 @@ const PersonalPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>C# 객체 지향 및 Unity 엔진 활용 심화로 복잡한 게임 로직 구현 기술 역량을 성장시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>팀 목표를 위한 의견 조율과 상호 양보의 중요성을 체득하며 효율적인 협업 능력을 길렀습니다.</p></li>
-                                <li><b>문제해결</b><p>기능추가에 몰입한 나머지 재시도/재시작과 같은 초기화에 대한 처리가 늦어지는 문제가 발생하였고 기능 외 UI/UX 및 최적화의 중요성을 깨닫고 분석/설계 단계부터 포괄적으로 고려하는 시야를 넓혔습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>C# 객체 지향 및 Unity 엔진 활용 심화로 복잡한 게임 로직 구현 기술 역량을 성장시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>팀 목표를 위한 의견 조율과 상호 양보의 중요성을 체득하며 효율적인 협업 능력을 길렀습니다.</p></li>
+                            <li><b>문제해결</b><p>기능추가에 몰입한 나머지 재시도/재시작과 같은 초기화에 대한 처리가 늦어지는 문제가 발생하였고 기능 외 UI/UX 및 최적화의 중요성을 깨닫고 분석/설계 단계부터 포괄적으로 고려하는 시야를 넓혔습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>

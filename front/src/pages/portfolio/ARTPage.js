@@ -77,14 +77,12 @@ const ARTPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>20인 이상의 VR 위치/행동 데이터를 실시간으로 송수신 및 가공 후 표시를 하기 위한 대용량 데이터 처리 기술 역량을 키웠습니다.</p></li>
-                                <li><b>팀워크</b><p>대용량 데이터의 안정적인 통신을 위해 각 모듈의 데이터 흐름과 처리 방식을 면밀히 공유하고, 병목 현상 방지 전략을 함께 수립하며 기술적 협업 역량을 강화하였습니다.</p></li>
-                                <li><b>문제해결</b><p>대용량 데이터 처리 속도 지연 문제 발생 시, 지연된 데이터를 과감히 버리고 항상 최신 데이터만 사용하여 시스템의 실시간성을 확보했습니다.</p></li>
-                                <li><b>지식</b><p>초고속 이음 5G 기반의 대용량 통신 데이터를 효율적으로 처리하는 기술을 습득했습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>20인 이상의 VR 위치/행동 데이터를 실시간으로 송수신 및 가공 후 표시를 하기 위한 대용량 데이터 처리 기술 역량을 키웠습니다.</p></li>
+                            <li><b>팀워크</b><p>대용량 데이터의 안정적인 통신을 위해 각 모듈의 데이터 흐름과 처리 방식을 면밀히 공유하고, 병목 현상 방지 전략을 함께 수립하며 기술적 협업 역량을 강화하였습니다.</p></li>
+                            <li><b>문제해결</b><p>대용량 데이터 처리 속도 지연 문제 발생 시, 지연된 데이터를 과감히 버리고 항상 최신 데이터만 사용하여 시스템의 실시간성을 확보했습니다.</p></li>
+                            <li><b>지식</b><p>초고속 이음 5G 기반의 대용량 통신 데이터를 효율적으로 처리하는 기술을 습득했습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -157,25 +155,21 @@ const ARTPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">결과 및 성과</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li>DB 스위칭을 위한 DB 미들웨어를 개발하여 서비스 장애 및 서비스 중단 예방</li>
-                                <li>Oracle &lt;-&gt; MariaDB 마이그레이션 개발 DB간 동기화를 진행하여 데이터 일관성 유지</li>
-                                <li>암호화 적용 및 유지보수를 통해 보안성 강화</li>
-                                <li>Hwp 오토메이션을 활용한 보고서 작성 기능 구현으로 사용자 편의성 증대</li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li>DB 스위칭을 위한 DB 미들웨어를 개발하여 서비스 장애 및 서비스 중단 예방</li>
+                            <li>Oracle &lt;-&gt; MariaDB 마이그레이션 개발 DB간 동기화를 진행하여 데이터 일관성 유지</li>
+                            <li>암호화 적용 및 유지보수를 통해 보안성 강화</li>
+                            <li>Hwp 오토메이션을 활용한 보고서 작성 기능 구현으로 사용자 편의성 증대</li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>폐쇄적 군 환경에서 JSMS 유지보수를 통해 보안 규정 준수 및 네트워크 환경에 최적화된 통신 시스템 개발 역량을 향상시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>현장 사용자 소통으로 요구사항 조율의 중요성을 깨닫고, PM 협의를 통해 효율적으로 프로젝트를 이끄는 협업 역량을 강화했습니다.</p></li>
-                                <li><b>문제해결</b><p>보안 제약으로 인한 데이터 전달 문제를 현장 직접 개발로 해결하며, 제한된 환경에서 최적의 솔루션을 찾는 문제 해결 능력을 향상시켰습니다.</p></li>
-                                <li><b>지식</b><p>군 부대 특수 네트워크 환경 및 군사 통신 시스템에 대한 깊이 있는 실무 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>폐쇄적 군 환경에서 JSMS 유지보수를 통해 보안 규정 준수 및 네트워크 환경에 최적화된 통신 시스템 개발 역량을 향상시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>현장 사용자 소통으로 요구사항 조율의 중요성을 깨닫고, PM 협의를 통해 효율적으로 프로젝트를 이끄는 협업 역량을 강화했습니다.</p></li>
+                            <li><b>문제해결</b><p>보안 제약으로 인한 데이터 전달 문제를 현장 직접 개발로 해결하며, 제한된 환경에서 최적의 솔루션을 찾는 문제 해결 능력을 향상시켰습니다.</p></li>
+                            <li><b>지식</b><p>군 부대 특수 네트워크 환경 및 군사 통신 시스템에 대한 깊이 있는 실무 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                 </div>
             ),
@@ -250,23 +244,19 @@ const ARTPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">결과 및 성과</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li>‘무선 환경에서의 VR 드론 비행 시뮬레이터 시스템 구성 방안 연구’ 논문 작성 및 발표하여 우수 발표 논문상을 수상</li>
-                                <li>Linux기반 임베디드 환경에서 컨트롤러와 VR 드론과의 무선 데이터 중계 시스템 구축하여 시스템의 확장성, 유연성, 휴대성 증대</li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li>‘무선 환경에서의 VR 드론 비행 시뮬레이터 시스템 구성 방안 연구’ 논문 작성 및 발표하여 우수 발표 논문상을 수상</li>
+                            <li>Linux기반 임베디드 환경에서 컨트롤러와 VR 드론과의 무선 데이터 중계 시스템 구축하여 시스템의 확장성, 유연성, 휴대성 증대</li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>Linux 기반 임베디드 환경에서 컨트롤러와 VR 드론과의 무선 데이터 중계 시스템을 구축하여 Linux기반의 역량을 향상시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>프로토타입 공유와 사용자 피드백을 빠르게 반영하는 사용자 중심의 개발 프로세스를 통해 프로젝트 완성도를 높였습니다.</p></li>
-                                <li><b>문제해결</b><p>다양한 컨트롤러 연동의 데이터 호환성 문제를 각 수신기 맞춤형 데이터 관리로 해결하며, 복잡한 인터페이스 통합 능력을 향상시켰습니다.</p></li>
-                                <li><b>지식</b><p>Linux, 아두이노/라즈베리파이, Wifi AP, 3D Print, 드론 비행 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>Linux 기반 임베디드 환경에서 컨트롤러와 VR 드론과의 무선 데이터 중계 시스템을 구축하여 Linux기반의 역량을 향상시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>프로토타입 공유와 사용자 피드백을 빠르게 반영하는 사용자 중심의 개발 프로세스를 통해 프로젝트 완성도를 높였습니다.</p></li>
+                            <li><b>문제해결</b><p>다양한 컨트롤러 연동의 데이터 호환성 문제를 각 수신기 맞춤형 데이터 관리로 해결하며, 복잡한 인터페이스 통합 능력을 향상시켰습니다.</p></li>
+                            <li><b>지식</b><p>Linux, 아두이노/라즈베리파이, Wifi AP, 3D Print, 드론 비행 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -329,23 +319,19 @@ const ARTPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">결과 및 성과</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li>기존 C++/MFC 기반의 시스템을 분석하여 C#/WPF 기반의 시스템으로 재 구축으로 시스템 안정성 확보</li>
-                                <li>2D•3D GIS 시각화 기능 구현으로 사용자 편의성 확보</li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li>기존 C++/MFC 기반의 시스템을 분석하여 C#/WPF 기반의 시스템으로 재 구축으로 시스템 안정성 확보</li>
+                            <li>2D•3D GIS 시각화 기능 구현으로 사용자 편의성 확보</li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>C++기반의 MFC 프로젝트를 C#기반의 WPF 프로젝트로 재구성 및 고도화하여 코드 이해력과 실전 적용 기술을 향상시켰습니다.</p></li>
-                                <li><b>팀워크</b><p>정확한 데이터 입출력 인터페이스 수립의 중요성을 체감하며, 소통을 통해 협업 성공을 위한 체계적 설계 능력을 강화하였습니다.</p></li>
-                                <li><b>문제해결</b><p>C++ 사내 라이브러리와 C# WPF 연동 문제를 C#용 인터페이스 추가로 해결하여, 이종 기술 간의 복합적인 통합 문제 해결 능력을 성장시켰습니다.</p></li>
-                                <li><b>지식</b><p>C++ 라이브러리 관리 기술, 전파 분석 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>C++기반의 MFC 프로젝트를 C#기반의 WPF 프로젝트로 재구성 및 고도화하여 코드 이해력과 실전 적용 기술을 향상시켰습니다.</p></li>
+                            <li><b>팀워크</b><p>정확한 데이터 입출력 인터페이스 수립의 중요성을 체감하며, 소통을 통해 협업 성공을 위한 체계적 설계 능력을 강화하였습니다.</p></li>
+                            <li><b>문제해결</b><p>C++ 사내 라이브러리와 C# WPF 연동 문제를 C#용 인터페이스 추가로 해결하여, 이종 기술 간의 복합적인 통합 문제 해결 능력을 성장시켰습니다.</p></li>
+                            <li><b>지식</b><p>C++ 라이브러리 관리 기술, 전파 분석 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
@@ -405,23 +391,19 @@ const ARTPage = () => {
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">결과 및 성과</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li>VirtualBox 기반 Windows 98 VM 환경 레거시 시스템의 주요 기능 오류를 성공적으로 식별 및 해결하여 시스템 안정성 확보</li>
-                                <li>신규 DB 연결 기능 추가를 통해 시스템의 확장성 부여</li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li>VirtualBox 기반 Windows 98 VM 환경 레거시 시스템의 주요 기능 오류를 성공적으로 식별 및 해결하여 시스템 안정성 확보</li>
+                            <li>신규 DB 연결 기능 추가를 통해 시스템의 확장성 부여</li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">성장 경험</h3>
-                        <p className="ml-4 text-myFontColor-700">
-                            <ul className="list-disc ml-8 text-myFontColor-700">
-                                <li><b>기술</b><p>Win98 VM 환경 유지보수를 통해 C++과 Qt 기반의 코드 분석 및 디버깅 역량을 고도화했습니다.</p></li>
-                                <li><b>팀워크</b><p>실 사용자와 직접 소통하여 비기술적 요구사항을 정확히 식별하고 구현하며, 사용자 중심의 설득력 있는 소통 능력을 강화했습니다.</p></li>
-                                <li><b>문제해결</b><p>레거시 시스템의 디버깅 난관을 자체 전략 구축으로 극복하며, 레거시 환경에서의 문제 해결 능력을 성장시켰습니다.</p></li>
-                                <li><b>지식</b><p>VM관리 기술, 위성망에 대한 지식을 습득하였습니다.</p></li>
-                            </ul>
-                        </p>
+                        <ul className="list-disc ml-8 text-myFontColor-700">
+                            <li><b>기술</b><p>Win98 VM 환경 유지보수를 통해 C++과 Qt 기반의 코드 분석 및 디버깅 역량을 고도화했습니다.</p></li>
+                            <li><b>팀워크</b><p>실 사용자와 직접 소통하여 비기술적 요구사항을 정확히 식별하고 구현하며, 사용자 중심의 설득력 있는 소통 능력을 강화했습니다.</p></li>
+                            <li><b>문제해결</b><p>레거시 시스템의 디버깅 난관을 자체 전략 구축으로 극복하며, 레거시 환경에서의 문제 해결 능력을 성장시켰습니다.</p></li>
+                            <li><b>지식</b><p>VM관리 기술, 위성망에 대한 지식을 습득하였습니다.</p></li>
+                        </ul>
                     </section>
                     <section>
                         <h3 className="font-semibold text-myFontColor-800 mb-1">상세보기</h3>
