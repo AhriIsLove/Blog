@@ -181,7 +181,7 @@ const ARTPage = () => {
             ),
         },
         {
-            name: "DS",
+            name: "VR 드론",
             details: (
                 <div className="space-y-4 text-base">
                     <section>
@@ -448,7 +448,7 @@ const ARTPage = () => {
             <div className="text-3xl font-bold text-myFontColor-950">
                 ART 프로젝트
             </div>
-            <div className="mt-4 text-base text-myFontColor-700 text-center max-w-xl">
+            <div className="mt-4 text-base text-myFontColor-700 text-center px-4 md:px-20 lg:px-40">
                 ART는 전파분석 및 GIS 분야의 국산화된 핵심 기술을 기반으로 지식기반의 XR 시뮬레이션 플랫폼을 도입하여 시스템 분야 글로벌 기술의 트렌드를 선도하는 기업입니다. <br />
                 ART에서 진행한 주요 프로젝트들을 소개합니다.
             </div>

@@ -213,7 +213,7 @@ const PersonalPage = () => {
             <div className="text-3xl font-bold text-myFontColor-950">
                 개인/팀 프로젝트
             </div>
-            <div className="mt-4 text-base text-myFontColor-700 text-center max-w-xl">
+            <div className="mt-4 text-base text-myFontColor-700 text-center px-4 md:px-20 lg:px-40">
                 개인 및 팀 프로젝트의 포트폴리오를 소개하는 공간입니다. 각 프로젝트의 개요, 주요 기능, 사용 기술, 개발 과정, 그리고 결과와 느낀점을 간단히 정리하였습니다.
             </div>
 
