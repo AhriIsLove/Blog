@@ -100,14 +100,17 @@ const HeaderComponent = () => {
                         ${ShowDropMenu ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"} 
                         flex flex-col items-center justify-center`}>
                             {menu.sub_menus.map(sub_menu =>
-                                <div className='dropMenuContent rounded-md w-full bg-myMainColor-300 
-                                text-center 
-                                transition-all duration-300 
-                                bg-opacity-0 
-                                hover:bg-opacity-80 '
-                                    key={sub_menu.id}>
-                                    <Link to={`${menu.link}${sub_menu.link}`}>{sub_menu.name}</Link>
-                                </div>
+                                <Link
+                                    className='dropMenuContent rounded-md w-full bg-myMainColor-300 
+                                    text-center 
+                                    transition-all duration-300 
+                                    bg-opacity-0 
+                                    hover:bg-opacity-80 '
+                                    key={sub_menu.id}
+                                    to={`${menu.link}${sub_menu.link}`}
+                                >
+                                    {sub_menu.name}
+                                </Link>
                             )}
                         </div>
                     </div>
