@@ -49,26 +49,26 @@ const PortfolioPage = () => {
                     <li className="flex">
                         <button type="button"
                             className={`w-full flex justify-center items-center py-4 px-8 text-2xl font-bold rounded-full transition-colors duration-150
-                            ${window.location.hash === '#utobiz' ? 'bg-white shadow text-myFontColor-950' : ''}`}
-                            style={{ minWidth: '120px' }}
-                            onClick={() => { window.location.hash = '#utobiz'; }}>
-                            Utobiz
-                        </button>
-                    </li>
-                    <li className="flex">
-                        <button type="button"
-                            className={`w-full flex justify-center items-center py-4 px-8 text-2xl font-bold rounded-full transition-colors duration-150
                             ${window.location.hash === '#art' ? 'bg-white shadow text-myFontColor-950' : ''}`}
                             style={{ minWidth: '120px' }}
                             onClick={() => { window.location.hash = '#art'; }}>
                             ART
                         </button>
                     </li>
+                    <li className="flex">
+                        <button type="button"
+                            className={`w-full flex justify-center items-center py-4 px-8 text-2xl font-bold rounded-full transition-colors duration-150
+                            ${window.location.hash === '#utobiz' ? 'bg-white shadow text-myFontColor-950' : ''}`}
+                            style={{ minWidth: '120px' }}
+                            onClick={() => { window.location.hash = '#utobiz'; }}>
+                            Utobiz
+                        </button>
+                    </li>
                 </ul>
 
                 {(currentHash === '#personal' || currentHash === '' || !currentHash) && <PersonalPage />}
-                {currentHash === '#utobiz' && <UtobizPage />}
                 {currentHash === '#art' && <ARTPage />}
+                {currentHash === '#utobiz' && <UtobizPage />}
             </div>
         </BasicLayout>
     );
