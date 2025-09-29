@@ -16,7 +16,8 @@ public class CommunityController {
 
 	@PostMapping("/userlog/regist")
 	public UserLogDTO getInfo(@RequestBody UserLogDTO dto) {
-		System.out.println(dto);
+		System.out.println("123");
+		System.out.println(dto.getActionDate());
 		
 		UserLogDTO userLogDTO = new UserLogDTO();
 		

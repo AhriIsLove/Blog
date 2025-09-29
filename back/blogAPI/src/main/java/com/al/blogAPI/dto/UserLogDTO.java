@@ -1,6 +1,6 @@
 package com.al.blogAPI.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,5 +15,5 @@ public class UserLogDTO {
 	// private Long id;
 	private String ip;// IP
 	private String action;// 행동
-	private LocalDate actionDate;// 행동 시각 
+	private LocalDateTime actionDate;// 행동 시각
 }

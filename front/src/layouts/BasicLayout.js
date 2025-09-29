@@ -1,6 +1,23 @@
 import HeaderComponent from "../components/header/HeaderComponent";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { postUserLogRegist } from "../api/CommunityAPI";
 
 const BasicLayout = ({ children }) => {
+    const location = useLocation(); // URL 변경 감지
+
+    useEffect(() => {
+        // location.pathname이 변경될 때마다 이 함수 실행
+        const logUserVisit = async () => {
+            // console.log(`페이지 방문: ${location.pathname}`);
+            // 서버로 로그 전송
+            postUserLogRegist().then(data => {
+                console.log(data);
+            });
+        };
+        logUserVisit();
+    }, [location.pathname]);
+
     return (
         <>
             {/* 
