@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.al.blogAPI.dto.UserLogDTO;
+import com.al.blogAPI.service.CommunityService;
+import com.al.blogAPI.service.CommunityServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,13 +15,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/community")
 public class CommunityController {
+	private final CommunityService communityService;
+	
 
 	@PostMapping("/userlog/regist")
-	public UserLogDTO getInfo(@RequestBody UserLogDTO dto) {
-		System.out.println("123");
-		System.out.println(dto.getActionDate());
+	public UserLogDTO postUserLogRegist(@RequestBody UserLogDTO dto) {
+		System.out.println(dto);
 		
-		UserLogDTO userLogDTO = new UserLogDTO();
+		UserLogDTO userLogDTO = communityService.postUserLogRegist(dto);
 		
 		
 		
