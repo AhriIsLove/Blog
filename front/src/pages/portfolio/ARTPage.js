@@ -19,7 +19,7 @@ const ARTPage = () => {
                             {[1, 2].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/MMS_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/MMS_${num}.png`}
                                     alt={`MMS 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -117,7 +117,7 @@ const ARTPage = () => {
                             {[1].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/JSMS_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/JSMS_${num}.png`}
                                     alt={`JSMS 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -190,7 +190,7 @@ const ARTPage = () => {
                             {[1, 2].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/DS_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/DS_${num}.png`}
                                     alt={`DS 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -291,7 +291,7 @@ const ARTPage = () => {
                             {[1, 2].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/PZATM,RBIA_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/PZATM,RBIA_${num}.png`}
                                     alt={`PZATM/RBIA 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -363,7 +363,7 @@ const ARTPage = () => {
                             {[1].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/위성망 분석_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/위성망 분석_${num}.png`}
                                     alt={`위성망 분석 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />

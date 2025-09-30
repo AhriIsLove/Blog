@@ -18,7 +18,7 @@ const PersonalPage = () => {
                             {[1, 2, 3, 4, 5].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/AssemERP_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/AssemERP_${num}.png`}
                                     alt={`AssemERP 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -92,7 +92,7 @@ const PersonalPage = () => {
                             {[1, 2].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/MSTD_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/MSTD_${num}.png`}
                                     alt={`MSTD 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -152,7 +152,7 @@ const PersonalPage = () => {
                             {[1, 2].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/Righteous Crime_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/Righteous Crime_${num}.png`}
                                     alt={`Righteous Crime 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />

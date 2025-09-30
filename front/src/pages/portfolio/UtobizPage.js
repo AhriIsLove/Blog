@@ -19,7 +19,7 @@ const UtobizPage = () => {
                             {[1, 2, 3].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/수리온_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/수리온_${num}.png`}
                                     alt={`수리온 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -104,7 +104,7 @@ const UtobizPage = () => {
                             {[1].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/운반용 단말 자동시험 장비_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/운반용 단말 자동시험 장비_${num}.png`}
                                     alt={`운반용 단말 자동시험 장비 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -184,7 +184,7 @@ const UtobizPage = () => {
                             {[1, 2, 3, 4].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/테이저건_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/테이저건_${num}.png`}
                                     alt={`테이저건 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />
@@ -283,7 +283,7 @@ const UtobizPage = () => {
                             {[1, 2].map(num => (
                                 <img
                                     key={num}
-                                    src={`/images/Portfolio/대함모의_${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/Portfolio/대함모의_${num}.png`}
                                     alt={`대함모의 프로젝트 스크린샷 ${num}`}
                                     className="rounded shadow max-w-xs w-full"
                                 />

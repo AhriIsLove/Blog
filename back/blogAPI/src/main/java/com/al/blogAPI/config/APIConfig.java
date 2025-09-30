@@ -17,7 +17,8 @@ public class APIConfig implements WebMvcConfigurer {
 		.allowedOrigins("*")//허용할 출처(도메인)
 		.allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS")//허용 메시지 타입
 		.maxAge(300)//허용 최대시간
-		.allowedHeaders("Authorization", "Cache-Control", "Content-Type");//허용할 HTTP 헤더
+		.allowedHeaders("Authorization", "Cache-Control", "Content-Type")//허용할 HTTP 헤더
+		;
 		//*필수?
 		//*Authorization : 사용자 인증 정보를 전달하는 헤더
 		// - 클라이언트가 서버의 보호된 리소스에 접근할 수 있는 권한이 있음을 증명하는 데 사용

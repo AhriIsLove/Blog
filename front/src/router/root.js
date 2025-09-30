@@ -51,7 +51,9 @@ const root = createBrowserRouter([
         element:<Suspense fallback={Loading}><CommunityPage/></Suspense>,
         children:CommunityRouter()
     },
-])
+], {
+    basename: "/Blog" // Blog 하위로 들어오는 경로 캐치
+});
 
 //외부 참조 허락
 export default root;

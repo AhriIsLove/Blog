@@ -1,5 +1,8 @@
 package com.al.blogAPI.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 import org.springframework.stereotype.Service;
 
 import com.al.blogAPI.dto.UserLogDTO;
@@ -18,12 +21,14 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public UserLogDTO postUserLogRegist(UserLogDTO dto) {
 		// dto -> entity;
-		System.out.println(dto); 
+		// System.out.println(dto); 
+		
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
 		
 		UserLog userLog = UserLog.builder()
 				.ip(dto.getIp())
 				.action(dto.getAction())
-				.actionDate(dto.getActionDate())
+				.actionDate(now)
 				.build();
 		
 		System.out.println(userLog);
