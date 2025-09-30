@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront=self.webpackChunkfront||[]).push([[280],{280:(e,r,s)=>{s.r(r),s.d(r,{default:()=>t});var n=s(579);const t=()=>(0,n.jsx)("div",{children:"TermPage"})}}]);
+//# sourceMappingURL=280.0622fe61.chunk.js.map

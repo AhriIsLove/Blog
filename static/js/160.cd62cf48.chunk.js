@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront=self.webpackChunkfront||[]).push([[160],{160:(e,r,s)=>{s.r(r),s.d(r,{default:()=>n});var t=s(579);const n=()=>(0,t.jsx)("div",{children:"NetworkPage"})}}]);
+//# sourceMappingURL=160.cd62cf48.chunk.js.map

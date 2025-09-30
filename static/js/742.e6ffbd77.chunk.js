@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront=self.webpackChunkfront||[]).push([[742],{742:(e,s,t)=>{t.r(s),t.d(s,{default:()=>n});var a=t(579);const n=()=>(0,a.jsx)("div",{children:"MistakePage"})}}]);
+//# sourceMappingURL=742.e6ffbd77.chunk.js.map

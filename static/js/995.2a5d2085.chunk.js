@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront=self.webpackChunkfront||[]).push([[995],{995:(e,s,a)=>{a.r(s),a.d(s,{default:()=>r});var n=a(579);const r=()=>(0,n.jsx)("div",{children:"GamePage"})}}]);
+//# sourceMappingURL=995.2a5d2085.chunk.js.map

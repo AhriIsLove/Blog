@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront=self.webpackChunkfront||[]).push([[227],{227:(l,e,s)=>{s.r(e),s.d(e,{default:()=>f});var r=s(579);const a=()=>(0,r.jsx)("div",{className:"relative w-full h-full\r max-w-[700px]\r flex flex-col gap-5",children:"\uc791\uc5c5\uc911\uc785\ub2c8\ub2e4."}),f=()=>(0,r.jsx)("div",{children:(0,r.jsx)(a,{})})}}]);
+//# sourceMappingURL=227.4f1400f7.chunk.js.map
