@@ -2,32 +2,19 @@
 import '../../index.css';
 import '../../App.css';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 // 이미지
 import logo from '../../images/logo.png';//로고
 // 디자인
 import HamburgerComponent from './HamburgerComponent';
-import { getMenu } from '../../api/MainAPI';
 import { Link } from 'react-router-dom';
 
-//API : MenuDTO
-const initMenuDTO = {
-    dtoList: [],
-    maxSubMenuCount: 0,
-};
+// 메뉴 데이터
+import { MenuComponent } from './MenuComponent';
 
 // 헤더
 const HeaderComponent = () => {
-    //API : 메뉴
-    const [menuDTO, setMenuDTO] = useState(initMenuDTO);
-    useEffect(() => {
-        getMenu().then(data => {
-            // console.log(data);
-            setMenuDTO(data);
-        });
-    }, []);
-
     //상세메뉴 여부
     const [ShowDropMenu, setShowDropMenu] = useState(false);
     const showDropMenu = () => {
@@ -65,7 +52,7 @@ const HeaderComponent = () => {
                     {(() => {
                         // 이렇게 for문 사용 가능!
                         const elements = [];
-                        for (let i = 0; i < menuDTO.maxSubMenuCount; i++) {
+                        for (let i = 0; i < MenuComponent.maxSubMenuCount; i++) {
                             elements.push(<br key={i} />);
                         }
                         return elements;
@@ -78,7 +65,7 @@ const HeaderComponent = () => {
                 <div className='menuContent' /> {/* 공백 */}
 
                 {/* 메뉴 */}
-                {menuDTO.dtoList.map(menu =>
+                {MenuComponent.dtoList.map(menu =>
                     <div className='menuContent group'
                         key={menu.id}
                         onMouseOver={showDropMenu} onMouseOut={hideDropMenu}>

@@ -2,10 +2,10 @@
 // yarn add framer-motion
 import { motion } from "framer-motion";
 
-{/* ShowHamburgerMenu 
+/* ShowHamburgerMenu 
     - true : 햄버거 메뉴 열기
-    - false : 햄버거 메뉴 닫기 */}
-export const Design_Hamburger = ({ ShowHamburgerMenu }) => {
+    - false : 햄버거 메뉴 닫기 */
+export const DesignHamburger = ({ ShowHamburgerMenu }) => {
     return (
         <div>
             <motion.svg

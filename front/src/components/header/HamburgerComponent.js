@@ -1,24 +1,12 @@
 import { useEffect, useState } from "react";
-import { Design_Hamburger } from "../../designs/Design_Hamburger"
-import { getMenu } from "../../api/MainAPI";
-import { Design_DropMenu } from "../../designs/Design_DropMenu";
+import { DesignHamburger } from "../../designs/DesignHamburger"
+import { DesignDropMenu } from "../../designs/DesignDropMenu";
 import { Link } from "react-router-dom";
 
-//API : MenuDTO
-const initMenuDTO = {
-    dtoList: [],
-    maxSubMenuCount: 0,
-};
+// 메뉴 데이터
+import { MenuComponent } from './MenuComponent';
 
 const HamburgerComponent = () => {
-    //API : 메뉴
-    const [menuDTO, setMenuDTO] = useState(initMenuDTO);
-    useEffect(() => {
-        getMenu().then(data => {
-            setMenuDTO(data);
-        });
-    }, []);
-
     //햄버거메뉴 여부
     const [ShowHamburgerMenu, setShowHamburgerMenu] = useState(false);
     const showHamburgerMenu = () => {
@@ -61,14 +49,14 @@ const HamburgerComponent = () => {
             transition-all duration-500 ease-in-out transform origin-right 
             ${ShowHamburgerMenu ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"} 
             flex-row items-center`}>
-                {menuDTO.dtoList.map(menu =>
+                {MenuComponent.dtoList.map(menu =>
                     <div className='h-auto w-full 
                     text-3xl text-myMainColor-950 
                     cursor-pointer 
                     flex'
                         onClick={() => showDropHamburgerMenu(menu.id)}
                         key={menu.id}>
-                        <Design_DropMenu DropShowHamburgerMenu={DropShowHamburgerMenu} id={menu.id}></Design_DropMenu>
+                        <DesignDropMenu DropShowHamburgerMenu={DropShowHamburgerMenu} id={menu.id}></DesignDropMenu>
                         <div className="w-full">
                             <div className="bg-myMainColor-400 bg-opacity-0 w-full rounded-md
                             transition-all duration-300 hover:bg-opacity-80">
@@ -97,7 +85,7 @@ const HamburgerComponent = () => {
             </div>
             <div className="relative md:hidden "
                 onClick={showHamburgerMenu}>
-                <Design_Hamburger ShowHamburgerMenu={ShowHamburgerMenu}></Design_Hamburger>
+                <DesignHamburger ShowHamburgerMenu={ShowHamburgerMenu}></DesignHamburger>
             </div>
         </div>
     );

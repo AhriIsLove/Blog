@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-{/* DropShowHamburgerMenu 
+/* DropShowHamburgerMenu 
     - true : 드랍 메뉴 열기
-    - false : 드랍 메뉴 닫기 */}
-export const Design_DropMenu = ({ DropShowHamburgerMenu, id}) => {
+    - false : 드랍 메뉴 닫기 */
+export const DesignDropMenu = ({ DropShowHamburgerMenu, id}) => {
     return (
         <div>
             <motion.svg

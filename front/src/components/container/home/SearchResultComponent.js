@@ -1,5 +1,5 @@
-import Design_TreeBranch from "../../../designs/Design_TreeBranch";
-import { getMenu, getMenuOne, getSubMenus, prefix } from "../../../api/MainAPI";
+import DesignTreeBranch from "../../../designs/DesignTreeBranch";
+import { getMenuOne, getSubMenus } from "../../../api/MainAPI";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -54,7 +54,7 @@ const SearchResultComponent = ({ searchKeyword, searchResult }) => {
     return (
         <div>
             {
-                searchKeyword == "" ?
+                searchKeyword === "" ?
                     <></>
                     :
                     <div className='mt-10 mb-5 
@@ -83,13 +83,13 @@ const SearchResultComponent = ({ searchKeyword, searchResult }) => {
                                         {parentData ? parentData.name : ""}
                                     </div>
                                     <div className="flex flex-row">
-                                        {parentData ? <Design_TreeBranch></Design_TreeBranch> : <></>}
+                                        {parentData ? <DesignTreeBranch></DesignTreeBranch> : <></>}
                                         <div>
                                             <div className="text-3xl">
                                                 {menu.name}
                                             </div>
                                             <div className="flex flex-row justify-center">
-                                                {Array.isArray(childData) && childData.length > 0 ? <Design_TreeBranch></Design_TreeBranch> : <></>}
+                                                {Array.isArray(childData) && childData.length > 0 ? <DesignTreeBranch></DesignTreeBranch> : <></>}
                                                 <div className="content-center mt-2 
                                                 text-xs
                                                 flex flex-row">
