@@ -7,7 +7,7 @@ export const prefix = `${API_SERVER_HOST}/community`;
 
 //서버에게 목록 요청
 let isPostUserLogRegistting = false; // 중복 호출 방지
-export const postUserLogRegist = async () => {
+export const postUserLogRegist = async (pathname) => {
     if(isPostUserLogRegistting) return;
     isPostUserLogRegistting = true;
 
@@ -18,7 +18,7 @@ export const postUserLogRegist = async () => {
         const actionDate = new Date().toISOString();
         const res = await axios.post(`${prefix}/userlog/regist`, {
             ip: ip,
-            action: "접속",
+            action: pathname,
             actionDate: actionDate
         });
 
