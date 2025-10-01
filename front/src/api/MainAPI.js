@@ -1,6 +1,7 @@
 import axios from "axios";//Terminal : yarn add axios
 
-export const API_SERVER_HOST = 'http://localhost:8081';
+export const API_SERVER_HOST = 'http://localhost:8089';
+// export const API_SERVER_HOST = 'http://43.200.181.141:8089';
 
 export const prefix = `${API_SERVER_HOST}/blog`;
 
