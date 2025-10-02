@@ -1,15 +1,21 @@
-// import { useEffect } from "react";
-// import { postGameRegist } from '../../api/HobbyAPI';
+import { useState, useEffect } from "react";
+import { getGameList } from '../../api/HobbyAPI';
 
 const GamePage = () => {
-    // useEffect(() => {
-    //     postGameRegist();
-    // }, []);
+    const [games, setGames] = useState([]);
 
-    //화면 리턴
+    useEffect(() => {
+        getGameList().then(data => setGames(Array.isArray(data) ? data : []));
+    }, []);
+
     return (
         <div>
-            GamePage
+            <h1>Game List</h1>
+            <ul>
+                {games.map((game, index) => (
+                    <li key={index}>{game.name} - {game.type}</li>
+                ))}
+            </ul>
         </div>
     );
 }

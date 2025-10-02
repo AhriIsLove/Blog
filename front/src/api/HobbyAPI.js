@@ -5,11 +5,11 @@ export const API_SERVER_HOST = 'http://localhost:8089';
 
 export const prefix = `${API_SERVER_HOST}/hobby`;
 
-//서버에게 목록 요청
-let isPostGameRegistting = false; // 중복 호출 방지
+//게임 등록 요청
+let isPostGameRegist = false; // 중복 호출 방지
 export const postGameRegist = async () => {
-    if(isPostGameRegistting) return;
-    isPostGameRegistting = true;
+    if(isPostGameRegist) return;
+    isPostGameRegist = true;
 
     try{
         // 이미지 포함을 위한 formData 객체 생성
@@ -39,6 +39,28 @@ export const postGameRegist = async () => {
         console.error('로그 전송 실패:', error);
         throw error;
     } finally {
-        isPostGameRegistting = false;
+        isPostGameRegist = false;
+    }
+};
+
+//게임 목록 요청
+let isGetGameList = false; // 중복 호출 방지
+export const getGameList = async (page=0, size=10) => {
+    if(isGetGameList) return;
+    isGetGameList = true;
+
+    try{
+        const res = await axios.get(`${prefix}/game/list`, {
+            params: { page, size }
+        });
+
+        console.log(res.data);
+
+        return res.data;
+    } catch (error) {
+        console.error('게임 목록 조회 실패:', error);
+        throw error;
+    } finally {
+        isGetGameList = false;
     }
 };

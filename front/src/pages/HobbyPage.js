@@ -9,7 +9,6 @@ const HobbyPage = () => {
     //화면 리턴
     return (
         <BasicLayout>
-            <div className="text-3xl">HobbyPage</div>
             <Outlet />
         </BasicLayout>
     );
