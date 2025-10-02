@@ -34,7 +34,7 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
 @layer components {
     body {
         font-family: 'Cafe24Ssurround', sans-serif;
-        @apply bg-myMainColor-50 text-myMainColor-950
+        @apply bg-myMainColor-50 text-myFontColor-950
     }
     
     /* 메뉴 - 항목 */

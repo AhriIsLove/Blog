@@ -52,14 +52,14 @@ public class HobbyServiceImpl implements HobbyService {
                 // Game 엔티티의 필드를 GameDTO로 매핑
                 .name(game.getName())
                 .type(game.getType())
-//                .image(game.getImage())
-//                .company(game.getCompany())
-//                .platform(game.getPlatform())
-//                .lastPlayDate(game.getLastPlayDate())
-//                .playTime(game.getPlayTime())
-//                .review(game.getReview())
-//                .price(game.getPrice())
-//                .buyPrice(game.getBuyPrice())
+                .image(game.getImage())
+                .company(game.getCompany())
+                .platform(game.getPlatform())
+                .lastPlayDate(game.getLastPlayDate())
+                .playTime(game.getPlayTime())
+                .review(game.getReview())
+                .price(game.getPrice())
+                .buyPrice(game.getBuyPrice())
                 .build()).collect(Collectors.toList());
         
 		return gameDTOs;
