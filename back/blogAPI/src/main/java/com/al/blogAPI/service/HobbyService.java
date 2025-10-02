@@ -1,5 +1,9 @@
 package com.al.blogAPI.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.al.blogAPI.dto.GameDTO;
@@ -7,5 +11,7 @@ import com.al.blogAPI.dto.GameDTO;
 public interface HobbyService {
 
 	boolean gameRegist(GameDTO dto, MultipartFile file);
+
+	List<GameDTO> getGameList(Pageable pageable);
 
 }

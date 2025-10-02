@@ -1,5 +1,10 @@
 package com.al.blogAPI.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +34,35 @@ public class HobbyServiceImpl implements HobbyService {
 		gameRepository.save(game);
 
 		return false;
+	}
+
+	@Override
+	public List<GameDTO> getGameList(Pageable pageable) {
+		// 페이지 정보 계산
+        int pageSize = pageable.getPageSize();
+        int pageNumber = pageable.getPageNumber();
+        int startRow = pageNumber * pageSize;
+        int endRow = startRow + pageSize;
+        
+        // 게임 목록 조회
+        List<Game> gameList = gameRepository.findAllWithPaging(startRow, endRow);
+        
+        // Entity -> DTO
+        List<GameDTO> gameDTOs = gameList.stream().map(game -> GameDTO.builder()
+                // Game 엔티티의 필드를 GameDTO로 매핑
+                .name(game.getName())
+                .type(game.getType())
+//                .image(game.getImage())
+//                .company(game.getCompany())
+//                .platform(game.getPlatform())
+//                .lastPlayDate(game.getLastPlayDate())
+//                .playTime(game.getPlayTime())
+//                .review(game.getReview())
+//                .price(game.getPrice())
+//                .buyPrice(game.getBuyPrice())
+                .build()).collect(Collectors.toList());
+        
+		return gameDTOs;
 	}
 
 }
