@@ -31,7 +31,7 @@ public class CommunityServiceImpl implements CommunityService {
 				.actionDate(now)
 				.build();
 		
-		System.out.println(userLog);
+		// System.out.println(userLog);
 		
 		communityRepository.save(userLog);
 

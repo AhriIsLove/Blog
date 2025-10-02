@@ -20,6 +20,7 @@ public class CommunityController {
 	
 	@PostMapping("/userlog/regist")
 	public UserLogDTO postUserLogRegist(@RequestBody UserLogDTO dto, HttpServletRequest request) {
+		// System.out.println("postUserLogRegist");
         String ip = request.getHeader("X-Forwarded-For");
         
         if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
