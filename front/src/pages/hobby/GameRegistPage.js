@@ -50,7 +50,7 @@ const GameRegistPage = () => {
                     />
                     {imagePreview && (
                         <div className="regist-image-preview">
-                            <img src={imagePreview} alt="미리보기" style={{ maxWidth: '200px', marginTop: '10px' }} />
+                            <img src={imagePreview} alt="미리보기" />
                         </div>
                     )}
                 </div>
