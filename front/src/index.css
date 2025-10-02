@@ -65,4 +65,80 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
     .tableData {
         @apply border border-slate-400 p-2
     }
+
+    .regist-container {
+        @apply flex flex-col items-center justify-center
+    }
+    .regist-title {
+        @apply text-2xl font-bold mb-4
+    }
+    .regist-form {
+        @apply w-full max-w-md bg-white p-6 rounded-lg shadow-md
+    }
+    .regist-row {
+        @apply flex items-center
+    }
+    .regist-field {
+        @apply mb-4
+    }
+    .regist-label {
+        @apply block text-sm font-medium text-myFontColor-900 mb-2
+    }
+    .regist-required {
+        @apply text-red-500
+    }
+    .regist-unit {
+        @apply ml-2 text-sm text-myFontColor-700
+    }
+    .regist-input {
+        @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-myMainColor-300
+    }
+    .regist-select {
+        @apply w-full border border-gray-300 rounded px-3 py-2 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-myMainColor-300 cursor-pointer;
+        background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%23999' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
+    .regist-textarea {
+        @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-myMainColor-300 resize-none
+    }
+    .regist-file {
+        @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-myMainColor-300;
+        background-color: #f9fafb;
+        cursor: pointer;
+        font-size: 1rem;
+        /* Hide default file input button for Chrome/Edge */
+        &::-webkit-file-upload-button {
+            @apply bg-myMainColor-800 text-white px-4 py-2 rounded hover:bg-myMainColor-900 transition-colors duration-300;
+            border: none;
+            cursor: pointer;
+        }
+        /* Hide default file input button for Firefox */
+        &::file-selector-button {
+            @apply bg-myMainColor-800 text-white px-4 py-2 rounded hover:bg-myMainColor-900 transition-colors duration-300;
+            border: none;
+            cursor: pointer;
+        }
+        /* 미리보기 이미지 스타일 */
+        & + .regist-file-preview {
+            display: block;
+            margin-top: 0.5rem;
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+    }
+    .regist-list {
+        @apply bg-gray-500 text-white mb-4 py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-300 
+    }
+    .regist-submit {
+        @apply bg-myFontColor-500 text-white py-2 px-4 rounded hover:bg-myFontColor-600 transition-colors duration-300
+    }
+    .regist-cancel {
+        @apply bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition-colors duration-300 ml-2
+    }
 }
