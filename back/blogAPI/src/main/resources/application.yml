@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8089
 # Oracle Connect
 spring:
   # Datasource Bean 생성
@@ -7,7 +7,7 @@ spring:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521/xe
     username: admin
-    password: ahrilove1213
+    password: oracle
     
   #Jpa Setting
   jpa:
