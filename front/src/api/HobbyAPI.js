@@ -7,26 +7,11 @@ export const prefix = `${API_SERVER_HOST}/hobby`;
 
 //게임 등록 요청
 let isPostGameRegist = false; // 중복 호출 방지
-export const postGameRegist = async () => {
+export const postGameRegist = async (formData) => {
     if(isPostGameRegist) return;
     isPostGameRegist = true;
 
     try{
-        // 이미지 포함을 위한 formData 객체 생성
-        const formData = new FormData();
-
-        // JSON 데이터를 gameDTO라는 이름으로 추가
-        const gameData = {
-            name: "Leageue of Legends",
-            type: "MOBA",
-        };
-        formData.append("gameDTO", new Blob([JSON.stringify(gameData)], {
-            type: "application/json"
-        }));
-
-        // 이미지 파일 추가
-        formData.append("imageFile", null);
-        
         // 요청
         const res = await axios.post(`${prefix}/game/regist`, formData, {
             headers: {
