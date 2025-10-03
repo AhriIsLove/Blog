@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.al.blogAPI.Util.FileManager;
 import com.al.blogAPI.dto.GameDTO;
 import com.al.blogAPI.entity.Game;
 import com.al.blogAPI.repository.GameRepository;
@@ -20,20 +21,36 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class HobbyServiceImpl implements HobbyService {
 	private final GameRepository gameRepository;
+	private final FileManager fileManager;
 	
 	@Override
-	public boolean gameRegist(GameDTO dto, MultipartFile file) {
-
+	public boolean gameRegist(GameDTO dto) {
+		// System.out.println("HobbyServiceImpl - gameRegist()");
+		
+		// 이미지 파일 복사
+		MultipartFile imageFile = dto.getImageFile();
+		String fileName = fileManager.saveFile(imageFile);
+		dto.setImage(fileName);
+		
+		// DTO -> Entity
 		Game game = Game.builder()
 				.name(dto.getName())
 				.type(dto.getType())
+				.image(dto.getImage())
+				.company(dto.getCompany())
+				.platform(dto.getPlatform())
+				.lastPlayDate(dto.getLastPlayDate())
+				.playTime(dto.getPlayTime())
+				.review(dto.getReview())
+				.price(dto.getPrice())
+				.buyPrice(dto.getBuyPrice())
 				.build();
 		
-		// System.out.println(userLog);
-		
+		// 게임 정보 저장
 		gameRepository.save(game);
-
-		return false;
+		
+		return true;
+		
 	}
 
 	@Override

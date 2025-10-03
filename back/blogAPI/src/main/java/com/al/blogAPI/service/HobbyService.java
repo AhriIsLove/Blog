@@ -10,7 +10,7 @@ import com.al.blogAPI.dto.GameDTO;
 
 public interface HobbyService {
 
-	boolean gameRegist(GameDTO dto, MultipartFile file);
+	boolean gameRegist(GameDTO dto);
 
 	List<GameDTO> getGameList(Pageable pageable);
 
