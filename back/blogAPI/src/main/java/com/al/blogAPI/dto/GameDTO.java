@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GameDTO {
 	// Entity
-	// private Long id;
+	private Long id;
 	private String name;//이름
 	private String type;// 타입
 	private String image;// 이미지

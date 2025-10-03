@@ -50,6 +50,7 @@ public class HobbyServiceImpl implements HobbyService {
         // Entity -> DTO
         List<GameDTO> gameDTOs = gameList.stream().map(game -> GameDTO.builder()
                 // Game 엔티티의 필드를 GameDTO로 매핑
+        		.id(game.getId())
                 .name(game.getName())
                 .type(game.getType())
                 .image(game.getImage())

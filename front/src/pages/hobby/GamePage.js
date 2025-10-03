@@ -1,13 +1,41 @@
 import { useState, useEffect } from "react";
 import { getGameList } from '../../api/HobbyAPI';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const GamePage = () => {
+    // 게임 목록 상태
     const [games, setGames] = useState([]);
+    // 무한 스크롤 관련 상태
+    const [hasMore, setHasMore] = useState(true);
+    // 페이지 번호 상태
+    const [page, setPage] = useState(0);
 
+    // 초기 데이터 로딩
     useEffect(() => {
-        getGameList().then(data => setGames(Array.isArray(data) ? data : []));
+        loadGameData();
     }, []);
+    const loadGameData = () => {
+        // API에서 데이터 가져오기
+        getGameList(page).then(data => {
+            // undefined가 아닐 때만 체크 진행
+            if (data !== undefined) {
+                if (Array.isArray(data) && data.length > 0) {
+                    setGames(prev => [...prev, ...data]);
+                    setPage(prevPage => prevPage + 1);
+                    if (data.length < 10) {
+                        setHasMore(false); // 10개 미만이면 더 없음
+                    }
+                } else {
+                    setHasMore(false);
+                }
+            } else {
+                // console.log("데이터가 undefined임");
+                // undefined일 경우 아무 처리 안 함 (hasMore 상태 유지)
+            }
+        });
+    };
 
+    // 게임 등록 페이지로 이동
     const handleRegistClick = () => {
         window.location.href = `${process.env.PUBLIC_URL}/hobby/game/regist`;
     };
@@ -23,22 +51,37 @@ const GamePage = () => {
                     게임 등록
                 </button>
             </div>
-            <div className="game-list flex flex-col gap-4 items-center w-full">
-                {games.map((game, index) => (
-                    <div
-                        key={index}
-                        className="game-card flex flex-row items-center border border-myFontColor-300 rounded-lg p-4 w-full max-w-2xl bg-white shadow-sm"
-                    >
-                        <div className="flex-1">
-                            <h2 className="text-lg font-semibold mb-2">{game.name}</h2>
-                            <p className="text-myFontColor-400 m-0">{game.company}</p>
-                            <p className="text-myFontColor-400 m-0">{game.type}</p>
-                            <p className="text-myFontColor-400 m-0">{game.platform}</p>
-                            <p className="text-myFontColor-400 m-0">{game.price}원</p>
+
+            <div className="w-full max-w-2xl mb-4 text-myFontColor-950">
+            <InfiniteScroll 
+                dataLength={games.length}
+                next={loadGameData}
+                hasMore={hasMore}
+                loader={<h4>로딩중...</h4>}
+                endMessage={<p className="text-center">더 이상 데이터가 없습니다</p>}
+                scrollThreshold={0.9}
+            >
+                <div className="game-list flex flex-col gap-4 items-center w-full">
+                    {games.map((game, index) => (
+                        <div
+                            key={index}
+                            className="game-card flex flex-row items-center border border-myFontColor-300 rounded-lg p-4 w-full 
+                            bg-white shadow-sm 
+                            min-h-[160px] max-h-[160px] box-border"
+                        >
+                            <div className="flex-1">
+                                <h2 className="text-lg font-semibold mb-2">{game.name}</h2>
+                                <p className="text-myFontColor-400 m-0">{game.company}</p>
+                                <p className="text-myFontColor-400 m-0">{game.type}</p>
+                                <p className="text-myFontColor-400 m-0">{game.platform}</p>
+                                <p className="text-myFontColor-400 m-0">{game.price}원</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
+            </InfiniteScroll>
             </div>
+            
         </div>
     );
 }
