@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getGameList } from '../../api/HobbyAPI';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { getImageURL } from '../../api/MainAPI';
 
 const GamePage = () => {
     // 게임 목록 상태
@@ -10,16 +11,15 @@ const GamePage = () => {
     // 페이지 번호 상태
     const [page, setPage] = useState(0);
 
-    // 초기 데이터 로딩
-    useEffect(() => {
-        loadGameData();
-    }, []);
-    const loadGameData = () => {
+    // 게임 데이터 로드 함수
+    // page가 변경될 때마다 호출되도록 useCallback 사용
+    const loadGameData = useCallback(() => {
         // API에서 데이터 가져오기
         getGameList(page).then(data => {
             // undefined가 아닐 때만 체크 진행
             if (data !== undefined) {
                 if (Array.isArray(data) && data.length > 0) {
+                    console.log("데이터 로드됨:", data);
                     setGames(prev => [...prev, ...data]);
                     setPage(prevPage => prevPage + 1);
                     if (data.length < 10) {
@@ -33,7 +33,11 @@ const GamePage = () => {
                 // undefined일 경우 아무 처리 안 함 (hasMore 상태 유지)
             }
         });
-    };
+    }, [page]);
+    // 초기 데이터 로딩
+    useEffect(() => {
+        loadGameData();
+    }, [loadGameData]);
 
     // 게임 등록 페이지로 이동
     const handleRegistClick = () => {
@@ -76,12 +80,19 @@ const GamePage = () => {
                                 <p className="text-myFontColor-400 m-0">{game.platform}</p>
                                 <p className="text-myFontColor-400 m-0">{game.price}원</p>
                             </div>
+                            {/* 서버에 이미지 요청 */}
+                            {game.image && (
+                                <img
+                                    className="w-32 h-32 object-cover ml-4 rounded"
+                                    alt={game.name}
+                                    src={getImageURL(game.image)}
+                                />
+                            )}
                         </div>
                     ))}
                 </div>
             </InfiniteScroll>
             </div>
-            
         </div>
     );
 }

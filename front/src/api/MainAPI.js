@@ -55,8 +55,19 @@ export const getSearch = async (keyword) => {
     // maxSubMenuCount: 0,
 };
 
+//서버에게 이미지 요청
+let isGetImage = false; // 중복 호출 방지
 export const getImage = async(filename) => {
+    if (isGetImage) return; // 중복 호출 방지
+    isGetImage = true;
+
     const res = await axios.get(`${prefix}/image/${filename}`);
 
+    isGetImage = false; // 호출 완료 후 상태 초기화
     return res.data;
+}
+
+// 서버의 이미지 경로를 반환
+export const getImageURL = (filename) => {
+    return `${prefix}/image/${filename}`;
 }

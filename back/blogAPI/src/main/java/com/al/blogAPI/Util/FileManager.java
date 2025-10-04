@@ -22,17 +22,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FileManager {
 
-	@Value("${com.al.blogAPI.upload.path}")
-	private String uploadPath;
+	@Value("${com.al.blogAPI.images.path}")
+	private String imagesPath;
 
 	// 실행시 가장먼저 실행
 	@PostConstruct
 	public void init() {
-		File tempFolder = new File(uploadPath);
+		File tempFolder = new File(imagesPath);
 		if (!tempFolder.exists()) {
 			tempFolder.mkdir();
 		}
-		uploadPath = tempFolder.getAbsolutePath();
+		imagesPath = tempFolder.getAbsolutePath();
 	}
 	
 	// 파일 저장
@@ -47,7 +47,7 @@ public class FileManager {
 		System.out.println("CustomFileUtil saveFile saveName => " + file.getOriginalFilename());
 
 		// 저장 경로
-		Path savePath = Paths.get(uploadPath, saveName);
+		Path savePath = Paths.get(imagesPath, saveName);
 		System.out.println("CustomFileUtil saveFile savePath => " + savePath);
 
 		try {
@@ -65,14 +65,14 @@ public class FileManager {
 	// 파일 가져오기
 	public ResponseEntity<Resource> getFile(String fileName) {
 		// 저장된 파일 경로 + 파일명
-		Resource resource = new FileSystemResource(uploadPath + File.separator + fileName);
+		Resource resource = new FileSystemResource(imagesPath + File.separator + fileName);
 
-		System.out.println("ResponseEntity<Resource> getFile => " + uploadPath + File.separator + fileName);
+		System.out.println("ResponseEntity<Resource> getFile => " + imagesPath + File.separator + fileName);
 
 		if (!resource.exists()) {
 			// File.separator --> os에 맞는 경로 구분자
 			// 요청 파일 없으면 default.jpeg 보여줘
-			resource = new FileSystemResource(uploadPath + File.separator + "default.jpg");
+			resource = new FileSystemResource(imagesPath + File.separator + "default.jpg");
 		}
 		// 응답 Header 생성후 Content-Type 적용
 		HttpHeaders headers = new HttpHeaders();
@@ -93,7 +93,7 @@ public class FileManager {
 			return;
 		}
 		// 파일명
-		Path filePath = Paths.get(uploadPath, fileName);
+		Path filePath = Paths.get(imagesPath, fileName);
 
 		try {
 			// 파일 삭제
