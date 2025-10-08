@@ -83,4 +83,29 @@ public class HobbyServiceImpl implements HobbyService {
 		return gameDTOs;
 	}
 
+	@Override
+	public GameDTO getGameDetail(Long gameId) {
+		Game game = gameRepository.findById(gameId).orElse(null);
+		
+		if (game == null) {
+			return null; // 또는 예외 처리
+		}
+		// Entity -> DTO
+		GameDTO dto = GameDTO.builder()
+				.id(game.getId())
+				.name(game.getName())
+				.type(game.getType())
+				.image(game.getImage())
+				.company(game.getCompany())
+				.platform(game.getPlatform())
+				.lastPlayDate(game.getLastPlayDate())
+				.playTime(game.getPlayTime())
+				.review(game.getReview())
+				.price(game.getPrice())
+				.buyPrice(game.getBuyPrice())
+				.build();
+		
+		return dto;
+	}
+
 }

@@ -14,4 +14,6 @@ public interface HobbyService {
 
 	List<GameDTO> getGameList(Pageable pageable);
 
+	GameDTO getGameDetail(Long gameId);
+
 }

@@ -19,7 +19,7 @@ const GameListPage = () => {
             // undefined가 아닐 때만 체크 진행
             if (data !== undefined) {
                 if (Array.isArray(data) && data.length > 0) {
-                    console.log("데이터 로드됨:", data);
+                    // console.log("데이터 로드됨:", data);
                     setGames(prev => [...prev, ...data]);
                     setPage(prevPage => prevPage + 1);
                     if (data.length < 10) {

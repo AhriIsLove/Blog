@@ -64,4 +64,17 @@ public class HobbyController {
 	    // 게임 목록 반환
 	    return ResponseEntity.ok(gameList);
 	}
+
+	@GetMapping("/game/detail")
+	public ResponseEntity<GameDTO> getGameDetail(@RequestParam(name = "gameId") Long gameId) {
+		System.out.println("getGame id : " + gameId);
+		
+		// 게임 목록 가져오기
+		GameDTO game = hobbyService.getGameDetail(gameId);
+
+		System.out.println(game);
+		
+	    // 게임 목록 반환
+	    return ResponseEntity.ok(game);
+	}
 }

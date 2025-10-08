@@ -13,11 +13,11 @@ export const postUserLogRegist = async (pathname) => {
 
     try{
         // 사용자 IP 가져오기
-        const ipRes = await axios.get('https://api.ipify.org?format=json');
-        const ip = ipRes.data.ip;
+        // const ipRes = await axios.get('https://api.ipify.org?format=json');
+        // const ip = ipRes.data.ip;
         const actionDate = new Date().toISOString();
         const res = await axios.post(`${prefix}/userlog/regist`, {
-            ip: ip,
+            // ip: ip,
             action: pathname,
             actionDate: actionDate
         });

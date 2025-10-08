@@ -21,7 +21,6 @@ export const postGameRegist = async (formData) => {
 
         return res.data;
     } catch (error) {
-        console.error('로그 전송 실패:', error);
         throw error;
     } finally {
         isPostGameRegist = false;
@@ -39,7 +38,7 @@ export const getGameList = async (page=0, size=10) => {
             params: { page, size }
         });
 
-        console.log(res.data);
+        // console.log(res.data);
 
         return res.data;
     } catch (error) {
@@ -47,5 +46,25 @@ export const getGameList = async (page=0, size=10) => {
         throw error;
     } finally {
         isGetGameList = false;
+    }
+};
+
+//게임 상세 요청
+let isGetGameDetail = false; // 중복 호출 방지
+export const getGameDetail = async (gameId) => {
+    if(isGetGameDetail) return;
+    isGetGameDetail = true;
+
+    try{
+        const res = await axios.get(`${prefix}/game/detail`, {
+            params: { gameId }
+        });
+
+        return res.data;
+    } catch (error) {
+        console.error('게임 상세 조회 실패:', error);
+        throw error;
+    } finally {
+        isGetGameDetail = false;
     }
 };
