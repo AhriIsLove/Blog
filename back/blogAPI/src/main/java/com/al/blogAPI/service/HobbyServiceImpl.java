@@ -108,4 +108,46 @@ public class HobbyServiceImpl implements HobbyService {
 		return dto;
 	}
 
+	@Override
+	public boolean postGameEdit(GameDTO dto) {
+		
+		// System.out.println("HobbyServiceImpl - postGameEdit()");
+		
+		// 기존 게임 정보 조회
+		Game existingGame = gameRepository.findById(dto.getId()).orElse(null);
+		if (existingGame == null) {
+			return false; // 또는 예외 처리
+		}
+		
+		// 이미지 파일 처리
+		MultipartFile imageFile = dto.getImageFile();
+		if (imageFile != null && !imageFile.isEmpty()) {
+			// 기존 이미지 파일 삭제
+			String existingImage = existingGame.getImage();
+			if (existingImage != null && !existingImage.isEmpty()) {
+				fileManager.deleteFile(existingImage);
+			}
+			
+			// 새로운 이미지 파일 저장
+			String newFileName = fileManager.saveFile(imageFile);
+			existingGame.setImage(newFileName);
+		}
+		
+		// 게임 정보 업데이트
+		existingGame.setName(dto.getName());
+		existingGame.setType(dto.getType());
+		existingGame.setCompany(dto.getCompany());
+		existingGame.setPlatform(dto.getPlatform());
+		existingGame.setLastPlayDate(dto.getLastPlayDate());
+		existingGame.setPlayTime(dto.getPlayTime());
+		existingGame.setReview(dto.getReview());
+		existingGame.setPrice(dto.getPrice());
+		existingGame.setBuyPrice(dto.getBuyPrice());
+		
+		// 변경된 게임 정보 저장
+		gameRepository.save(existingGame);
+		
+		return true;
+	}
+
 }

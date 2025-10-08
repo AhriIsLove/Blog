@@ -88,7 +88,7 @@ public class FileManager {
 	}
 
 	// 파일 삭제
-	public void deleteFiles(String fileName) {
+	public void deleteFile(String fileName) {
 		if (fileName == null || fileName == "") {
 			return;
 		}

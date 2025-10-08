@@ -30,9 +30,9 @@ public class HobbyController {
 
 	@PostMapping("/game/regist")
 	public ResponseEntity<?> postGameRegist(@RequestPart(name = "gameDTO") GameDTO dto, @RequestPart(name = "imageFile", required = false) MultipartFile file) {		
-		System.out.println("game regist");
-		System.out.println(dto);
-		System.out.println(file);
+//		System.out.println("game regist");
+//		System.out.println(dto);
+//		System.out.println(file);
 		
 		// 이미지 파일 설정
 		dto.setImageFile(file);
@@ -50,8 +50,8 @@ public class HobbyController {
 	        @RequestParam(name = "size", defaultValue = "10") int size) { // 한 페이지당 가져올 아이템 개수
 	        // @RequestParam(defaultValue = "id,desc") String[] sort) { // 정렬 기준 (예: "id,desc" -> id 기준 내림차순
 		
-		System.out.println("getGameList page : " + page);
-		System.out.println("getGameList size : " + size);
+//		System.out.println("getGameList page : " + page);
+//		System.out.println("getGameList size : " + size);
 		
 		// Pageable : JPA 조회를 지원
 		Pageable pageable = PageRequest.of(page, size);
@@ -67,14 +67,29 @@ public class HobbyController {
 
 	@GetMapping("/game/detail")
 	public ResponseEntity<GameDTO> getGameDetail(@RequestParam(name = "gameId") Long gameId) {
-		System.out.println("getGame id : " + gameId);
+//		 System.out.println("getGame id : " + gameId);
 		
-		// 게임 목록 가져오기
+		// 게임 상세 정보 가져오기
 		GameDTO game = hobbyService.getGameDetail(gameId);
 
 		System.out.println(game);
 		
 	    // 게임 목록 반환
 	    return ResponseEntity.ok(game);
+	}
+
+	@PostMapping("/game/edit")
+	public ResponseEntity<?> postGameEdit(@RequestPart(name = "gameDTO") GameDTO dto, @RequestPart(name = "imageFile", required = false) MultipartFile file) {
+		 System.out.println("getGame edit : " + dto);
+		 System.out.println("getGame edit file : " + file);
+
+		// 이미지 파일 설정
+		dto.setImageFile(file);
+			
+		// 게임 수정
+		boolean result = hobbyService.postGameEdit(dto);
+
+	    // 게임 수정 결과 반환
+	    return ResponseEntity.ok(result);
 	}
 }
