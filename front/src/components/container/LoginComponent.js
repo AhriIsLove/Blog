@@ -50,7 +50,14 @@ const LoginComponent = ({ onLogin, onClose }) => {
         }).then((result) => {
             if (result.isConfirmed && result.value) {
                 // onLogin(result.value.username, result.value.password);
-                onLogin(result.value.password);
+
+                if (result.value.password === 'ahrilove') {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('loginPassword', result.value.password);
+                    onLogin(true);
+                } else {
+                    onClose();
+                }
             } else {
                 onClose();
             }

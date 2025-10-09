@@ -56,20 +56,17 @@ const GameListPage = () => {
     // 로그인 후 액션
     const [loginAction, setLoginAction] = useState(`${process.env.PUBLIC_URL}/hobby/game/regist`);
     // 로그인 처리
-    const [isLogin, setIsLogin] = useState(false);
-    const handleLogin = (password) => {
+    const handleLogin = (result) => {
         // console.log('로그인 정보:', password);
-        if (password === 'ahrilove') {
-            setIsLogin(true);
+        if (result) {
             alert('로그인 성공');
-            
+
+            // 로그인 성공 시 지정된 액션(페이지 이동) 수행
             window.location.href = loginAction;
         } else {
-            setIsLogin(false);
             alert('로그인 실패: 비밀번호가 올바르지 않습니다.');
             return;
         }
-        // 여기에 API 호출 로직 추가
         // 로그인 성공 시 모달 닫기
         closeModal();
     };
@@ -85,7 +82,7 @@ const GameListPage = () => {
                     className="px-4 py-2 bg-myPointColor-300 rounded hover:bg-myPointColor-500 transition border border-myPointColor-600"
                     onClick={() => {
                         // console.log("isLogin:", isLogin);
-                        if (isLogin) {
+                        if (sessionStorage.getItem('isLoggedIn') === 'true') {
                             window.location.href = `${process.env.PUBLIC_URL}/hobby/game/regist`;
                         } else {
                             openModal(`${process.env.PUBLIC_URL}/hobby/game/regist`);
