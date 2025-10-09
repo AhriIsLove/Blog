@@ -32,7 +32,7 @@ public class HobbyController {
 	@PostMapping("/game/regist")
 	public ResponseEntity<?> postGameRegist(@RequestPart(name = "gameDTO") GameDTO dto, @RequestPart(name = "imageFile", required = false) MultipartFile file) {		
 //		System.out.println("game regist");
-//		System.out.println(dto);
+		System.out.println(dto);
 //		System.out.println(file);
 		
 		// 이미지 파일 설정

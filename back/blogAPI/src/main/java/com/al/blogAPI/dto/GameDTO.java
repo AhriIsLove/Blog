@@ -30,4 +30,5 @@ public class GameDTO {
 	// 등록용
 	MultipartFile imageFile;
 	
+	private String tags;// 태그
 }

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.al.blogAPI.Util.FileManager;
 import com.al.blogAPI.dto.GameDTO;
 import com.al.blogAPI.entity.Game;
+import com.al.blogAPI.entity.GameTag;
 import com.al.blogAPI.repository.GameRepository;
 
 import jakarta.transaction.Transactional;
@@ -25,8 +26,6 @@ public class HobbyServiceImpl implements HobbyService {
 	
 	@Override
 	public boolean gameRegist(GameDTO dto) {
-		// System.out.println("HobbyServiceImpl - gameRegist()");
-		
 		// 이미지 파일 복사
 		MultipartFile imageFile = dto.getImageFile();
 		String fileName = fileManager.saveFile(imageFile);
@@ -45,6 +44,22 @@ public class HobbyServiceImpl implements HobbyService {
 				.price(dto.getPrice())
 				.buyPrice(dto.getBuyPrice())
 				.build();
+
+		// Tags 처리
+		String tags = dto.getTags();
+		if (tags != null && !tags.isEmpty()) {
+			// 태그 문자열을 쉼표(#)로 분리하여 배열로 변환
+			String[] tagArray = tags.split("#");
+			// 각 태그를 GameTag 엔티티로 변환하여 게임에 추가
+			for (String tagName : tagArray) {
+				// 앞뒤 공백 제거
+				tagName = tagName.trim();
+				if (!tagName.isEmpty()) {
+					// GameTag 엔티티 생성 및 게임에 추가
+					game.addTag(new GameTag(tagName, game));
+				}
+			}
+		}
 		
 		// 게임 정보 저장
 		gameRepository.save(game);

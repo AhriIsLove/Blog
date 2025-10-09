@@ -37,7 +37,8 @@ const GameRegistPage = () => {
             lastPlayDate: form.gameLastPlay.value,
             price: form.gamePrice.value,
             buyPrice: form.gameBuyPrice.value,
-            review: form.gameReview.value
+            review: form.gameReview.value,
+            tags: form.gameTags.value
         };
         formData.append("gameDTO", new Blob([JSON.stringify(gameData)], {
             type: "application/json"
@@ -87,18 +88,22 @@ const GameRegistPage = () => {
                     <label htmlFor="gameImage" className="regist-label">
                         게임 대표 이미지
                     </label>
-                    <input
-                        type="file"
-                        id="gameImage"
-                        name="gameImage"
-                        accept="image/*"
-                        className="regist-input regist-file"
-                        onChange={handleImageChange}
-                    />
+                    <div className="flex items-center justify-center">
+                        <input
+                            type="file"
+                            id="gameImage"
+                            name="gameImage"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={handleImageChange}
+                        />
+                        <label htmlFor="gameImage" className="regist-input regist-file">이미지 등록</label>
+                        <button type="button" className="regist-delete" onClick={() => setImagePreview(null)}>
+                            X
+                        </button>
+                    </div>
                     {imagePreview && (
-                        <div className="regist-image-preview">
-                            <img src={imagePreview} alt="미리보기" />
-                        </div>
+                        <img className='regist-image-preview' src={imagePreview} alt="미리보기"/>
                     )}
                 </div>
                 <div className="regist-field">
@@ -174,6 +179,13 @@ const GameRegistPage = () => {
                         게임 리뷰
                     </label>
                     <textarea id="gameReview" name="gameReview" placeholder="게임 리뷰을 입력하세요" rows={4} className="regist-textarea" />
+                </div>
+                <div className="regist-field">
+                    <label htmlFor="gameTags" className="regist-label">
+                        게임 태그
+                    </label>
+                    <input type="text" id="gameTags" name="gameTags" placeholder="#태그 #태그" className="regist-input" />
+                    <small className="regist-note">태그는 추후 검색 기능에 활용됩니다. (쉼표 없이 #태그 형태로 입력)</small>
                 </div>
                 <div className="regist-row">
                     <button type="submit" className="regist-submit mr-auto">
