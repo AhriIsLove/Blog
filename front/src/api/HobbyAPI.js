@@ -68,3 +68,22 @@ export const getGameDetail = async (gameId) => {
         isGetGameDetail = false;
     }
 };
+
+//게임 수정 요청
+let isPutGameEdit = false; // 중복 호출 방지
+export const putGameEdit = async (formData) => {
+    if(isPutGameEdit) return;
+    isPutGameEdit = true;
+    try{
+        const res = await axios.put(`${prefix}/game/edit`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return res.data;
+    } catch (error) {
+        throw error;
+    } finally {
+        isPutGameEdit = false;
+    }
+};

@@ -21,7 +21,6 @@ const GameRegistPage = () => {
         }
     };
 
-    //화면 리턴
     // 폼 제출 핸들러
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,6 +65,7 @@ const GameRegistPage = () => {
         }
     };
 
+    //화면 리턴
     return (
         <div className="regist-container">
             <h2 className="regist-title">게임 등록</h2>

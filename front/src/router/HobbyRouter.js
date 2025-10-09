@@ -5,6 +5,7 @@ const Loading = <div>Loading...</div>
 const GameListPage = lazy(() => import("../pages/hobby/GameListPage"));
 const GameRegistPage = lazy(() => import("../pages/hobby/GameRegistPage"));
 const GamePage = lazy(() => import("../pages/hobby/GamePage"));
+const GameEditPage = lazy(() => import("../pages/hobby/GameEditPage"));
 const CollectPage = lazy(() => import("../pages/hobby/CollectPage"));
 
 const HobbyRouter = () => {
@@ -25,6 +26,10 @@ const HobbyRouter = () => {
         {
             path: "game/:gameId",
             element: <Suspense fallback={Loading}><GamePage /></Suspense>
+        },
+        {
+            path: "game/edit/:gameId",
+            element: <Suspense fallback={Loading}><GameEditPage /></Suspense>
         },
         {
             path: "collect",

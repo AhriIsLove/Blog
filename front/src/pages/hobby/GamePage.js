@@ -89,7 +89,7 @@ const GamePage = () => {
                             <label htmlFor="gameCompany" className="regist-label">
                                 게임 개발사
                             </label>
-                            <input type="text" id="gameCompany" name="gameCompany" placeholder="Riot Games, Nexon ..." className="regist-input" value={game.company} readOnly/>
+                            <input type="text" id="gameCompany" name="gameCompany" placeholder="Riot Games, Nexon ..." className="regist-input" value={game.company ?? ''} readOnly/>
                         </div>
                         <div className="regist-field">
                             <label htmlFor="gamePlatform" className="regist-label">

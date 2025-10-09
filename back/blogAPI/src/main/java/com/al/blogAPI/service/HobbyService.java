@@ -16,6 +16,6 @@ public interface HobbyService {
 
 	GameDTO getGameDetail(Long gameId);
 
-	boolean postGameEdit(GameDTO dto);
+	boolean putGameEdit(GameDTO dto);
 
 }

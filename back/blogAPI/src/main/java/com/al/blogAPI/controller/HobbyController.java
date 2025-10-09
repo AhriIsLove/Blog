@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -78,8 +79,8 @@ public class HobbyController {
 	    return ResponseEntity.ok(game);
 	}
 
-	@PostMapping("/game/edit")
-	public ResponseEntity<?> postGameEdit(@RequestPart(name = "gameDTO") GameDTO dto, @RequestPart(name = "imageFile", required = false) MultipartFile file) {
+	@PutMapping("/game/edit")
+	public ResponseEntity<?> putGameEdit(@RequestPart(name = "gameDTO") GameDTO dto, @RequestPart(name = "imageFile", required = false) MultipartFile file) {
 		 System.out.println("getGame edit : " + dto);
 		 System.out.println("getGame edit file : " + file);
 
@@ -87,7 +88,7 @@ public class HobbyController {
 		dto.setImageFile(file);
 			
 		// 게임 수정
-		boolean result = hobbyService.postGameEdit(dto);
+		boolean result = hobbyService.putGameEdit(dto);
 
 	    // 게임 수정 결과 반환
 	    return ResponseEntity.ok(result);

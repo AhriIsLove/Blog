@@ -109,7 +109,7 @@ public class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public boolean postGameEdit(GameDTO dto) {
+	public boolean putGameEdit(GameDTO dto) {
 		
 		// System.out.println("HobbyServiceImpl - postGameEdit()");
 		

@@ -70,7 +70,7 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         @apply flex flex-col items-center justify-center
     }
     .regist-title {
-        @apply text-2xl font-bold mb-4
+        @apply text-2xl font-bold mb-4 text-center
     }
     .regist-form {
         @apply w-full bg-white p-6 rounded-lg shadow-md
@@ -102,34 +102,27 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
         @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-myMainColor-300 resize-none
     }
     .regist-file {
-        @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-myMainColor-300;
-        cursor: pointer;
-        font-size: 1rem;
-    }
-    /* Hide default file input button for Chrome/Edge */
-    .regist-file::-webkit-file-upload-button {
-        @apply bg-myMainColor-800 text-white px-4 py-2 rounded hover:bg-myMainColor-900 transition-colors duration-300;
+        @apply bg-myFontColor-800 text-white px-4 py-2 rounded hover:bg-myFontColor-900 transition-colors duration-300 text-center;
         border: none;
         cursor: pointer;
     }
-    /* Hide default file input button for Firefox */
-    .regist-file::file-selector-button {
-        @apply bg-myMainColor-800 text-white px-4 py-2 rounded hover:bg-myMainColor-900 transition-colors duration-300;
-        border: none;
-        cursor: pointer;
-    }
-
     /* 미리보기 이미지 스타일 */
     .regist-image-preview {
         @apply block mt-2 max-w-[200px] max-h-[200px] rounded-lg object-cover shadow-md mx-auto;
     }
     .regist-list {
-        @apply bg-gray-500 text-white mb-4 py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-300 
+        @apply bg-gray-500 text-white mb-4 py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-300
     }
     .regist-submit {
         @apply bg-myFontColor-500 text-white py-2 px-4 rounded hover:bg-myFontColor-600 transition-colors duration-300
     }
     .regist-cancel {
         @apply bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition-colors duration-300 ml-2
+    }
+    .regist-delete {
+        @apply bg-myMainColor-800 text-white py-2 px-4 rounded hover:bg-myMainColor-900 transition-colors duration-300 ml-2
+    }
+    .regist-reset {
+        @apply bg-myPointColor-800 text-white py-2 px-4 rounded hover:bg-myPointColor-900 transition-colors duration-300 ml-2
     }
 }
