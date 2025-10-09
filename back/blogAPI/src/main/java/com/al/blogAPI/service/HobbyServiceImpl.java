@@ -118,6 +118,10 @@ public class HobbyServiceImpl implements HobbyService {
 				.review(game.getReview())
 				.price(game.getPrice())
 				.buyPrice(game.getBuyPrice())
+				// 태그들을 "#"로 연결하여 하나의 문자열로 만듦
+				.tags(game.getTags().stream()
+						.map(GameTag::getTag)
+						.collect(Collectors.joining("#", "#", ""))) // 맨 앞에 # 붙이기
 				.build();
 		
 		return dto;
@@ -125,9 +129,6 @@ public class HobbyServiceImpl implements HobbyService {
 
 	@Override
 	public boolean putGameEdit(GameDTO dto) {
-		
-		// System.out.println("HobbyServiceImpl - postGameEdit()");
-		
 		// 기존 게임 정보 조회
 		Game existingGame = gameRepository.findById(dto.getId()).orElse(null);
 		if (existingGame == null) {
@@ -158,6 +159,24 @@ public class HobbyServiceImpl implements HobbyService {
 		existingGame.setReview(dto.getReview());
 		existingGame.setPrice(dto.getPrice());
 		existingGame.setBuyPrice(dto.getBuyPrice());
+		
+		// Tags 처리
+		String tags = dto.getTags();
+		// 기존 태그 삭제
+		existingGame.getTags().clear();
+		if (tags != null && !tags.isEmpty()) {
+			// 태그 문자열을 쉼표(#)로 분리하여 배열로 변환
+			String[] tagArray = tags.split("#");
+			// 각 태그를 GameTag 엔티티로 변환하여 게임에 추가
+			for (String tagName : tagArray) {
+				// 앞뒤 공백 제거
+				tagName = tagName.trim();
+				if (!tagName.isEmpty()) {
+					// GameTag 엔티티 생성 및 게임에 추가
+					existingGame.addTag(new GameTag(tagName, existingGame));
+				}
+			}
+		}
 		
 		// 변경된 게임 정보 저장
 		gameRepository.save(existingGame);

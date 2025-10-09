@@ -18,7 +18,8 @@ const GameEditPage = () => {
         lastPlayDate: '', 
         price: '', 
         buyPrice: '', 
-        review: ''
+        review: '',
+        tags: ''
     });
 
     // 게임 상세 정보
@@ -70,7 +71,8 @@ const GameEditPage = () => {
             lastPlayDate: form.gameLastPlay.value,
             price: form.gamePrice.value,
             buyPrice: form.gameBuyPrice.value,
-            review: form.gameReview.value
+            review: form.gameReview.value,
+            tags: form.gameTags.value
         };
         formData.append("gameDTO", new Blob([JSON.stringify(gameData)], {
             type: "application/json"
@@ -119,7 +121,7 @@ const GameEditPage = () => {
                             <label htmlFor="gameName" className="regist-label">
                                 게임 이름
                             </label>
-                            <input type="text" id="gameName" name="gameName" placeholder="게임 이름을 입력하세요" className="regist-input" value={game.name} onChange={(e) => setGame({ ...game, name: e.target.value })} />
+                            <input type="text" id="gameName" name="gameName" placeholder="게임 이름을 입력하세요" className="regist-input" value={game.name ?? ''} onChange={(e) => setGame({ ...game, name: e.target.value })} />
                         </div>
                         <div className="regist-field">
                             <label htmlFor="gameImage" className="regist-label">
@@ -147,7 +149,7 @@ const GameEditPage = () => {
                             <label htmlFor="gameType" className="regist-label">
                                 게임 장르
                             </label>
-                            <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type} onChange={(e) => setGame({ ...game, type: e.target.value })}>
+                            <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type ?? ''} onChange={(e) => setGame({ ...game, type: e.target.value })}>
                                 <option value="">장르를 선택하세요</option>
                                 <option value="MOBA">MOBA</option>
                                 <option value="액션">액션</option>
@@ -184,7 +186,7 @@ const GameEditPage = () => {
                                 게임 플레이타임(시간)
                             </label>
                             <div className="regist-row">
-                                <input type="text" id="gamePlayTime" name="gamePlayTime" placeholder="게임 플레이타임을 입력하세요" className="regist-input" value={game.playTime} onChange={(e) => setGame({ ...game, playTime: e.target.value })} />
+                                <input type="text" id="gamePlayTime" name="gamePlayTime" placeholder="게임 플레이타임을 입력하세요" className="regist-input" value={game.playTime ?? ''} onChange={(e) => setGame({ ...game, playTime: e.target.value })} />
                                 <span className="regist-unit">h</span>
                             </div>
                         </div>
@@ -192,14 +194,14 @@ const GameEditPage = () => {
                             <label htmlFor="gameLastPlay" className="regist-label">
                                 마지막 플레이
                             </label>
-                            <input type="date" id="gameLastPlay" name="gameLastPlay" placeholder="마지막 플레이" className="regist-input" value={game.lastPlayDate} onChange={(e) => setGame({ ...game, lastPlayDate: e.target.value })} />
+                            <input type="date" id="gameLastPlay" name="gameLastPlay" placeholder="마지막 플레이" className="regist-input" value={game.lastPlayDate ?? ''} onChange={(e) => setGame({ ...game, lastPlayDate: e.target.value })} />
                         </div>
                         <div className="regist-field">
                             <label htmlFor="gamePrice" className="regist-label">
                                 게임 가격
                             </label>
                             <div className="regist-row">
-                                <input type="text" id="gamePrice" name="gamePrice" placeholder="게임 가격을 입력하세요" className="regist-input" value={game.price} onChange={(e) => setGame({ ...game, price: e.target.value })} />
+                                <input type="text" id="gamePrice" name="gamePrice" placeholder="게임 가격을 입력하세요" className="regist-input" value={game.price ?? ''} onChange={(e) => setGame({ ...game, price: e.target.value })} />
                                 <span className="regist-unit">₩</span>
                             </div>
                         </div>
@@ -208,7 +210,7 @@ const GameEditPage = () => {
                                 게임 구매 가격
                             </label>
                             <div className="regist-row">
-                                <input type="text" id="gameBuyPrice" name="gameBuyPrice" placeholder="게임 구매 가격을 입력하세요" className="regist-input" value={game.buyPrice} onChange={(e) => setGame({ ...game, buyPrice: e.target.value })} />
+                                <input type="text" id="gameBuyPrice" name="gameBuyPrice" placeholder="게임 구매 가격을 입력하세요" className="regist-input" value={game.buyPrice ?? ''} onChange={(e) => setGame({ ...game, buyPrice: e.target.value })} />
                                 <span className="regist-unit">₩</span>
                             </div>
                         </div>
@@ -217,6 +219,12 @@ const GameEditPage = () => {
                                 게임 리뷰
                             </label>
                             <textarea id="gameReview" name="gameReview" placeholder="게임 리뷰을 입력하세요" rows={4} className="regist-textarea" value={game.review ?? ''} onChange={(e) => setGame({ ...game, review: e.target.value })} />
+                        </div>
+                        <div>
+                            <label htmlFor="gameTags" className="regist-label">
+                                게임 태그
+                            </label>
+                            <textarea id="gameTags" name="gameTags" placeholder="#태그 #태그" rows={2} className="regist-textarea" value={game.tags ?? ''} onChange={(e) => setGame({ ...game, tags: e.target.value })} />
                         </div>
                         <div className="regist-row">
                             <button type="submit" className="regist-submit mr-auto">

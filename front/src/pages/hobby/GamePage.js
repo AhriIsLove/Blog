@@ -17,7 +17,8 @@ const GamePage = () => {
         lastPlayDate: '', 
         price: '', 
         buyPrice: '', 
-        review: ''
+        review: '',
+        tags: ''
     });
 
     // 게임 상세 정보
@@ -26,7 +27,7 @@ const GamePage = () => {
         getGameDetail(gameId).then(data => {
             if (data !== undefined) {
                 setGame(data);
-                // console.log("게임 데이터:", data);
+                console.log("게임 데이터:", data);
             } else {
                 // console.log("데이터가 undefined임");
             }
@@ -54,7 +55,7 @@ const GamePage = () => {
                             <label htmlFor="gameName" className="regist-label">
                                 게임 이름
                             </label>
-                            <input type="text" id="gameName" name="gameName" placeholder="게임 이름을 입력하세요" className="regist-input" value={game.name} readOnly/>
+                            <input type="text" id="gameName" name="gameName" placeholder="게임 이름을 입력하세요" className="regist-input" value={game.name ?? ''} readOnly/>
                         </div>
                         <div className="regist-field">
                             <label htmlFor="gameImage" className="regist-label">
@@ -72,7 +73,7 @@ const GamePage = () => {
                             <label htmlFor="gameType" className="regist-label">
                                 게임 장르
                             </label>
-                            <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type} readOnly>
+                            <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type ?? ''} readOnly>
                                 <option value="">장르를 선택하세요</option>
                                 <option value="MOBA">MOBA</option>
                                 <option value="액션">액션</option>
@@ -95,7 +96,7 @@ const GamePage = () => {
                             <label htmlFor="gamePlatform" className="regist-label">
                                 게임 플랫폼
                             </label>
-                            <select id="gamePlatform" name="gamePlatform" className="regist-input regist-select" value={game.platform} readOnly>
+                            <select id="gamePlatform" name="gamePlatform" className="regist-input regist-select" value={game.platform ?? ''} readOnly>
                                 <option value="">플랫폼을 선택하세요</option>
                                 <option value="PC">PC</option>
                                 <option value="Mobile">Mobile</option>
@@ -109,7 +110,7 @@ const GamePage = () => {
                                 게임 플레이타임(시간)
                             </label>
                             <div className="regist-row">
-                                <input type="text" id="gamePlayTime" name="gamePlayTime" placeholder="게임 플레이타임을 입력하세요" className="regist-input" value={game.playTime} readOnly/>
+                                <input type="text" id="gamePlayTime" name="gamePlayTime" placeholder="게임 플레이타임을 입력하세요" className="regist-input" value={game.playTime ?? ''} readOnly/>
                                 <span className="regist-unit">h</span>
                             </div>
                         </div>
@@ -124,7 +125,7 @@ const GamePage = () => {
                                 게임 가격
                             </label>
                             <div className="regist-row">
-                                <input type="text" id="gamePrice" name="gamePrice" placeholder="게임 가격을 입력하세요" className="regist-input" value={game.price} readOnly/>
+                                <input type="text" id="gamePrice" name="gamePrice" placeholder="게임 가격을 입력하세요" className="regist-input" value={game.price ?? ''} readOnly/>
                                 <span className="regist-unit">₩</span>
                             </div>
                         </div>
@@ -133,7 +134,7 @@ const GamePage = () => {
                                 게임 구매 가격
                             </label>
                             <div className="regist-row">
-                                <input type="text" id="gameBuyPrice" name="gameBuyPrice" placeholder="게임 구매 가격을 입력하세요" className="regist-input" value={game.buyPrice} readOnly/>
+                                <input type="text" id="gameBuyPrice" name="gameBuyPrice" placeholder="게임 구매 가격을 입력하세요" className="regist-input" value={game.buyPrice ?? ''} readOnly/>
                                 <span className="regist-unit">₩</span>
                             </div>
                         </div>
@@ -142,6 +143,12 @@ const GamePage = () => {
                                 게임 리뷰
                             </label>
                             <textarea id="gameReview" name="gameReview" placeholder="게임 리뷰을 입력하세요" rows={4} className="regist-textarea" value={game.review ?? ''} readOnly/>
+                        </div>
+                        <div className="regist-field">
+                            <label htmlFor="gameTags" className="regist-label">
+                                게임 태그
+                            </label>
+                            <textarea id="gameTags" name="gameTags" placeholder="게임 태그을 입력하세요" rows={4} className="regist-textarea" value={game.tags ?? ''} readOnly/>
                         </div>
                         <div className="regist-row">
                             <button type="button" className="regist-submit mr-auto" onClick={() => window.location.href = `${process.env.PUBLIC_URL}/hobby/game/edit/${game.id}`}>

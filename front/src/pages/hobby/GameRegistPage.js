@@ -184,8 +184,7 @@ const GameRegistPage = () => {
                     <label htmlFor="gameTags" className="regist-label">
                         게임 태그
                     </label>
-                    <input type="text" id="gameTags" name="gameTags" placeholder="#태그 #태그" className="regist-input" />
-                    <small className="regist-note">태그는 추후 검색 기능에 활용됩니다. (쉼표 없이 #태그 형태로 입력)</small>
+                    <textarea id="gameTags" name="gameTags" placeholder="#태그 #태그" rows={2} className="regist-textarea" />
                 </div>
                 <div className="regist-row">
                     <button type="submit" className="regist-submit mr-auto">
