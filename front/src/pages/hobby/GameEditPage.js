@@ -79,8 +79,6 @@ const GameEditPage = () => {
         }));
         formData.append('imageFile', form.gameImage.files[0] || '');
 
-        // console.log('폼 데이터:', Array.from(formData.entries()));
-
         try {
             await putGameEdit(formData);
             await Swal.fire({
