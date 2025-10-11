@@ -22,7 +22,8 @@ const GameListPage = () => {
                 if (Array.isArray(data) && data.length > 0) {
                     // console.log("데이터 로드됨:", data);
                     setGames(prev => [...prev, ...data]);
-                    setPage(prevPage => prevPage + 1);
+                    // 페이지 번호 증가 -> loadGameData가 다시 호출됨 -> 스크롤 0.9 도달 시 다음 페이지 로드 되도록 수정
+                    // setPage(prevPage => prevPage + 1);
                     if (data.length < 10) {
                         setHasMore(false); // 10개 미만이면 더 없음
                     }
@@ -39,6 +40,10 @@ const GameListPage = () => {
     useEffect(() => {
         loadGameData();
     }, [loadGameData]);
+    // 페이지 번호 증가 함수
+    const fetchMoreData = () => {
+        setPage(prevPage => prevPage + 1);
+    };
 
     // 카드 클릭 시 상세 페이지로 이동
     const handleCardClick = (gameId) => {
@@ -96,7 +101,7 @@ const GameListPage = () => {
             <div className="w-full max-w-2xl mb-4 text-myFontColor-950">
             <InfiniteScroll 
                 dataLength={games.length}
-                next={loadGameData}
+                next={fetchMoreData}
                 hasMore={hasMore}
                 loader={<h4>로딩중...</h4>}
                 endMessage={<p className="text-center">더 이상 데이터가 없습니다</p>}
@@ -130,6 +135,7 @@ const GameListPage = () => {
                         </div>
                     ))}
                 </div>
+                {/* 도건 : 스크롤시 무한스크롤 되도록 구현(90%만 내려가면 로딩되도록) */}
             </InfiniteScroll>
             </div>
         </div>
