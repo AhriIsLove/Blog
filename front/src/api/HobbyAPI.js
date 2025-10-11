@@ -87,3 +87,23 @@ export const putGameEdit = async (formData) => {
         isPutGameEdit = false;
     }
 };
+
+// 게임 삭제 요청
+let isDeleteGame = false; // 중복 호출 방지
+export const deleteGame = async (gameId) => {
+    if(isDeleteGame) return;
+    isDeleteGame = true;
+
+    try{
+        const res = await axios.delete(`${prefix}/game/delete`, {
+            params: { gameId }
+        });
+
+        return res.data;
+    } catch (error) {
+        console.error('게임 삭제 실패:', error);
+        throw error;
+    } finally {
+        isDeleteGame = false;
+    }
+};

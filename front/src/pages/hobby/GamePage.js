@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { getGameDetail } from '../../api/HobbyAPI';
+import { getGameDetail, deleteGame } from '../../api/HobbyAPI';
+import LoginComponent from '../../components/container/LoginComponent';
 import { getImageURL } from '../../api/MainAPI';
 
 const GamePage = () => {
@@ -20,6 +20,10 @@ const GamePage = () => {
         review: '',
         tags: ''
     });
+    // 권한 로그인 모달 상태
+    const [showLogin, setShowLogin] = React.useState(false);
+    // 삭제 대기 상태
+    const [pendingDelete, setPendingDelete] = React.useState(false);
 
     // 게임 상세 정보
     useEffect(() => {
@@ -33,6 +37,32 @@ const GamePage = () => {
             }
         });
     }, [gameId]);
+
+    // 삭제 확인 및 실제 삭제 함수
+    const handleDeleteGameConfirm = async () => {
+        if(window.confirm("정말 삭제하시겠습니까?")) {
+            const result = await deleteGame(game.id);
+            if(result) {
+                alert("삭제되었습니다.");
+                window.location.href = `${process.env.PUBLIC_URL}/hobby/game`;
+            } else {
+                alert("삭제에 실패했습니다.");
+            }
+        }
+    };
+
+    // 로그인 모달이 닫힌 후, 권한이 admin이고 삭제 대기중이면 삭제 진행
+    useEffect(() => {
+        if (!showLogin && pendingDelete && sessionStorage.getItem("auth") === "admin") {
+            (async () => {
+                await handleDeleteGameConfirm();
+                setPendingDelete(false);
+            })();
+        } else if (!showLogin && pendingDelete) {
+            // 로그인 실패 또는 취소 시 대기 해제
+            setPendingDelete(false);
+        }
+    }, [showLogin, pendingDelete, game.id]);
 
     // 게임 상세 페이지
     return (
@@ -154,12 +184,26 @@ const GamePage = () => {
                             <button type="button" className="regist-submit mr-auto" onClick={() => window.location.href = `${process.env.PUBLIC_URL}/hobby/game/edit/${game.id}`}>
                                 수정
                             </button>
-                            {/* 도건 : 삭제 버튼 추가 필요 */}
+                            <button type="button" className="regist-delete" onClick={ async () => {
+                                if (sessionStorage.getItem("auth") !== "admin") {
+                                    setShowLogin(true);
+                                    setPendingDelete(true); // 삭제 창 띄우기 위해 대기 상태로 설정(showLogin가 false가 되는 시점에 useEffect에서 삭제 진행)
+                                    return;
+                                }
+                                // 삭제 확인
+                                await handleDeleteGameConfirm();
+                            }}>
+                                삭제
+                            </button>
                         </div>
                     </div>
                 </div>
             )}
-        </div>
+        {/* 로그인 모달 */}
+        {showLogin && (
+            <LoginComponent onClose={() => setShowLogin(false)} />
+        )}
+    </div>
     );
 }
 

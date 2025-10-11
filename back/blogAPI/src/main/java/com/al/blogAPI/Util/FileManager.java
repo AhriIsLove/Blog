@@ -94,7 +94,9 @@ public class FileManager {
 		}
 		// 파일명
 		Path filePath = Paths.get(imagesPath, fileName);
-
+		
+		// System.out.println("filePath" + filePath);
+		
 		try {
 			// 파일 삭제
 			Files.deleteIfExists(filePath);

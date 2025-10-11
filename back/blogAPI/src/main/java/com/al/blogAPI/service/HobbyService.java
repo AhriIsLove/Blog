@@ -18,4 +18,6 @@ public interface HobbyService {
 
 	boolean putGameEdit(GameDTO dto);
 
+	boolean deleteGameDelete(Long gameId);
+
 }

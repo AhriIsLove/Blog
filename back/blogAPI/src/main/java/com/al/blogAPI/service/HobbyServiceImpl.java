@@ -184,4 +184,25 @@ public class HobbyServiceImpl implements HobbyService {
 		return true;
 	}
 
+	@Override
+	public boolean deleteGameDelete(Long gameId) {
+		
+		// 기존 게임 정보 조회
+		Game existingGame = gameRepository.findById(gameId).orElse(null);
+		if (existingGame != null) {
+			// 이미지 파일 삭제
+			String existingImage = existingGame.getImage();
+			// System.out.println("이미지 : " + existingImage);
+			if (existingImage != null && !existingImage.isEmpty()) {
+				fileManager.deleteFile(existingImage);
+			}
+			
+			// 게임 정보 삭제
+			gameRepository.delete(existingGame);
+			return true;
+		}
+		
+		return false;
+	}
+
 }

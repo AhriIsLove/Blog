@@ -43,13 +43,13 @@ function LoginComponent({ onClose }) {
 							>
 								로그인
 							</button>
-							<button
-								type="button"
-								onClick={() => window.history.back()}
-								className="flex-1 p-2 rounded bg-gray-300 text-black font-bold hover:bg-gray-400 transition-colors"
-							>
-								취소
-							</button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex-1 p-2 rounded bg-gray-300 text-black font-bold hover:bg-gray-400 transition-colors"
+              >
+                취소
+              </button>
 						</div>
 					</form>
 				</div>
