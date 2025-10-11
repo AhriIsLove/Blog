@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 import { getGameList } from '../../api/HobbyAPI';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getImageURL } from '../../api/MainAPI';
-import LoginComponent from "../../components/container/LoginComponent";
 
 const GameListPage = () => {
     // 게임 목록 상태
@@ -50,48 +49,14 @@ const GameListPage = () => {
         window.location.href = `${process.env.PUBLIC_URL}/hobby/game/${gameId}`;
     };
 
-    // 로그인 창 상태 및 핸들러
-    const [isLoginModal, setIsLoginModal] = useState(false);
-    useEffect(() => {
-        document.body.style.overflow = isLoginModal ? 'hidden' : 'auto';
-        return () => { document.body.style.overflow = 'auto'; };
-    }, [isLoginModal]);
-    const openModal = (action) => { setIsLoginModal(true); setLoginAction(action); };
-    const closeModal = () => { setIsLoginModal(false); setLoginAction(''); };
-    // 로그인 후 액션
-    const [loginAction, setLoginAction] = useState(`${process.env.PUBLIC_URL}/hobby/game/regist`);
-    // 로그인 처리
-    const handleLogin = (result) => {
-        // console.log('로그인 정보:', password);
-        if (result) {
-            alert('로그인 성공');
-
-            // 로그인 성공 시 지정된 액션(페이지 이동) 수행
-            window.location.href = loginAction;
-        } else {
-            alert('로그인 실패: 비밀번호가 올바르지 않습니다.');
-            return;
-        }
-        // 로그인 성공 시 모달 닫기
-        closeModal();
-    };
-
     return (
         <div className="game-page-container flex flex-col items-center w-full">
             <div className="flex justify-between items-center w-full max-w-2xl mb-4">
                 <h1 className="text-2xl font-bold">플레이한 게임 목록</h1>
-                {isLoginModal && (
-                    <LoginComponent onClose={closeModal} onLogin={handleLogin} />
-                )}
                 <button
                     className="px-4 py-2 bg-myPointColor-300 rounded hover:bg-myPointColor-500 transition border border-myPointColor-600"
                     onClick={() => {
-                        // console.log("isLogin:", isLogin);
-                        if (sessionStorage.getItem('isLoggedIn') === 'true') {
-                            window.location.href = `${process.env.PUBLIC_URL}/hobby/game/regist`;
-                        } else {
-                            openModal(`${process.env.PUBLIC_URL}/hobby/game/regist`);
-                        }
+                        window.location.href = `${process.env.PUBLIC_URL}/hobby/game/regist`;
                     }}
                 >
                     게임 등록
@@ -135,7 +100,6 @@ const GameListPage = () => {
                         </div>
                     ))}
                 </div>
-                {/* 도건 : 스크롤시 무한스크롤 되도록 구현(90%만 내려가면 로딩되도록) */}
             </InfiniteScroll>
             </div>
         </div>

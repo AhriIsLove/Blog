@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react"
 import { Navigate } from "react-router-dom";
+import LoginComponent from "../components/container/LoginComponent";
 
 const Loading = <div>Loading...</div>
 const GameListPage = lazy(() => import("../pages/hobby/GameListPage"));
@@ -9,7 +10,6 @@ const GameEditPage = lazy(() => import("../pages/hobby/GameEditPage"));
 const CollectPage = lazy(() => import("../pages/hobby/CollectPage"));
 
 const HobbyRouter = () => {
-
     return [
         {
             path: "",
@@ -17,23 +17,37 @@ const HobbyRouter = () => {
         },
         {
             path: "game",
-            element: <Suspense fallback={Loading}><GameListPage /></Suspense>
+            element: (
+                <Suspense fallback={Loading}><GameListPage /></Suspense>
+            )
         },
         {
             path: "game/regist",
-            element: <Suspense fallback={Loading}><GameRegistPage /></Suspense>
+            element: sessionStorage.getItem("auth") === "admin" ? (
+                <Suspense fallback={Loading}><GameRegistPage /></Suspense>
+            ) : (
+                <Suspense fallback={Loading}><LoginComponent /></Suspense>
+            )
         },
         {
             path: "game/:gameId",
-            element: <Suspense fallback={Loading}><GamePage /></Suspense>
+            element: (
+                <Suspense fallback={Loading}><GamePage /></Suspense>
+            )
         },
         {
             path: "game/edit/:gameId",
-            element: <Suspense fallback={Loading}><GameEditPage /></Suspense>
+            element: sessionStorage.getItem("auth") === "admin" ? (
+                <Suspense fallback={Loading}><GameEditPage /></Suspense>
+            ) : (
+                <Suspense fallback={Loading}><LoginComponent /></Suspense>
+            )
         },
         {
             path: "collect",
-            element: <Suspense fallback={Loading}><CollectPage /></Suspense>
+            element: (
+                <Suspense fallback={Loading}><CollectPage /></Suspense>
+            )
         },
     ];
 };

@@ -2,8 +2,6 @@ import React from 'react';
 import {postGameRegist} from '../../api/HobbyAPI';
 import Swal from 'sweetalert2';
 
-// 도건 : 페이지 자체에도 권한 걸기
-
 const GameRegistPage = () => {
     // 오늘 날짜 구하기
     const today = new Date().toISOString().split('T')[0];

@@ -154,6 +154,7 @@ const GamePage = () => {
                             <button type="button" className="regist-submit mr-auto" onClick={() => window.location.href = `${process.env.PUBLIC_URL}/hobby/game/edit/${game.id}`}>
                                 수정
                             </button>
+                            {/* 도건 : 삭제 버튼 추가 필요 */}
                         </div>
                     </div>
                 </div>
