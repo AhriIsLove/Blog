@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.al.blogAPI.dto.CommonDTO;
 import com.al.blogAPI.dto.MenuDTO;
 import com.al.blogAPI.dto.MenuResponseDTO;
 import com.al.blogAPI.dto.SearchDTO;
+import com.al.blogAPI.service.CommonService;
 import com.al.blogAPI.service.MenuService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/blog")
 public class MainController {
 	private final MenuService menuService;
+	private final CommonService commonService;
 
 	@Value("${com.al.blogAPI.images.path}")
 	private String imagesPath;
@@ -104,6 +107,14 @@ public class MainController {
 
 		// 이미지 리소스 확장자 맞춰서 반환
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).body(resource);
+	}
+
+	@PostMapping("/common/regist")
+	public ResponseEntity<?> registCommon(@RequestBody CommonDTO commonDTO) {
+		System.out.println(commonDTO);
+		commonService.registCommon(commonDTO);
+
+	    return ResponseEntity.ok(commonDTO);
 	}
 
 }

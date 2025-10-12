@@ -2,9 +2,23 @@ import React from 'react';
 import {postGameRegist} from '../../api/HobbyAPI';
 import Swal from 'sweetalert2';
 
+// 장르 옵션은 useState로 관리
+const initialGenres = [
+    "액션", "어드벤처", "RPG", "시뮬레이션", "스포츠", "퍼즐", "전략", "기타"
+];
+const platformOptions = [
+    "PC", "Mobile", "Nintendo", "PlayStation", "기타"
+];
+
+
 const GameRegistPage = () => {
     // 오늘 날짜 구하기
     const today = new Date().toISOString().split('T')[0];
+
+    // 장르 동적 옵션 관리
+    const [genreOptions, setGenreOptions] = React.useState(initialGenres);
+    const [genreSelect, setGenreSelect] = React.useState("");
+    const [newGenre, setNewGenre] = React.useState("");
 
     // 이미지 미리보기 상태 및 핸들러
     const [imagePreview, setImagePreview] = React.useState(null);
@@ -110,17 +124,47 @@ const GameRegistPage = () => {
                     <label htmlFor="gameType" className="regist-label">
                         게임 장르
                     </label>
-                    <select id="gameType" name="gameType" className="regist-input regist-select">
-                        <option value="">장르를 선택하세요</option>
-                        <option value="액션">액션</option>
-                        <option value="어드벤처">어드벤처</option>
-                        <option value="RPG">RPG</option>
-                        <option value="시뮬레이션">시뮬레이션</option>
-                        <option value="스포츠">스포츠</option>
-                        <option value="퍼즐">퍼즐</option>
-                        <option value="전략">전략</option>
-                        <option value="기타">기타</option>
-                    </select>
+                    <div className="flex gap-2 items-center">
+                        <select
+                            id="gameType"
+                            name="gameType"
+                            className="regist-input regist-select"
+                            value={genreSelect}
+                            onChange={e => setGenreSelect(e.target.value)}
+                            required
+                        >
+                            <option value="">장르를 선택하세요</option>
+                            {genreOptions.map(opt => (
+                                <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                            <option value="__add_new">새 장르 추가...</option>
+                        </select>
+                        {genreSelect === "__add_new" && (
+                            <>
+                                <input
+                                    type="text"
+                                    placeholder="새 장르 입력"
+                                    value={newGenre}
+                                    onChange={e => setNewGenre(e.target.value)}
+                                    className="regist-input w-28"
+                                />
+                                <button
+                                    type="button"
+                                    className="regist-submit"
+                                    onClick={() => {
+                                        const trimmed = newGenre.trim();
+                                        if(trimmed && !genreOptions.includes(trimmed)) {
+                                            setGenreOptions([...genreOptions, trimmed]);
+                                            setGenreSelect(trimmed);
+                                            setNewGenre("");
+                                        }
+                                    }}
+                                >
+                                    +
+                                </button>
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="regist-field">
                     <label htmlFor="gameCompany" className="regist-label">
@@ -133,12 +177,9 @@ const GameRegistPage = () => {
                         게임 플랫폼
                     </label>
                     <select id="gamePlatform" name="gamePlatform" className="regist-input regist-select">
-                        <option value="">플랫폼을 선택하세요</option>
-                        <option value="PC">PC</option>
-                        <option value="Mobile">Mobile</option>
-                        <option value="Nintendo">Nintendo</option>
-                        <option value="PlayStation">PlayStation</option>
-                        <option value="기타">기타</option>
+                        {platformOptions.map(opt => (
+                            <option key={opt} value={opt}>{opt}</option>
+                        ))}
                     </select>
                 </div>
                 <div className="regist-field">

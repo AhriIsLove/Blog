@@ -71,3 +71,25 @@ export const getImage = async(filename) => {
 export const getImageURL = (filename) => {
     return `${prefix}/image/${filename}`;
 }
+
+//분류 등록 요청
+let isPostCommonRegist = false; // 중복 호출 방지
+export const postCommonRegist = async (commonData) => {
+    if(isPostCommonRegist) return;
+    isPostCommonRegist = true;
+
+    try{
+        // 요청
+        const res = await axios.post(`${prefix}/common/regist`, commonData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+
+        return res.data;
+    } catch (error) {
+        throw error;
+    } finally {
+        isPostCommonRegist = false;
+    }
+};

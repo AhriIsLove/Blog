@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGameDetail, deleteGame } from '../../api/HobbyAPI';
 import LoginComponent from '../../components/container/LoginComponent';
@@ -39,7 +39,7 @@ const GamePage = () => {
     }, [gameId]);
 
     // 삭제 확인 및 실제 삭제 함수
-    const handleDeleteGameConfirm = async () => {
+    const handleDeleteGameConfirm = useCallback(async () => {
         if(window.confirm("정말 삭제하시겠습니까?")) {
             const result = await deleteGame(game.id);
             if(result) {
@@ -49,7 +49,7 @@ const GamePage = () => {
                 alert("삭제에 실패했습니다.");
             }
         }
-    };
+    }, [game.id]);
 
     // 로그인 모달이 닫힌 후, 권한이 admin이고 삭제 대기중이면 삭제 진행
     useEffect(() => {
@@ -62,7 +62,7 @@ const GamePage = () => {
             // 로그인 실패 또는 취소 시 대기 해제
             setPendingDelete(false);
         }
-    }, [showLogin, pendingDelete, game.id]);
+    }, [showLogin, pendingDelete, game.id, handleDeleteGameConfirm]);
 
     // 게임 상세 페이지
     return (
@@ -103,6 +103,7 @@ const GamePage = () => {
                             <label htmlFor="gameType" className="regist-label">
                                 게임 장르
                             </label>
+                            {/* 도건 : 장르 및 플랫폼은 DB에서 값들을 가져오도록 수정 */}
                             <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type ?? ''} readOnly>
                                 <option value="">장르를 선택하세요</option>
                                 <option value="MOBA">MOBA</option>
