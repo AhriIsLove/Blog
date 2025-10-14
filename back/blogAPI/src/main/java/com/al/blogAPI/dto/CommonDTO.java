@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class CommonDTO {
 	// private CommonId commonId; // 복합키
 
-	private int MajorId; // 대분류
-	private int MiddleId; // 중분류
-	private int SmallId; // 소분류
+	private int majorId; // 대분류
+	private int middleId; // 중분류
+	private int smallId; // 소분류
 	
 	private String name; // 이름
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -111,10 +113,17 @@ public class MainController {
 
 	@PostMapping("/common/regist")
 	public ResponseEntity<?> registCommon(@RequestBody CommonDTO commonDTO) {
-		System.out.println(commonDTO);
+		// System.out.println(commonDTO);
 		commonService.registCommon(commonDTO);
 
 	    return ResponseEntity.ok(commonDTO);
 	}
 
+	@GetMapping("/common")
+	public ResponseEntity<?> getCommon(@ModelAttribute CommonDTO commonDTO) {
+		System.out.println(commonDTO);
+		List<CommonDTO> commonList = commonService.getCommon(commonDTO);
+
+	    return ResponseEntity.ok(commonList);
+	}
 }

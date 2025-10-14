@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
 public class CommonId implements Serializable {
-	private int MajorId; // 대분류
-	private int MiddleId; // 중분류
-	private int SmallId; // 소분류
+	private int majorId; // 대분류
+	private int middleId; // 중분류
+	private int smallId; // 소분류
 }

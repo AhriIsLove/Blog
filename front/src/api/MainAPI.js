@@ -72,18 +72,19 @@ export const getImageURL = (filename) => {
     return `${prefix}/image/${filename}`;
 }
 
-//분류 등록 요청
+// 분류 등록 요청
 let isPostCommonRegist = false; // 중복 호출 방지
-export const postCommonRegist = async (commonData) => {
+export const postCommonRegist = async (MajorId, MiddleId, SmallId, name) => {
     if(isPostCommonRegist) return;
     isPostCommonRegist = true;
 
     try{
         // 요청
-        const res = await axios.post(`${prefix}/common/regist`, commonData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
+        const res = await axios.post(`${prefix}/common/regist`, {
+            majorId: MajorId, // 용도
+            middleId: MiddleId, // 분류
+            smallId: SmallId, // ID
+            name: name // 이름
         });
 
         return res.data;
@@ -91,5 +92,21 @@ export const postCommonRegist = async (commonData) => {
         throw error;
     } finally {
         isPostCommonRegist = false;
+    }
+};
+
+// 분류 목록 요청
+let isGetCommon = false; // 중복 호출 방지
+export const getCommon = async (MajorId, MiddleId) => {
+    if(isGetCommon) return;
+    isGetCommon = true;
+    try{
+        // 요청
+        const res = await axios.get(`${prefix}/common?majorId=${MajorId}&middleId=${MiddleId}`);
+        return res.data;
+    } catch (error) {
+        throw error;
+    } finally {
+        isGetCommon = false;
     }
 };

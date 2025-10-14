@@ -103,7 +103,6 @@ const GamePage = () => {
                             <label htmlFor="gameType" className="regist-label">
                                 게임 장르
                             </label>
-                            {/* 도건 : 장르 및 플랫폼은 DB에서 값들을 가져오도록 수정 */}
                             <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type ?? ''} readOnly>
                                 <option value="">장르를 선택하세요</option>
                                 <option value="MOBA">MOBA</option>

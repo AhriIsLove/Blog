@@ -1,11 +1,9 @@
 import React from 'react';
 import {postGameRegist} from '../../api/HobbyAPI';
 import Swal from 'sweetalert2';
+import {getCommon, postCommonRegist} from '../../api/MainAPI';
 
 // 장르 옵션은 useState로 관리
-const initialGenres = [
-    "액션", "어드벤처", "RPG", "시뮬레이션", "스포츠", "퍼즐", "전략", "기타"
-];
 const platformOptions = [
     "PC", "Mobile", "Nintendo", "PlayStation", "기타"
 ];
@@ -14,11 +12,6 @@ const platformOptions = [
 const GameRegistPage = () => {
     // 오늘 날짜 구하기
     const today = new Date().toISOString().split('T')[0];
-
-    // 장르 동적 옵션 관리
-    const [genreOptions, setGenreOptions] = React.useState(initialGenres);
-    const [genreSelect, setGenreSelect] = React.useState("");
-    const [newGenre, setNewGenre] = React.useState("");
 
     // 이미지 미리보기 상태 및 핸들러
     const [imagePreview, setImagePreview] = React.useState(null);
@@ -34,6 +27,32 @@ const GameRegistPage = () => {
             setImagePreview(null);
         }
     };
+
+    // 장르 가져오기 getCommon
+    const [gameTypes, setGameTypes] = React.useState([]); // 모든 장르
+    const [gameTypeReload, setGameTypeReload] = React.useState(false); // 장르 재호출용
+    const [gameTypeSelect, setGameTypeSelect] = React.useState(""); // 선택된 장르
+    const [gameTypeInput, setGameTypeInput] = React.useState("");
+    React.useEffect(() => {
+        const fetchGenres = async () => {
+            try {
+                const res = await getCommon(1/*select용*/, 1/*게임장르*/);
+                console.log('장르 목록:', res);
+                if(res) {
+                    const names = res.map(item => item.name);
+                    // console.log('장르 이름들:', names);
+                    setGameTypes(prev => {
+                        // 기존 장르와 합치고 중복 제거
+                        const combined = Array.from(new Set([...prev, ...names]));
+                        return combined;
+                    });
+                }
+            } catch (err) {
+                console.error('장르 목록을 가져오는데 실패했습니다.', err);
+            }
+        };
+        fetchGenres();
+    }, [gameTypeReload]);
 
     // 폼 제출 핸들러
     const handleSubmit = async (e) => {
@@ -124,39 +143,44 @@ const GameRegistPage = () => {
                     <label htmlFor="gameType" className="regist-label">
                         게임 장르
                     </label>
+                    {/* 도건 : 장르 및 플랫폼은 DB에서 값들을 가져오도록 수정 */}
                     <div className="flex gap-2 items-center">
                         <select
                             id="gameType"
                             name="gameType"
                             className="regist-input regist-select"
-                            value={genreSelect}
-                            onChange={e => setGenreSelect(e.target.value)}
+                            value={gameTypeSelect}
+                            onChange={e => setGameTypeSelect(e.target.value)}
                             required
                         >
-                            <option value="">장르를 선택하세요</option>
-                            {genreOptions.map(opt => (
+                            {gameTypes.map(opt => (
                                 <option key={opt} value={opt}>{opt}</option>
                             ))}
                             <option value="__add_new">새 장르 추가...</option>
                         </select>
-                        {genreSelect === "__add_new" && (
+                        {gameTypeSelect === "__add_new" && (
                             <>
                                 <input
                                     type="text"
                                     placeholder="새 장르 입력"
-                                    value={newGenre}
-                                    onChange={e => setNewGenre(e.target.value)}
+                                    value={gameTypeInput}
+                                    onChange={e => setGameTypeInput(e.target.value)}
                                     className="regist-input w-28"
                                 />
                                 <button
                                     type="button"
                                     className="regist-submit"
                                     onClick={() => {
-                                        const trimmed = newGenre.trim();
-                                        if(trimmed && !genreOptions.includes(trimmed)) {
-                                            setGenreOptions([...genreOptions, trimmed]);
-                                            setGenreSelect(trimmed);
-                                            setNewGenre("");
+                                        const trimmed = gameTypeInput.trim();
+                                        if(trimmed && !gameTypes.includes(trimmed)) {
+                                            // 새 장르 추가
+                                            postCommonRegist(1/*select용*/, 1/*게임장르*/, gameTypes.length + 1/*ID*/, trimmed);
+                                            // 장르 재호출
+                                            setGameTypeReload(!gameTypeReload);
+                                            // 입력 초기화 및 선택
+                                            setGameTypes([...gameTypes, trimmed]);
+                                            // 선택 초기화
+                                            setGameTypeSelect(trimmed);
                                         }
                                     }}
                                 >
