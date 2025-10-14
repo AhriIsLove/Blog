@@ -27,11 +27,15 @@ const GameEditPage = () => {
         // console.log("gameId:", gameId);
         getGameDetail(gameId).then(data => {
             if (data !== undefined) {
+                // 게임 정보 설정
                 setGame(data);
+                // 게임 이미지 미리보기 설정
                 if (data.image) {
                     const imageUrl = getImageURL(data.image);
                     setImagePreview(imageUrl);
                 }
+                setGameTypeSelect(data.type);
+                setGamePlatformSelect(data.platform);
                 // console.log("게임 데이터:", data);
             } else {
                 // console.log("데이터가 undefined임");
@@ -204,7 +208,7 @@ const GameEditPage = () => {
                                     id="gameType"
                                     name="gameType"
                                     className="regist-input regist-select"
-                                    value={game.type ?? gameTypeSelect}
+                                    value={gameTypeSelect}
                                     onChange={e => setGameTypeSelect(e.target.value)}
                                     required
                                 >
