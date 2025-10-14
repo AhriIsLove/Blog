@@ -96,10 +96,10 @@ export const postCommonRegist = async (MajorId, MiddleId, SmallId, name) => {
 };
 
 // 분류 목록 요청
-let isGetCommon = false; // 중복 호출 방지
+// let isGetCommon = false; // 중복 호출 방지
 export const getCommon = async (MajorId, MiddleId) => {
-    if(isGetCommon) return;
-    isGetCommon = true;
+    // if(isGetCommon) return;
+    // isGetCommon = true;
     try{
         // 요청
         const res = await axios.get(`${prefix}/common?majorId=${MajorId}&middleId=${MiddleId}`);
@@ -107,6 +107,6 @@ export const getCommon = async (MajorId, MiddleId) => {
     } catch (error) {
         throw error;
     } finally {
-        isGetCommon = false;
+        // isGetCommon = false;
     }
 };

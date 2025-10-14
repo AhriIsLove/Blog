@@ -3,12 +3,6 @@ import {postGameRegist} from '../../api/HobbyAPI';
 import Swal from 'sweetalert2';
 import {getCommon, postCommonRegist} from '../../api/MainAPI';
 
-// 장르 옵션은 useState로 관리
-const platformOptions = [
-    "PC", "Mobile", "Nintendo", "PlayStation", "기타"
-];
-
-
 const GameRegistPage = () => {
     // 오늘 날짜 구하기
     const today = new Date().toISOString().split('T')[0];
@@ -53,6 +47,32 @@ const GameRegistPage = () => {
         };
         fetchGenres();
     }, [gameTypeReload]);
+
+    // 플랫폼 가져오기 getCommon
+    const [gamePlatforms, setGamePlatforms] = React.useState([]); // 모든 플랫폼
+    const [gamePlatformReload, setGamePlatformReload] = React.useState(false); // 플랫폼 재호출용
+    const [gamePlatformSelect, setGamePlatformSelect] = React.useState(""); // 선택된 플랫폼
+    const [gamePlatformInput, setGamePlatformInput] = React.useState("");
+    React.useEffect(() => {
+        const fetchPlatforms = async () => {
+            try {
+                const res = await getCommon(1/*select용*/, 2/*게임플랫폼*/);
+                console.log('플랫폼 목록:', res);
+                if(res) {
+                    const names = res.map(item => item.name);
+                    // console.log('플랫폼 이름들:', names);
+                    setGamePlatforms(prev => {
+                        // 기존 플랫폼과 합치고 중복 제거
+                        const combined = Array.from(new Set([...prev, ...names]));
+                        return combined;
+                    });
+                }
+            } catch (err) {
+                console.error('플랫폼 목록을 가져오는데 실패했습니다.', err);
+            }
+        };
+        fetchPlatforms();
+    }, [gamePlatformReload]);
 
     // 폼 제출 핸들러
     const handleSubmit = async (e) => {
@@ -143,7 +163,6 @@ const GameRegistPage = () => {
                     <label htmlFor="gameType" className="regist-label">
                         게임 장르
                     </label>
-                    {/* 도건 : 장르 및 플랫폼은 DB에서 값들을 가져오도록 수정 */}
                     <div className="flex gap-2 items-center">
                         <select
                             id="gameType"
@@ -200,11 +219,51 @@ const GameRegistPage = () => {
                     <label htmlFor="gamePlatform" className="regist-label">
                         게임 플랫폼
                     </label>
-                    <select id="gamePlatform" name="gamePlatform" className="regist-input regist-select">
-                        {platformOptions.map(opt => (
-                            <option key={opt} value={opt}>{opt}</option>
-                        ))}
-                    </select>
+                    <div className="flex gap-2 items-center">
+                        <select
+                            id="gamePlatform"
+                            name="gamePlatform"
+                            className="regist-input regist-select"
+                            value={gamePlatformSelect}
+                            onChange={e => setGamePlatformSelect(e.target.value)}
+                            required
+                        >
+                            {gamePlatforms.map(opt => (
+                                <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                            <option value="__add_new">새 플랫폼 추가...</option>
+                        </select>
+                        {gamePlatformSelect === "__add_new" && (
+                            <>
+                                <input
+                                    type="text"
+                                    placeholder="새 플랫폼 입력"
+                                    value={gamePlatformInput}
+                                    onChange={e => setGamePlatformInput(e.target.value)}
+                                    className="regist-input w-28"
+                                />
+                                <button
+                                    type="button"
+                                    className="regist-submit"
+                                    onClick={() => {
+                                        const trimmed = gamePlatformInput.trim();
+                                        if(trimmed && !gamePlatforms.includes(trimmed)) {
+                                            // 새 플랫폼 추가
+                                            postCommonRegist(1/*select용*/, 2/*게임플랫폼*/, gamePlatforms.length + 1/*ID*/, trimmed);
+                                            // 플랫폼 재호출
+                                            setGamePlatformReload(!gamePlatformReload);
+                                            // 입력 초기화 및 선택
+                                            setGamePlatforms([...gamePlatforms, trimmed]);
+                                            // 선택 초기화
+                                            setGamePlatformSelect(trimmed);
+                                        }
+                                    }}
+                                >
+                                    +
+                                </button>
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="regist-field">
                     <label htmlFor="gamePlayTime" className="regist-label">
