@@ -31,7 +31,7 @@ const GameRegistPage = () => {
         const fetchGenres = async () => {
             try {
                 const res = await getCommon(1/*select용*/, 1/*게임장르*/);
-                console.log('장르 목록:', res);
+                // console.log('장르 목록:', res);
                 if(res) {
                     const names = res.map(item => item.name);
                     // console.log('장르 이름들:', names);
@@ -57,7 +57,7 @@ const GameRegistPage = () => {
         const fetchPlatforms = async () => {
             try {
                 const res = await getCommon(1/*select용*/, 2/*게임플랫폼*/);
-                console.log('플랫폼 목록:', res);
+                // console.log('플랫폼 목록:', res);
                 if(res) {
                     const names = res.map(item => item.name);
                     // console.log('플랫폼 이름들:', names);

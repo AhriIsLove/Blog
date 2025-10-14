@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getGameDetail, putGameEdit } from '../../api/HobbyAPI';
-import { getImageURL } from '../../api/MainAPI';
+import { getImageURL, getCommon, postCommonRegist } from '../../api/MainAPI';
 import Swal from 'sweetalert2';
 
 const GameEditPage = () => {
@@ -53,6 +53,58 @@ const GameEditPage = () => {
             setImagePreview(null);
         }
     };
+
+    // 장르 가져오기 getCommon
+    const [gameTypes, setGameTypes] = React.useState([]); // 모든 장르
+    const [gameTypeReload, setGameTypeReload] = React.useState(false); // 장르 재호출용
+    const [gameTypeSelect, setGameTypeSelect] = React.useState(""); // 선택된 장르
+    const [gameTypeInput, setGameTypeInput] = React.useState("");
+    React.useEffect(() => {
+        const fetchGenres = async () => {
+            try {
+                const res = await getCommon(1/*select용*/, 1/*게임장르*/);
+                // console.log('장르 목록:', res);
+                if(res) {
+                    const names = res.map(item => item.name);
+                    // console.log('장르 이름들:', names);
+                    setGameTypes(prev => {
+                        // 기존 장르와 합치고 중복 제거
+                        const combined = Array.from(new Set([...prev, ...names]));
+                        return combined;
+                    });
+                }
+            } catch (err) {
+                console.error('장르 목록을 가져오는데 실패했습니다.', err);
+            }
+        };
+        fetchGenres();
+    }, [gameTypeReload]);
+
+    // 플랫폼 가져오기 getCommon
+    const [gamePlatforms, setGamePlatforms] = React.useState([]); // 모든 플랫폼
+    const [gamePlatformReload, setGamePlatformReload] = React.useState(false); // 플랫폼 재호출용
+    const [gamePlatformSelect, setGamePlatformSelect] = React.useState(""); // 선택된 플랫폼
+    const [gamePlatformInput, setGamePlatformInput] = React.useState("");
+    React.useEffect(() => {
+        const fetchPlatforms = async () => {
+            try {
+                const res = await getCommon(1/*select용*/, 2/*게임플랫폼*/);
+                // console.log('플랫폼 목록:', res);
+                if(res) {
+                    const names = res.map(item => item.name);
+                    // console.log('플랫폼 이름들:', names);
+                    setGamePlatforms(prev => {
+                        // 기존 플랫폼과 합치고 중복 제거
+                        const combined = Array.from(new Set([...prev, ...names]));
+                        return combined;
+                    });
+                }
+            } catch (err) {
+                console.error('플랫폼 목록을 가져오는데 실패했습니다.', err);
+            }
+        };
+        fetchPlatforms();
+    }, [gamePlatformReload]);
 
     // 폼 제출 핸들러
     const handleSubmit = async (e) => {
@@ -147,18 +199,51 @@ const GameEditPage = () => {
                             <label htmlFor="gameType" className="regist-label">
                                 게임 장르
                             </label>
-                            <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type ?? ''} onChange={(e) => setGame({ ...game, type: e.target.value })}>
-                                <option value="">장르를 선택하세요</option>
-                                <option value="MOBA">MOBA</option>
-                                <option value="액션">액션</option>
-                                <option value="어드벤처">어드벤처</option>
-                                <option value="RPG">RPG</option>
-                                <option value="시뮬레이션">시뮬레이션</option>
-                                <option value="스포츠">스포츠</option>
-                                <option value="퍼즐">퍼즐</option>
-                                <option value="전략">전략</option>
-                                <option value="기타">기타</option>
-                            </select>
+                            <div className="flex gap-2 items-center">
+                                <select
+                                    id="gameType"
+                                    name="gameType"
+                                    className="regist-input regist-select"
+                                    value={game.type ?? gameTypeSelect}
+                                    onChange={e => setGameTypeSelect(e.target.value)}
+                                    required
+                                >
+                                    {gameTypes.map(opt => (
+                                        <option key={opt} value={opt}>{opt}</option>
+                                    ))}
+                                    <option value="__add_new">새 장르 추가...</option>
+                                </select>
+                                {gameTypeSelect === "__add_new" && (
+                                    <>
+                                        <input
+                                            type="text"
+                                            placeholder="새 장르 입력"
+                                            value={gameTypeInput}
+                                            onChange={e => setGameTypeInput(e.target.value)}
+                                            className="regist-input w-28"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="regist-submit"
+                                            onClick={() => {
+                                                const trimmed = gameTypeInput.trim();
+                                                if(trimmed && !gameTypes.includes(trimmed)) {
+                                                    // 새 장르 추가
+                                                    postCommonRegist(1/*select용*/, 1/*게임장르*/, gameTypes.length + 1/*ID*/, trimmed);
+                                                    // 장르 재호출
+                                                    setGameTypeReload(!gameTypeReload);
+                                                    // 입력 초기화 및 선택
+                                                    setGameTypes([...gameTypes, trimmed]);
+                                                    // 선택 초기화
+                                                    setGameTypeSelect(trimmed);
+                                                }
+                                            }}
+                                        >
+                                            +
+                                        </button>
+                                    </>
+                                )}
+                            </div>
                         </div>
                         <div className="regist-field">
                             <label htmlFor="gameCompany" className="regist-label">
@@ -170,14 +255,51 @@ const GameEditPage = () => {
                             <label htmlFor="gamePlatform" className="regist-label">
                                 게임 플랫폼
                             </label>
-                            <select id="gamePlatform" name="gamePlatform" className="regist-input regist-select" value={game.platform ?? ''} onChange={(e) => setGame({ ...game, platform: e.target.value })}>
-                                <option value="">플랫폼을 선택하세요</option>
-                                <option value="PC">PC</option>
-                                <option value="Mobile">Mobile</option>
-                                <option value="Nintendo">Nintendo</option>
-                                <option value="PlayStation">PlayStation</option>
-                                <option value="기타">기타</option>
-                            </select>
+                            <div className="flex gap-2 items-center">
+                                <select
+                                    id="gamePlatform"
+                                    name="gamePlatform"
+                                    className="regist-input regist-select"
+                                    value={game.platform ?? gamePlatformSelect}
+                                    onChange={e => setGamePlatformSelect(e.target.value)}
+                                    required
+                                >
+                                    {gamePlatforms.map(opt => (
+                                        <option key={opt} value={opt}>{opt}</option>
+                                    ))}
+                                    <option value="__add_new">새 플랫폼 추가...</option>
+                                </select>
+                                {gamePlatformSelect === "__add_new" && (
+                                    <>
+                                        <input
+                                            type="text"
+                                            placeholder="새 플랫폼 입력"
+                                            value={gamePlatformInput}
+                                            onChange={e => setGamePlatformInput(e.target.value)}
+                                            className="regist-input w-28"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="regist-submit"
+                                            onClick={() => {
+                                                const trimmed = gamePlatformInput.trim();
+                                                if(trimmed && !gamePlatforms.includes(trimmed)) {
+                                                    // 새 플랫폼 추가
+                                                    postCommonRegist(1/*select용*/, 2/*게임플랫폼*/, gamePlatforms.length + 1/*ID*/, trimmed);
+                                                    // 플랫폼 재호출
+                                                    setGamePlatformReload(!gamePlatformReload);
+                                                    // 입력 초기화 및 선택
+                                                    setGamePlatforms([...gamePlatforms, trimmed]);
+                                                    // 선택 초기화
+                                                    setGamePlatformSelect(trimmed);
+                                                }
+                                            }}
+                                        >
+                                            +
+                                        </button>
+                                    </>
+                                )}
+                            </div>
                         </div>
                         <div className="regist-field">
                             <label htmlFor="gamePlayTime" className="regist-label">

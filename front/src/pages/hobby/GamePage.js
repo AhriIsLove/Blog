@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGameDetail, deleteGame } from '../../api/HobbyAPI';
 import LoginComponent from '../../components/container/LoginComponent';
-import { getImageURL } from '../../api/MainAPI';
+import { getImageURL, getCommon } from '../../api/MainAPI';
 
 const GamePage = () => {
     // useParams 훅으로 URL 파라미터 가져오기
@@ -20,10 +20,6 @@ const GamePage = () => {
         review: '',
         tags: ''
     });
-    // 권한 로그인 모달 상태
-    const [showLogin, setShowLogin] = React.useState(false);
-    // 삭제 대기 상태
-    const [pendingDelete, setPendingDelete] = React.useState(false);
 
     // 게임 상세 정보
     useEffect(() => {
@@ -31,13 +27,63 @@ const GamePage = () => {
         getGameDetail(gameId).then(data => {
             if (data !== undefined) {
                 setGame(data);
-                console.log("게임 데이터:", data);
+                // console.log("게임 데이터:", data);
             } else {
                 // console.log("데이터가 undefined임");
             }
         });
     }, [gameId]);
 
+    // 장르 가져오기 getCommon
+    const [gameTypes, setGameTypes] = React.useState([]); // 모든 장르
+    React.useEffect(() => {
+        const fetchGenres = async () => {
+            try {
+                const res = await getCommon(1/*select용*/, 1/*게임장르*/);
+                // console.log('장르 목록:', res);
+                if(res) {
+                    const names = res.map(item => item.name);
+                    // console.log('장르 이름들:', names);
+                    setGameTypes(prev => {
+                        // 기존 장르와 합치고 중복 제거
+                        const combined = Array.from(new Set([...prev, ...names]));
+                        return combined;
+                    });
+                }
+            } catch (err) {
+                console.error('장르 목록을 가져오는데 실패했습니다.', err);
+            }
+        };
+        fetchGenres();
+    }, []);
+
+    // 플랫폼 가져오기 getCommon
+    const [gamePlatforms, setGamePlatforms] = React.useState([]); // 모든 플랫폼
+    React.useEffect(() => {
+        const fetchPlatforms = async () => {
+            try {
+                const res = await getCommon(1/*select용*/, 2/*게임플랫폼*/);
+                // console.log('플랫폼 목록:', res);
+                if(res) {
+                    const names = res.map(item => item.name);
+                    // console.log('플랫폼 이름들:', names);
+                    setGamePlatforms(prev => {
+                        // 기존 플랫폼과 합치고 중복 제거
+                        const combined = Array.from(new Set([...prev, ...names]));
+                        return combined;
+                    });
+                }
+            } catch (err) {
+                console.error('플랫폼 목록을 가져오는데 실패했습니다.', err);
+            }
+        };
+        fetchPlatforms();
+    }, []);
+    
+    // 권한 로그인 모달 상태
+    const [showLogin, setShowLogin] = React.useState(false);
+    // 삭제 대기 상태
+    const [pendingDelete, setPendingDelete] = React.useState(false);
     // 삭제 확인 및 실제 삭제 함수
     const handleDeleteGameConfirm = useCallback(async () => {
         if(window.confirm("정말 삭제하시겠습니까?")) {
@@ -50,7 +96,6 @@ const GamePage = () => {
             }
         }
     }, [game.id]);
-
     // 로그인 모달이 닫힌 후, 권한이 admin이고 삭제 대기중이면 삭제 진행
     useEffect(() => {
         if (!showLogin && pendingDelete && sessionStorage.getItem("auth") === "admin") {
@@ -104,16 +149,9 @@ const GamePage = () => {
                                 게임 장르
                             </label>
                             <select id="gameType" name="gameType" className="regist-input regist-select" value={game.type ?? ''} readOnly>
-                                <option value="">장르를 선택하세요</option>
-                                <option value="MOBA">MOBA</option>
-                                <option value="액션">액션</option>
-                                <option value="어드벤처">어드벤처</option>
-                                <option value="RPG">RPG</option>
-                                <option value="시뮬레이션">시뮬레이션</option>
-                                <option value="스포츠">스포츠</option>
-                                <option value="퍼즐">퍼즐</option>
-                                <option value="전략">전략</option>
-                                <option value="기타">기타</option>
+                                {gameTypes.map((type, index) => (
+                                    <option key={index} value={type}>{type}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="regist-field">
@@ -127,12 +165,9 @@ const GamePage = () => {
                                 게임 플랫폼
                             </label>
                             <select id="gamePlatform" name="gamePlatform" className="regist-input regist-select" value={game.platform ?? ''} readOnly>
-                                <option value="">플랫폼을 선택하세요</option>
-                                <option value="PC">PC</option>
-                                <option value="Mobile">Mobile</option>
-                                <option value="Nintendo">Nintendo</option>
-                                <option value="PlayStation">PlayStation</option>
-                                <option value="기타">기타</option>
+                                {gamePlatforms.map((platform, index) => (
+                                    <option key={index} value={platform}>{platform}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="regist-field">
