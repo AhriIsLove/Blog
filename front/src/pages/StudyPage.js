@@ -9,7 +9,6 @@ const StudyPage = () => {
     //화면 리턴
     return (
         <BasicLayout>
-            <div className="text-3xl">StudyPage</div>
             <Outlet />
         </BasicLayout>
     );

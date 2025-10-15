@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react"
 import { Navigate } from "react-router-dom";
 
 const Loading = <div>Loading...</div>
+const AlgorithmListPage = lazy(() => import("../pages/study/AlgorithmListPage"));
+const AlgorithmRegistPage = lazy(() => import("../pages/study/AlgorithmRegistPage"));
 const AlgorithmPage = lazy(() => import("../pages/study/AlgorithmPage"));
 const NetworkPage = lazy(() => import("../pages/study/NetworkPage"));
 const TermPage = lazy(() => import("../pages/study/TermPage"));
@@ -15,6 +17,14 @@ const StudyRouter = () => {
         },
         {
             path:"algorithm",
+            element:<Suspense fallback={Loading}><AlgorithmListPage/></Suspense>
+        },
+        {
+            path:"algorithm/regist",
+            element:<Suspense fallback={Loading}><AlgorithmRegistPage/></Suspense>
+        },
+        {
+            path:"algorithm/:id",
             element:<Suspense fallback={Loading}><AlgorithmPage/></Suspense>
         },
         {
