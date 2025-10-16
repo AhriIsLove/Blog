@@ -1,5 +1,7 @@
 import React from "react";
 import RichTextEditor from "../../components/container/RichTextEditor";
+import { postAlgorithmRegist } from "../../api/StudyAPI";
+import Swal from "sweetalert2";
 
 const AlgorithmRegistPage = () => {
     // const [value, setValue] = useState('');
@@ -12,47 +14,40 @@ const AlgorithmRegistPage = () => {
   
     // 폼 제출 핸들러
     const handleSubmit = async (e) => {
-        // e.preventDefault();
-        // const form = e.target;
-        // const formData = new FormData();
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData();
 
-        // // JSON 데이터를 gameDTO라는 이름으로 추가
-        // const gameData = {
-        //     name: form.gameName.value,
-        //     type: form.gameType.value,
-        //     company: form.gameCompany.value,
-        //     platform: form.gamePlatform.value,
-        //     playTime: form.gamePlayTime.value,
-        //     lastPlayDate: form.gameLastPlay.value,
-        //     price: form.gamePrice.value,
-        //     buyPrice: form.gameBuyPrice.value,
-        //     review: form.gameReview.value,
-        //     tags: form.gameTags.value
-        // };
-        // formData.append("gameDTO", new Blob([JSON.stringify(gameData)], {
-        //     type: "application/json"
-        // }));
-        // formData.append('imageFile', form.gameImage.files[0] || '');
+        // JSON 데이터를 studyDTO라는 이름으로 추가
+        const studyData = {
+            title: form.algorithmTitle.value,
+            // type: form.algorithmType.value,
+            content: content,
+            // tags: form.algorithmTags.value
+        };
+        formData.append("studyDTO", new Blob([JSON.stringify(studyData)], {
+            type: "application/json"
+        }));
 
-        // // console.log('폼 데이터:', Array.from(formData.entries()));
+        // console.log('폼 데이터:', Array.from(formData.entries()));
 
-        // try {
-        //     await postGameRegist(formData);
-        //     await Swal.fire({
-        //         icon: 'success',
-        //         title: '등록이 완료되었습니다.',
-        //         showConfirmButton: false,
-        //         timer: 1500
-        //     });
-        //     window.location.href = `${process.env.PUBLIC_URL}/hobby/game`;
-        // } catch (err) {
-        //     await Swal.fire({
-        //         icon: 'error',
-        //         title: '등록에 실패했습니다.',
-        //         text: '다시 시도해 주세요.',
-        //         confirmButtonText: '확인'
-        //     });
-        // }
+        try {
+            await postAlgorithmRegist(formData);
+            await Swal.fire({
+                icon: 'success',
+                title: '등록이 완료되었습니다.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.location.href = `${process.env.PUBLIC_URL}/study/algorithm`;
+        } catch (err) {
+            await Swal.fire({
+                icon: 'error',
+                title: '등록에 실패했습니다.',
+                text: '다시 시도해 주세요.',
+                confirmButtonText: '확인'
+            });
+        }
     };
     
     return (
@@ -67,10 +62,10 @@ const AlgorithmRegistPage = () => {
             </button>
             <form className="regist-form" onSubmit={handleSubmit}>
                 <div className="regist-field">
-                    <label htmlFor="algorithmName" className="regist-label">
-                        알고리즘 이름 <span className="regist-required">*</span>
+                    <label htmlFor="algorithmTitle" className="regist-label">
+                        알고리즘 제목 <span className="regist-required">*</span>
                     </label>
-                    <input type="text" id="algorithmName" name="algorithmName" placeholder="알고리즘 이름을 입력하세요" className="regist-input" required />
+                    <input type="text" id="algorithmTitle" name="algorithmTitle" placeholder="알고리즘 제목을 입력하세요" className="regist-input" required />
                 </div>
                 <div className="regist-field">
                     <label htmlFor="algorithmType" className="regist-label">
