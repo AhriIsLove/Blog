@@ -1,38 +1,35 @@
-import React from "react";
-import RichTextEditor from "../../components/container/RichTextEditor";
 import { postAlgorithmRegist } from "../../api/StudyAPI";
 import Swal from "sweetalert2";
+import React, { useState } from 'react';
+import RichTextEditor from "../../components/container/RichTextEditor";
 
 const AlgorithmRegistPage = () => {
-    // const [value, setValue] = useState('');
+    // Rich Text Editor 내용 상태
+    const [editorContent, setEditorContent] = useState('');
+    // Rich Text Editor 내용 핸들러
+    const handleEditorChange = (content) => {
+        setEditorContent(content);
+        console.log("Editor Content:", content); // 디버그용 출력
+    };
 
-    const [content, setContent] = React.useState(''); // 리치 텍스트 에디터 내용 상태
-    // 리치 텍스트 에디터 내용 변경 핸들러
-    const handleEditorChange = (data) => {
-        setContent(data);
-    }
-  
     // 폼 제출 핸들러
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const formData = new FormData();
+//        const formData = new FormData();
+
+        // console.log("Editor Content:", editorContent); // 디버그용 출력
 
         // JSON 데이터를 studyDTO라는 이름으로 추가
         const studyData = {
             title: form.algorithmTitle.value,
             // type: form.algorithmType.value,
-            content: content,
+            content: editorContent,
             // tags: form.algorithmTags.value
         };
-        formData.append("studyDTO", new Blob([JSON.stringify(studyData)], {
-            type: "application/json"
-        }));
-
-        // console.log('폼 데이터:', Array.from(formData.entries()));
 
         try {
-            await postAlgorithmRegist(formData);
+            await postAlgorithmRegist(studyData);
             await Swal.fire({
                 icon: 'success',
                 title: '등록이 완료되었습니다.',
@@ -71,6 +68,7 @@ const AlgorithmRegistPage = () => {
                     <label htmlFor="algorithmType" className="regist-label">
                         알고리즘 유형
                     </label>
+                    {/* 도건 : 공부 유형 들어가야 함 */}
                     {/* <div className="flex gap-2 items-center">
                         <select
                             id="algorithmType"
@@ -121,16 +119,13 @@ const AlgorithmRegistPage = () => {
                     <label htmlFor="algorithmContents" className="regist-label">
                         알고리즘 내용
                     </label>
-                    <RichTextEditor 
-                        initialData={content} // 현재 상태의 content를 에디터에 보여줌
-                        onChange={handleEditorChange} // 에디터 내용 변경 시 handleEditorChange 함수 호출
-                    />
-                    {/* 도건 : 여기에 리치 텍스트 에디터 들어감 */}
+                    <RichTextEditor value={editorContent} onChange={handleEditorChange} />
                 </div>
                 <div className="regist-field">
                     <label htmlFor="algorithmTags" className="regist-label">
                         알고리즘 태그
                     </label>
+                    {/* 도건 : 공부 태그 들어가야 함 */}
                     <textarea id="algorithmTags" name="algorithmTags" placeholder="#태그 #태그" rows={2} className="regist-textarea" />
                 </div>
                 <div className="regist-row">

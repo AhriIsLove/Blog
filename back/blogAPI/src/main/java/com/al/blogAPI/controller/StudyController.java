@@ -2,6 +2,7 @@ package com.al.blogAPI.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ public class StudyController {
 	private final StudyService studyService;
 
 	@PostMapping("/algorithm/regist")
-	public ResponseEntity<?> postAlgorithmRegist(@RequestPart(name = "studyDTO") StudyDTO dto) {		
+	public ResponseEntity<?> postAlgorithmRegist(@RequestBody StudyDTO dto) {		
 		System.out.println(dto);
 		
 		// 공부 등록

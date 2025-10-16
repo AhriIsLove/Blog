@@ -1,4 +1,4 @@
-import axios from "axios";//Terminal : yarn add axios
+// import axios from "axios";//Terminal : yarn add axios
 import { API_SERVER_HOST } from "./MainAPI";
 
 export const prefix = `${API_SERVER_HOST}/study`;
@@ -10,12 +10,18 @@ export const postAlgorithmRegist = async (formData) => {
     isPostAlgorithmRegist = true;
 
     try{
-        console.log(formData);
-
         // 요청
-        const res = await axios.post(`${prefix}/algorithm/regist`, formData);
+        const res = await fetch(`${prefix}/algorithm/regist`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
 
-        return res.data;
+        const data = await res.json();
+        return data;
+        // return res.data;
     } catch (error) {
         throw error;
     } finally {
