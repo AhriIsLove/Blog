@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React from "react";
+import RichTextEditor from "../../components/container/RichTextEditor";
 
 const AlgorithmRegistPage = () => {
-    const [value, setValue] = useState('');
+    // const [value, setValue] = useState('');
+
+    const [content, setContent] = React.useState(''); // 리치 텍스트 에디터 내용 상태
+    // 리치 텍스트 에디터 내용 변경 핸들러
+    const handleEditorChange = (data) => {
+        setContent(data);
+    }
   
     // 폼 제출 핸들러
     const handleSubmit = async (e) => {
@@ -119,6 +126,10 @@ const AlgorithmRegistPage = () => {
                     <label htmlFor="algorithmContents" className="regist-label">
                         알고리즘 내용
                     </label>
+                    <RichTextEditor 
+                        initialData={content} // 현재 상태의 content를 에디터에 보여줌
+                        onChange={handleEditorChange} // 에디터 내용 변경 시 handleEditorChange 함수 호출
+                    />
                     {/* 도건 : 여기에 리치 텍스트 에디터 들어감 */}
                 </div>
                 <div className="regist-field">
