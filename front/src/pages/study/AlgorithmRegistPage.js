@@ -2,8 +2,35 @@ import { postAlgorithmRegist } from "../../api/StudyAPI";
 import Swal from "sweetalert2";
 import React, { useState } from 'react';
 import RichTextEditor from "../../components/container/RichTextEditor";
+import {getCommon, postCommonRegist} from '../../api/MainAPI';
 
 const AlgorithmRegistPage = () => {
+    // 장르 가져오기 getCommon
+    const [algorithmTypes, setAlgorithmTypes] = React.useState([]); // 모든 장르
+    const [algorithmTypeReload, setAlgorithmTypeReload] = React.useState(false); // 장르 재호출용
+    const [algorithmTypeSelect, setAlgorithmTypeSelect] = React.useState(""); // 선택된 장르
+    const [algorithmTypeInput, setAlgorithmTypeInput] = React.useState("");
+    React.useEffect(() => {
+        const fetchGenres = async () => {
+            try {
+                const res = await getCommon(1/*select용*/, 3/*공부 유형*/);
+                // console.log('유형 목록:', res);
+                if(res) {
+                    const names = res.map(item => item.name);
+                    // console.log('유형 이름들:', names);
+                    setAlgorithmTypes(prev => {
+                        // 기존 장르와 합치고 중복 제거
+                        const combined = Array.from(new Set([...prev, ...names]));
+                        return combined;
+                    });
+                }
+            } catch (err) {
+                console.error('유형 목록을 가져오는데 실패했습니다.', err);
+            }
+        };
+        fetchGenres();
+    }, [algorithmTypeReload]);
+
     // Rich Text Editor 내용 상태
     const [editorContent, setEditorContent] = useState('');
     // Rich Text Editor 내용 핸들러
@@ -23,9 +50,9 @@ const AlgorithmRegistPage = () => {
         // JSON 데이터를 studyDTO라는 이름으로 추가
         const studyData = {
             title: form.algorithmTitle.value,
-            // type: form.algorithmType.value,
+            type: form.algorithmType.value,
             content: editorContent,
-            // tags: form.algorithmTags.value
+            tags: form.algorithmTags.value
         };
 
         try {
@@ -68,8 +95,7 @@ const AlgorithmRegistPage = () => {
                     <label htmlFor="algorithmType" className="regist-label">
                         알고리즘 유형
                     </label>
-                    {/* 도건 : 공부 유형 들어가야 함 */}
-                    {/* <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 items-center">
                         <select
                             id="algorithmType"
                             name="algorithmType"
@@ -99,7 +125,7 @@ const AlgorithmRegistPage = () => {
                                         const trimmed = algorithmTypeInput.trim();
                                         if(trimmed && !algorithmTypes.includes(trimmed)) {
                                             // 새 유형 추가
-                                            
+                                            postCommonRegist(1/*select용*/, 3/*공부유형*/, algorithmTypes.length + 1/*ID*/, trimmed);
                                             // 유형 재호출
                                             setAlgorithmTypeReload(!algorithmTypeReload);
                                             // 입력 초기화 및 선택
@@ -113,7 +139,7 @@ const AlgorithmRegistPage = () => {
                                 </button>
                             </>
                         )}
-                    </div> */}
+                    </div>
                 </div>
                 <div className="regist-field">
                     <label htmlFor="algorithmContents" className="regist-label">
@@ -125,7 +151,6 @@ const AlgorithmRegistPage = () => {
                     <label htmlFor="algorithmTags" className="regist-label">
                         알고리즘 태그
                     </label>
-                    {/* 도건 : 공부 태그 들어가야 함 */}
                     <textarea id="algorithmTags" name="algorithmTags" placeholder="#태그 #태그" rows={2} className="regist-textarea" />
                 </div>
                 <div className="regist-row">

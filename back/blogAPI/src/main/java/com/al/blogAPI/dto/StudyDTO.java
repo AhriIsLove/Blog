@@ -14,4 +14,6 @@ public class StudyDTO {
 	private String title; // 제목
 	private String type; // 유형
     private String content; // 리치 텍스트 에디터로 작성된 HTML 내용
+
+	private String tags;// 태그
 }
