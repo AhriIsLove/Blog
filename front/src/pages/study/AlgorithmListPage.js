@@ -1,10 +1,36 @@
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from 'react-router-dom';
+import { getAlgorithmList } from "../../api/StudyAPI";
 
 const AlgorithmListPage = () => {
+    // 알고리즘 목록
+    const [algorithms, setAlgorithms] = useState([]);
+    // 페이지 번호 상태
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(10);
+
+    // 알고리즘 데이터 로드 함수
+    // page가 변경될 때마다 호출되도록 useCallback 사용
+    const loadAlgorithmData = useCallback(() => {
+        // API에서 데이터 가져오기
+        getAlgorithmList(page, size).then(data => {
+            if (Array.isArray(data)) {
+                setAlgorithms(prev => [...prev, ...data]);
+                console.log(data); // 데이터 확인용 로그
+            } else {
+                console.error('데이터 형식이 올바르지 않습니다:', data);
+            }
+        });
+    }, [page, size]);
+    // 초기 데이터 로딩
+    useEffect(() => {
+        loadAlgorithmData();
+    }, [loadAlgorithmData]);
+
     const navigate = useNavigate();
 
+    // 알고리즘 선택 시 상세 페이지로 이동
     const handleRowClick = (id) => {
-        // 이동 경로는 프로젝트 라우터에 맞게 변경하세요.
         navigate(`/study/algorithm/${id}`);
     };
 
@@ -32,7 +58,6 @@ const AlgorithmListPage = () => {
                         <th>번호</th>
                         <th>타입</th>
                         <th>제목</th>
-                        <th>작성일</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +71,6 @@ const AlgorithmListPage = () => {
                         <td>1</td>
                         <td>정리</td>
                         <td>이진 탐색 알고리즘 정리</td>
-                        <td>2024-06-01</td>
                     </tr>
                     <tr
                         role="button"
@@ -58,7 +82,6 @@ const AlgorithmListPage = () => {
                         <td>2</td>
                         <td>정리</td>
                         <td>DFS와 BFS 차이점</td>
-                        <td>2024-06-02</td>
                     </tr>
                     <tr
                         role="button"
@@ -70,7 +93,6 @@ const AlgorithmListPage = () => {
                         <td>3</td>
                         <td>정리</td>
                         <td>DP(동적계획법) 기본 개념</td>
-                        <td>2024-06-03</td>
                     </tr>
                 </tbody>
             </table>

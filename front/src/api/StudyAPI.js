@@ -1,4 +1,4 @@
-// import axios from "axios";//Terminal : yarn add axios
+import axios from "axios";//Terminal : yarn add axios
 import { API_SERVER_HOST } from "./MainAPI";
 
 export const prefix = `${API_SERVER_HOST}/study`;
@@ -26,5 +26,27 @@ export const postAlgorithmRegist = async (formData) => {
         throw error;
     } finally {
         isPostAlgorithmRegist = false;
+    }
+};
+
+//알고리즘 목록 요청
+let isGetAlgorithmList = false; // 중복 호출 방지
+export const getAlgorithmList = async (page=0, size=10) => {
+    if(isGetAlgorithmList) return;
+    isGetAlgorithmList = true;
+
+    try{
+        const res = await axios.get(`${prefix}/algorithm/list`, {
+            params: { page, size }
+        });
+
+        // console.log(res.data);
+
+        return res.data;
+    } catch (error) {
+        console.error('알고리즘 목록 조회 실패:', error);
+        throw error;
+    } finally {
+        isGetAlgorithmList = false;
     }
 };

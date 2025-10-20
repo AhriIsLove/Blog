@@ -61,7 +61,7 @@ public class HobbyController {
 		// 게임 목록 가져오기
 		List<GameDTO> gameList = hobbyService.getGameList(pageable);
 
-		System.out.println(gameList);
+		// System.out.println(gameList);
 		
 	    // 게임 목록 반환
 	    return ResponseEntity.ok(gameList);
@@ -74,7 +74,7 @@ public class HobbyController {
 		// 게임 상세 정보 가져오기
 		GameDTO game = hobbyService.getGameDetail(gameId);
 
-		System.out.println(game);
+		// System.out.println(game);
 		
 	    // 게임 목록 반환
 	    return ResponseEntity.ok(game);

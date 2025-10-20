@@ -1,8 +1,14 @@
 package com.al.blogAPI.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.al.blogAPI.dto.GameDTO;
 import com.al.blogAPI.dto.StudyDTO;
+import com.al.blogAPI.entity.Game;
 import com.al.blogAPI.entity.GameTag;
 import com.al.blogAPI.entity.Study;
 import com.al.blogAPI.entity.StudyTag;
@@ -54,5 +60,28 @@ public class StudyServiceImpl implements StudyService {
 				.build();
 				
 		return studyDTO;
+	}
+
+	@Override
+	public List<StudyDTO> getStudyList(Pageable pageable) {
+		// 페이지 정보 계산
+        int pageSize = pageable.getPageSize();
+        int pageNumber = pageable.getPageNumber();
+        int startRow = pageNumber * pageSize;
+        int endRow = startRow + pageSize;
+        
+        // 게임 목록 조회
+        List<Study> studyList = studyRepository.findAllWithPaging(startRow, endRow);
+        
+        // Entity -> DTO
+        List<StudyDTO> studyDTOs = studyList.stream().map(study -> StudyDTO.builder()
+                // Game 엔티티의 필드를 GameDTO로 매핑
+        		.id(study.getId())
+        		.title(study.getTitle())
+        		.type(study.getType())
+        		// .content(study.getContent())
+                .build()).collect(Collectors.toList());
+        
+		return studyDTOs;
 	}
 }
