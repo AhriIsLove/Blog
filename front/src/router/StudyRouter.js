@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react"
 import { Navigate } from "react-router-dom";
+import LoginComponent from "../components/container/LoginComponent";
 
 const Loading = <div>Loading...</div>
 const AlgorithmListPage = lazy(() => import("../pages/study/AlgorithmListPage"));
@@ -20,8 +21,12 @@ const StudyRouter = () => {
             element:<Suspense fallback={Loading}><AlgorithmListPage/></Suspense>
         },
         {
-            path:"algorithm/regist",
-            element:<Suspense fallback={Loading}><AlgorithmRegistPage/></Suspense>
+            path: "algorithm/regist",
+            element: sessionStorage.getItem("auth") === "admin" ? (
+                <Suspense fallback={Loading}><AlgorithmRegistPage /></Suspense>
+            ) : (
+                <Suspense fallback={Loading}><LoginComponent /></Suspense>
+            )
         },
         {
             path:"algorithm/:id",
