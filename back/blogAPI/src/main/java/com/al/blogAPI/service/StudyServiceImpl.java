@@ -90,4 +90,18 @@ public class StudyServiceImpl implements StudyService {
         
 		return studyDTOs;
 	}
+
+	@Override
+	public StudyDTO getStudyDetail(Long id) {
+		Study study = studyRepository.findById(id).orElse(null);
+		
+		StudyDTO dto = StudyDTO.builder()
+				.id(study.getId())
+				.title(study.getTitle())
+				.type(study.getType())
+				.content(study.getContent())
+				.build();
+		
+		return dto;
+	}
 }

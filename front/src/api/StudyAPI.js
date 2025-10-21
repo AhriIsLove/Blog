@@ -50,3 +50,22 @@ export const getAlgorithmList = async (page=0, size=10) => {
         isGetAlgorithmList = false;
     }
 };
+
+//알고리즘 상세 요청
+let isGetAlgorithmDetail = false; // 중복 호출 방지
+export const getAlgorithmDetail = async (id) => {
+    if(isGetAlgorithmDetail) return;
+    isGetAlgorithmDetail = true;
+
+    try{
+        const res = await axios.get(`${prefix}/algorithm/detail`, {
+            params: { id }
+        });
+        return res.data;
+    } catch (error) {
+        console.error('알고리즘 상세 조회 실패:', error);
+        throw error;
+    } finally {
+        isGetAlgorithmDetail = false;
+    }
+};

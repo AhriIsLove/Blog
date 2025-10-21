@@ -12,4 +12,6 @@ public interface StudyService {
 
 	List<StudyDTO> getStudyList(Pageable pageable);
 
+	StudyDTO getStudyDetail(Long id);
+
 }

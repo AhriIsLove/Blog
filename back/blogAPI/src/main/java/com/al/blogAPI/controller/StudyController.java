@@ -62,8 +62,20 @@ public class StudyController {
 				.totalPages((int) Math.ceil((double) totalCount / size))
 				.build();
 		
+		System.out.println(pageDTO);
+		
 		// 게임 목록 반환
 		return ResponseEntity.ok().body(pageDTO);
 	}
 
+	@GetMapping("/algorithm/detail")
+	public ResponseEntity<?> getStudyDetail(@RequestParam(name = "id") Long id) {
+		// System.out.println("getStudyDetail id : " + id);
+		
+		// 게임 목록 가져오기
+		StudyDTO study = studyService.getStudyDetail(id);
+
+		// 게임 목록 반환
+		return ResponseEntity.ok().body(study);
+	}
 }
