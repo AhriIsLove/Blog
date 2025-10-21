@@ -64,15 +64,21 @@ public class StudyServiceImpl implements StudyService {
 
 	@Override
 	public List<StudyDTO> getStudyList(Pageable pageable) {
-		// 페이지 정보 계산
-        int pageSize = pageable.getPageSize();
-        int pageNumber = pageable.getPageNumber();
-        int startRow = pageNumber * pageSize;
-        int endRow = startRow + pageSize;
-        
-        // 게임 목록 조회
-        List<Study> studyList = studyRepository.findAllWithPaging(startRow, endRow);
-        
+		List<Study> studyList;
+		
+		// 페이징 처리가 없으면 전체 조회(개수만 필요)
+		if(pageable.isUnpaged()) {
+			studyList = studyRepository.findAll();
+		}
+		else {
+	        int pageSize = pageable.getPageSize();
+	        int pageNumber = pageable.getPageNumber();
+	        int startRow = pageNumber * pageSize;
+	        int endRow = startRow + pageSize;
+	        
+	        studyList = studyRepository.findAllWithPaging(startRow, endRow);
+		}
+		
         // Entity -> DTO
         List<StudyDTO> studyDTOs = studyList.stream().map(study -> StudyDTO.builder()
                 // Game 엔티티의 필드를 GameDTO로 매핑

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.al.blogAPI.dto.GameDTO;
+import com.al.blogAPI.dto.PageDTO;
 import com.al.blogAPI.dto.StudyDTO;
 import com.al.blogAPI.service.StudyService;
 
@@ -27,7 +28,7 @@ public class StudyController {
 
 	@PostMapping("/algorithm/regist")
 	public ResponseEntity<?> postAlgorithmRegist(@RequestBody StudyDTO dto) {		
-		System.out.println(dto);
+		// System.out.println(dto);
 		
 		// 공부 등록
 		StudyDTO studyDTO = studyService.postAlgorithmRegist(dto);
@@ -37,24 +38,32 @@ public class StudyController {
 	}
 
 	@GetMapping("/algorithm/list")
-	public ResponseEntity<List<StudyDTO>> getStudyList(
+	public ResponseEntity<?> getStudyList(
 			@RequestParam(name = "page", defaultValue = "0") int page, // 요청할 페이지 번호 (0부터 시작)
 	        @RequestParam(name = "size", defaultValue = "10") int size) { // 한 페이지당 가져올 아이템 개수
 	        // @RequestParam(defaultValue = "id,desc") String[] sort) { // 정렬 기준 (예: "id,desc" -> id 기준 내림차순
 		
-		System.out.println("getStudyList page : " + page);
-		System.out.println("getStudyList size : " + size);
+//		System.out.println("getStudyList page : " + page);
+//		System.out.println("getStudyList size : " + size);
 		
+		// 전체 개수 조회
+		int totalCount = studyService.getStudyList(Pageable.unpaged()).size();
+
 		// Pageable : JPA 조회를 지원
 		Pageable pageable = PageRequest.of(page, size);
 		
 		// 게임 목록 가져오기
 		List<StudyDTO> studyList = studyService.getStudyList(pageable);
 
-		System.out.println(studyList);
+		PageDTO pageDTO = PageDTO.builder()
+				.items(studyList)
+				.totalCount(totalCount)
+				.currentPage(page)
+				.totalPages((int) Math.ceil((double) totalCount / size))
+				.build();
 		
-	    // 게임 목록 반환
-	    return ResponseEntity.ok(studyList);
+		// 게임 목록 반환
+		return ResponseEntity.ok().body(pageDTO);
 	}
 
 }

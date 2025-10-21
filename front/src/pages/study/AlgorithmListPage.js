@@ -5,20 +5,28 @@ import { getAlgorithmList } from "../../api/StudyAPI";
 const AlgorithmListPage = () => {
     // 알고리즘 목록
     const [algorithms, setAlgorithms] = useState([]);
-    // 페이지 번호 상태
+    const [totalCount, setTotalCount] = useState(0);
+    // 페이지 번호 상태 (0-based)
     const [page, setPage] = useState(0);
-    const [size, setSize] = useState(10);
+    // const [size, setSize] = useState(10);
+    const [size] = useState(10);
+    const [hasMore, setHasMore] = useState(false);
 
     // 알고리즘 데이터 로드 함수
     // page가 변경될 때마다 호출되도록 useCallback 사용
     const loadAlgorithmData = useCallback(() => {
         // API에서 데이터 가져오기
         getAlgorithmList(page, size).then(data => {
-            if (Array.isArray(data)) {
-                setAlgorithms(prev => [...prev, ...data]);
-                console.log(data); // 데이터 확인용 로그
-            } else {
-                console.error('데이터 형식이 올바르지 않습니다:', data);
+            if(data === undefined){
+                // console.log('데이터 형식이 올바르지 않습니다:', data);
+                setAlgorithms([]);
+                setHasMore(false);
+            }
+            else{
+                // console.log('데이터 로드 성공:', data);
+                setAlgorithms(data.items);
+                setTotalCount(data.totalCount);
+                setHasMore(page + 1 < data.totalPages);
             }
         });
     }, [page, size]);
@@ -46,56 +54,78 @@ const AlgorithmListPage = () => {
             <div className="pb-3 text-5xl underline underline-offset-8">알고리즘</div>
             <div className="w-full flex justify-end">
                 <button
-                    className="mb-4 px-4 py-2 bg-myPointColor-700 text-white rounded hover:bg-myPointColor-400 transition-colors"
+                    className="my-4 px-4 py-2 bg-myPointColor-700 text-white rounded hover:bg-myPointColor-400 transition-colors"
                     onClick={() => navigate('/study/algorithm/regist')}
                 >
                     새 알고리즘 공부 등록
                 </button>
             </div>
-            <table className='w-full p-1 border-2 border-myPointColor-900' cellPadding="8">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>타입</th>
-                        <th>제목</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        role="button"
-                        tabIndex={0}
-                        className="cursor-pointer hover:bg-gray-100"
-                        onClick={() => handleRowClick(1)}
-                        onKeyDown={(e) => handleRowKeyDown(e, 1)}
+            {/* 페이징 컨트롤 */}
+            <div className="w-full flex items-center justify-between mt-4">
+                <div className="text-sm text-gray-600">총 {totalCount} 항목 (페이지 {page + 1})</div>
+                <div className="flex items-center gap-2">
+                    <button
+                        className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+                        onClick={() => setPage(p => Math.max(0, p - 1))}
+                        disabled={page === 0}
                     >
-                        <td>1</td>
-                        <td>정리</td>
-                        <td>이진 탐색 알고리즘 정리</td>
-                    </tr>
-                    <tr
-                        role="button"
-                        tabIndex={0}
-                        className="cursor-pointer hover:bg-gray-100"
-                        onClick={() => handleRowClick(2)}
-                        onKeyDown={(e) => handleRowKeyDown(e, 2)}
+                        Prev
+                    </button>
+                    <button
+                        className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+                        onClick={() => { if(hasMore) setPage(p => p + 1); }}
+                        disabled={!hasMore}
                     >
-                        <td>2</td>
-                        <td>정리</td>
-                        <td>DFS와 BFS 차이점</td>
-                    </tr>
-                    <tr
-                        role="button"
-                        tabIndex={0}
-                        className="cursor-pointer hover:bg-gray-100"
-                        onClick={() => handleRowClick(3)}
-                        onKeyDown={(e) => handleRowKeyDown(e, 3)}
-                    >
-                        <td>3</td>
-                        <td>정리</td>
-                        <td>DP(동적계획법) 기본 개념</td>
-                    </tr>
-                </tbody>
-            </table>
+                        Next
+                    </button>
+                    <div className="flex items-center gap-1">
+                        <input
+                            type="number"
+                            // value={page + 1}
+                            min={1}
+                            className="w-20 px-2 py-1 border rounded"
+                            placeholder="page"
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    const v = parseInt(e.target.value, 10);
+                                    if (!isNaN(v) && v > 0) setPage(v - 1);
+                                }
+                            }}
+                        />
+                        <button className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50" onClick={() => {
+                            const v = parseInt(document.querySelector('input[type="number"]').value, 10);
+                            if (!isNaN(v) && v > 0) setPage(v - 1);
+                        }}>이동</button>
+                    </div>
+                </div>
+            </div>
+            <div className="w-full overflow-x-auto mt-4">
+                <table className="min-w-full bg-white rounded-lg shadow-md border border-myPointColor-100" cellPadding="12">
+                    <thead>
+                        <tr className="bg-myPointColor-500 text-white">
+                            <th className="py-3 px-4 text-center w-16">#</th>
+                            <th className="py-3 px-4 text-center w-40">타입</th>
+                            <th className="py-3 px-4 text-center">제목</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {algorithms.map((algo, index) => (
+                            <tr
+                                key={algo.id}
+                                role="button"
+                                tabIndex={0}
+                                className="cursor-pointer odd:bg-white even:bg-gray-50 hover:bg-myPointColor-50"
+                                onClick={() => handleRowClick(algo.id)}
+                                onKeyDown={(e) => handleRowKeyDown(e, algo.id)}
+                            >
+                                <td className="py-3 px-4 text-center align-middle">{index + 1}</td>
+                                <td className="py-3 px-4 text-center align-middle text-sm text-gray-700">{algo.type}</td>
+                                <td className="py-3 px-4 align-middle text-gray-900">{algo.title}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
