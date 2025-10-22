@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -50,7 +50,12 @@ function RichTextEditor({ value, onChange }) {
   const handleChange = (content) => {
     setEditorValue(content);
     onChange(content);
+    console.log('에디터 내용 변경:', content);
   };
+
+  useEffect(() => {
+    setEditorValue(value);
+  }, [value]);
 
   const modules = {
     toolbar: [

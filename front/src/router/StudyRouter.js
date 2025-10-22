@@ -6,6 +6,7 @@ const Loading = <div>Loading...</div>
 const AlgorithmListPage = lazy(() => import("../pages/study/AlgorithmListPage"));
 const AlgorithmRegistPage = lazy(() => import("../pages/study/AlgorithmRegistPage"));
 const AlgorithmPage = lazy(() => import("../pages/study/AlgorithmPage"));
+const AlgorithmEditPage = lazy(() => import("../pages/study/AlgorithmEditPage"));
 const NetworkPage = lazy(() => import("../pages/study/NetworkPage"));
 const TermPage = lazy(() => import("../pages/study/TermPage"));
 const MistakePage = lazy(() => import("../pages/study/MistakePage"));
@@ -31,6 +32,14 @@ const StudyRouter = () => {
         {
             path:"algorithm/:id",
             element:<Suspense fallback={Loading}><AlgorithmPage/></Suspense>
+        },
+        {
+            path: "algorithm/edit/:algorithmId",
+            element: sessionStorage.getItem("auth") === "admin" ? (
+                <Suspense fallback={Loading}><AlgorithmEditPage /></Suspense>
+            ) : (
+                <Suspense fallback={Loading}><LoginComponent /></Suspense>
+            )
         },
         {
             path:"network",
