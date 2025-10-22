@@ -17,6 +17,7 @@ const AlgorithmPage = () => {
         getAlgorithmDetail(id).then(data => {
             if (data !== undefined) {
                 setAlgorithm(data);
+                console.log('알고리즘 상세 데이터:', data);
             }
         });
     }, [id]);
@@ -42,13 +43,23 @@ const AlgorithmPage = () => {
                     <div dangerouslySetInnerHTML={{ __html: algorithm?.content || '<p>내용이 없습니다.</p>' }} />
                 </div>
 
-                {tags.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        {tags.map((tag, idx) => (
-                            <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">#{tag}</span>
-                        ))}
-                    </div>
-                )}
+                <div className="mb-4 flex items-center gap-4">
+                    {tags.length > 0 && (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {(algorithm.tags || '')
+                                .split('#')
+                                .filter(Boolean)
+                                .map((t, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="inline-block bg-myPointColor-100 text-myPointColor-700 px-3 py-1 rounded-full text-sm font-medium"
+                                    >
+                                        #{t}
+                                    </span>
+                                ))}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

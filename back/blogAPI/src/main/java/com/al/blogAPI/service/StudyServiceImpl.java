@@ -100,6 +100,10 @@ public class StudyServiceImpl implements StudyService {
 				.title(study.getTitle())
 				.type(study.getType())
 				.content(study.getContent())
+				// 태그들을 "#"로 연결하여 하나의 문자열로 만듦
+				.tags(study.getTags().stream()
+						.map(StudyTag::getTag)
+						.collect(Collectors.joining("#", "#", ""))) // 맨 앞에 # 붙이기
 				.build();
 		
 		return dto;
