@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.al.blogAPI.dto.GameDTO;
 import com.al.blogAPI.dto.StudyDTO;
@@ -107,5 +108,71 @@ public class StudyServiceImpl implements StudyService {
 				.build();
 		
 		return dto;
+	}
+
+	@Override
+	public StudyDTO putStudyEdit(StudyDTO dto) {
+		// System.out.println("StudyServiceImpl putStudyEdit dto : " + dto);
+		
+		// 기존 공부 정보 조회
+		Study existingStudy = studyRepository.findById(dto.getId()).orElse(null);
+		if (existingStudy == null) {
+			return null; // 또는 예외 처리
+		}
+		
+		System.out.println("StudyServiceImpl putStudyEdit existingStudy : " + existingStudy);
+		
+		// 공부 정보 업데이트
+		existingStudy.setTitle(dto.getTitle());
+		existingStudy.setType(dto.getType());
+		existingStudy.setContent(dto.getContent());
+		
+		// Tags 처리
+		String tags = dto.getTags();
+		// 기존 태그 삭제
+		existingStudy.getTags().clear();
+		if (tags != null && !tags.isEmpty()) {
+			// 태그 문자열을 쉼표(#)로 분리하여 배열로 변환
+			String[] tagArray = tags.split("#");
+			// 각 태그를 GameTag 엔티티로 변환하여 게임에 추가
+			for (String tagName : tagArray) {
+				// 앞뒤 공백 제거
+				tagName = tagName.trim();
+				if (!tagName.isEmpty()) {
+					// GameTag 엔티티 생성 및 게임에 추가
+					existingStudy.addTag(new StudyTag(tagName, existingStudy));
+				}
+			}
+		}
+		
+		// 변경된 게임 정보 저장
+		studyRepository.save(existingStudy);
+		
+		StudyDTO updatedDTO = StudyDTO.builder()
+				.id(existingStudy.getId())
+				.title(existingStudy.getTitle())
+				.type(existingStudy.getType())
+				.content(existingStudy.getContent())
+				// 태그들을 "#"로 연결하여 하나의 문자열로 만듦
+				.tags(existingStudy.getTags().stream()
+						.map(StudyTag::getTag)
+						.collect(Collectors.joining("#", "#", ""))) // 맨 앞에 # 붙이기
+				.build();
+		
+		return updatedDTO;
+	}
+
+	@Override
+	public boolean deleteStudyDelete(Long studyId) {
+		
+		// 기존 게임 정보 조회
+		Study existingStudy = studyRepository.findById(studyId).orElse(null);
+		if (existingStudy != null) {
+			// 게임 정보 삭제
+			studyRepository.delete(existingStudy);
+			return true;
+		}
+		
+		return false;
 	}
 }

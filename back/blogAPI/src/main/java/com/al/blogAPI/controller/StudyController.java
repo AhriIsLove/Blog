@@ -5,15 +5,16 @@ import java.util.List;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.al.blogAPI.dto.GameDTO;
 import com.al.blogAPI.dto.PageDTO;
 import com.al.blogAPI.dto.StudyDTO;
 import com.al.blogAPI.service.StudyService;
@@ -52,7 +53,7 @@ public class StudyController {
 		// Pageable : JPA 조회를 지원
 		Pageable pageable = PageRequest.of(page, size);
 		
-		// 게임 목록 가져오기
+		// 공부 목록 가져오기
 		List<StudyDTO> studyList = studyService.getStudyList(pageable);
 
 		PageDTO pageDTO = PageDTO.builder()
@@ -64,7 +65,7 @@ public class StudyController {
 		
 		System.out.println(pageDTO);
 		
-		// 게임 목록 반환
+		// 공부 목록 반환
 		return ResponseEntity.ok().body(pageDTO);
 	}
 
@@ -72,10 +73,32 @@ public class StudyController {
 	public ResponseEntity<?> getStudyDetail(@RequestParam(name = "id") Long id) {
 		// System.out.println("getStudyDetail id : " + id);
 		
-		// 게임 목록 가져오기
+		// 공부 목록 가져오기
 		StudyDTO study = studyService.getStudyDetail(id);
 
-		// 게임 목록 반환
+		// 공부 목록 반환
 		return ResponseEntity.ok().body(study);
+	}
+
+	@PutMapping("/algorithm/edit")
+	public ResponseEntity<?> putStudyEdit(@RequestPart(name = "studyDTO") StudyDTO dto) {
+		 // System.out.println("putStudyEdit : " + dto);
+
+		// 공부 수정
+		 StudyDTO result = studyService.putStudyEdit(dto);
+
+	    // 공부 수정 결과 반환
+	    return ResponseEntity.ok(result);
+	}
+
+	@DeleteMapping("/algorithm/delete")
+	public ResponseEntity<?> deleteStudyDelete(@RequestParam(name = "studyId") Long studyId) {
+		System.out.println("deleteStudyDelete studyId : " + studyId);
+		
+		// 공부 삭제
+		boolean result = studyService.deleteStudyDelete(studyId);
+
+	    // 공부 삭제 결과 반환
+	    return ResponseEntity.ok(result);
 	}
 }

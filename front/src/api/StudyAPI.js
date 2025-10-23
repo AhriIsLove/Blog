@@ -69,3 +69,19 @@ export const getAlgorithmDetail = async (id) => {
         isGetAlgorithmDetail = false;
     }
 };
+
+//알고리즘 수정 요청
+let isPutAlgorithmEdit = false; // 중복 호출 방지
+export const putAlgorithmEdit = async (formData) => {
+    if(isPutAlgorithmEdit) return;
+    isPutAlgorithmEdit = true;
+    try{
+        // 요청
+        const res = await axios.put(`${prefix}/algorithm/edit`, formData);
+        return res.data;
+    } catch (error) {
+        throw error;
+    } finally {
+        isPutAlgorithmEdit = false;
+    }
+};

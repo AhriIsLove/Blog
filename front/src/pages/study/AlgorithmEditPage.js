@@ -1,4 +1,4 @@
-import { postAlgorithmRegist, getAlgorithmDetail } from "../../api/StudyAPI";
+import { putAlgorithmEdit, getAlgorithmDetail } from "../../api/StudyAPI";
 import Swal from "sweetalert2";
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -69,17 +69,22 @@ const AlgorithmEditPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
+        const formData = new FormData();
 
         // JSON 데이터를 studyDTO라는 이름으로 추가
         const studyData = {
+            id: algorithmId,
             title: form.algorithmTitle.value,
             type: form.algorithmType.value,
             content: editorContent,
             tags: form.algorithmTags.value
         };
+        formData.append("studyDTO", new Blob([JSON.stringify(studyData)], {
+            type: "application/json"
+        }));
 
         try {
-            await postAlgorithmRegist(studyData);
+            await putAlgorithmEdit(formData);
             await Swal.fire({
                 icon: 'success',
                 title: '등록이 완료되었습니다.',
@@ -179,12 +184,12 @@ const AlgorithmEditPage = () => {
                 </div>
                 <div className="regist-row">
                     <button type="submit" className="regist-submit mr-auto">
-                        등록하기
+                        수정하기
                     </button>
                     <button
                         type="button"
                         className="regist-cancel ml-auto"
-                        onClick={() => window.location.href = `${process.env.PUBLIC_URL}/study/algorithm`}
+                        onClick={() => window.location.href = `${process.env.PUBLIC_URL}/study/algorithm/${algorithmId}`}
                     >
                         취소
                     </button>

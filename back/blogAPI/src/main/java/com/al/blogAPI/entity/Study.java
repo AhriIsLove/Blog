@@ -14,11 +14,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Entity
+@Getter
+@Setter
+@Entity // @Data,@ToString => 무한 재귀 가능성 있음 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

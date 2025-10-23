@@ -14,4 +14,8 @@ public interface StudyService {
 
 	StudyDTO getStudyDetail(Long id);
 
+	StudyDTO putStudyEdit(StudyDTO dto);
+
+	boolean deleteStudyDelete(Long studyId);
+
 }
