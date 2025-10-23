@@ -92,11 +92,11 @@ public class StudyController {
 	}
 
 	@DeleteMapping("/algorithm/delete")
-	public ResponseEntity<?> deleteStudyDelete(@RequestParam(name = "studyId") Long studyId) {
-		System.out.println("deleteStudyDelete studyId : " + studyId);
+	public ResponseEntity<?> deleteStudyDelete(@RequestParam(name = "id") Long id) {
+		// System.out.println("deleteStudyDelete studyId : " + id);
 		
 		// 공부 삭제
-		boolean result = studyService.deleteStudyDelete(studyId);
+		boolean result = studyService.deleteStudyDelete(id);
 
 	    // 공부 삭제 결과 반환
 	    return ResponseEntity.ok(result);

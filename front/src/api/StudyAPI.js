@@ -85,3 +85,22 @@ export const putAlgorithmEdit = async (formData) => {
         isPutAlgorithmEdit = false;
     }
 };
+
+//알고리즘 삭제 요청
+let isDeleteAlgorithm = false; // 중복 호출 방지
+export const deleteAlgorithm = async (id) => {
+    if(isDeleteAlgorithm) return;
+    isDeleteAlgorithm = true;
+
+    try{
+        const res = await axios.delete(`${prefix}/algorithm/delete`, {
+            params: { id }
+        });
+        return res.data;
+    } catch (error) {
+        console.error('알고리즘 삭제 실패:', error);
+        throw error;
+    } finally {
+        isDeleteAlgorithm = false;
+    }
+};
