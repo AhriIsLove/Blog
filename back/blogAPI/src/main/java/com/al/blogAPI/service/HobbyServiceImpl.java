@@ -69,7 +69,7 @@ public class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public List<GameDTO> getGameList(Pageable pageable) {
+	public List<GameDTO> getGameList(Pageable pageable, String keyword) {
 		// 페이지 정보 계산
         int pageSize = pageable.getPageSize();
         int pageNumber = pageable.getPageNumber();
@@ -77,7 +77,7 @@ public class HobbyServiceImpl implements HobbyService {
         int endRow = startRow + pageSize;
         
         // 게임 목록 조회
-        List<Game> gameList = gameRepository.findAllWithPaging(startRow, endRow);
+        List<Game> gameList = gameRepository.findAllWithPaging(startRow, endRow, keyword);
         
         // Entity -> DTO
         List<GameDTO> gameDTOs = gameList.stream().map(game -> GameDTO.builder()

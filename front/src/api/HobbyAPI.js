@@ -27,13 +27,13 @@ export const postGameRegist = async (formData) => {
 
 //게임 목록 요청
 let isGetGameList = false; // 중복 호출 방지
-export const getGameList = async (page=0, size=10) => {
+export const getGameList = async (page=0, size=10, keyword='') => {
     if(isGetGameList) return;
     isGetGameList = true;
 
     try{
         const res = await axios.get(`${prefix}/game/list`, {
-            params: { page, size }
+            params: { page, size, keyword }
         });
 
         // console.log(res.data);

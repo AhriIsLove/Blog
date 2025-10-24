@@ -15,9 +15,16 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 	@Query(value = 
 				"SELECT * FROM ( "
 			+ 		"SELECT A.*, ROWNUM AS RNUM FROM ( "
-			+ 			"SELECT * FROM GAME ORDER BY ID DESC ) A "
+			+ 			"SELECT * FROM GAME "
+			+ 			"WHERE NAME LIKE '%' || :keyword || '%' "
+			+ 			"OR TYPE LIKE '%' || :keyword || '%' "
+			+ 			"OR COMPANY LIKE '%' || :keyword || '%' "
+			+ 			"OR PLATFORM LIKE '%' || :keyword || '%' "
+			+ 			"OR REVIEW LIKE '%' || :keyword || '%' "
+			+ 			"OR ID IN (SELECT GAME_ID FROM GAME_TAG WHERE TAG LIKE '%' || :keyword || '%') "
+			+ 			"ORDER BY ID DESC ) A "
 			+ 		"WHERE ROWNUM <= :endRow) "
 			+ 	"WHERE RNUM > :startRow"
 			, nativeQuery = true)
-	List<Game> findAllWithPaging(@Param("startRow") int startRow, @Param("endRow") int endRow);
+	List<Game> findAllWithPaging(@Param("startRow") int startRow, @Param("endRow") int endRow, @Param("keyword") String keyword);
 }

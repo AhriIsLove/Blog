@@ -49,17 +49,19 @@ public class HobbyController {
 	@GetMapping("/game/list")
 	public ResponseEntity<List<GameDTO>> getGameList(
 			@RequestParam(name = "page", defaultValue = "0") int page, // 요청할 페이지 번호 (0부터 시작)
-	        @RequestParam(name = "size", defaultValue = "10") int size) { // 한 페이지당 가져올 아이템 개수
+	        @RequestParam(name = "size", defaultValue = "10") int size,
+	        @RequestParam(name = "keyword", defaultValue = "") String keyword) { // 한 페이지당 가져올 아이템 개수
 	        // @RequestParam(defaultValue = "id,desc") String[] sort) { // 정렬 기준 (예: "id,desc" -> id 기준 내림차순
 		
 //		System.out.println("getGameList page : " + page);
 //		System.out.println("getGameList size : " + size);
+		System.out.println("getGameList keyword : " + keyword);
 		
 		// Pageable : JPA 조회를 지원
 		Pageable pageable = PageRequest.of(page, size);
 		
 		// 게임 목록 가져오기
-		List<GameDTO> gameList = hobbyService.getGameList(pageable);
+		List<GameDTO> gameList = hobbyService.getGameList(pageable, keyword);
 
 		// System.out.println(gameList);
 		

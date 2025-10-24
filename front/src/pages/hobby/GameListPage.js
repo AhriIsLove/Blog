@@ -13,9 +13,9 @@ const GameListPage = () => {
 
     // 게임 데이터 로드 함수
     // page가 변경될 때마다 호출되도록 useCallback 사용
-    const loadGameData = useCallback(() => {
+    const loadGameData = useCallback((keyword) => {
         // API에서 데이터 가져오기
-        getGameList(page).then(data => {
+        getGameList(page, 10, keyword).then(data => {
             // undefined가 아닐 때만 체크 진행
             if (data !== undefined) {
                 if (Array.isArray(data) && data.length > 0) {
@@ -53,13 +53,29 @@ const GameListPage = () => {
         <div className="game-page-container flex flex-col items-center w-full">
             <div className="flex justify-between items-center w-full max-w-2xl mb-4">
                 <h1 className="text-2xl font-bold">플레이한 게임 목록</h1>
+            </div>
+            <div className="mb-4 w-full max-w-2xl flex justify-end">
                 <button
-                    className="px-4 py-2 bg-myPointColor-300 rounded hover:bg-myPointColor-500 transition border border-myPointColor-600"
+                    className="px-4 py-2 mr-auto bg-myPointColor-300 rounded hover:bg-myPointColor-500 transition border border-myPointColor-600"
                     onClick={() => {
                         window.location.href = `${process.env.PUBLIC_URL}/hobby/game/regist`;
                     }}
                 >
                     게임 등록
+                </button>
+                <input name="keyword" type="text" placeholder="게임 검색" className="border border-myFontColor-300 rounded p-2" />
+                <button className="ml-2 px-4 py-2 bg-myPointColor-300 rounded hover:bg-myPointColor-500 transition border border-myPointColor-600"
+                    onClick={() => {
+                        // 초기화
+                        setGames([]);
+                        setHasMore(true);
+                        setPage(0);
+                        // 조건에 맞는 검색
+                        const keyword = document.querySelector('input[name="keyword"]').value;
+                        loadGameData(keyword);
+                    }}
+                >
+                    검색
                 </button>
             </div>
 
