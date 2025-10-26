@@ -264,7 +264,7 @@ const GameEditPage = () => {
                                     id="gamePlatform"
                                     name="gamePlatform"
                                     className="regist-input regist-select"
-                                    value={game.platform ?? gamePlatformSelect}
+                                    value={gamePlatformSelect}
                                     onChange={e => setGamePlatformSelect(e.target.value)}
                                     required
                                 >
