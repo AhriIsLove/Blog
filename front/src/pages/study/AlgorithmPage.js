@@ -32,7 +32,7 @@ const AlgorithmPage = () => {
             const result = await deleteIt(algorithm.id);
             if(result) {
                 alert("삭제되었습니다.");
-                window.location.href = `${process.env.PUBLIC_URL}/study/algorithm`;
+                window.location.href = `${process.env.PUBLIC_URL}/study/it`;
             } else {
                 alert("삭제에 실패했습니다.");
             }

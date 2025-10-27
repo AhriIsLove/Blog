@@ -91,7 +91,7 @@ const AlgorithmEditPage = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            window.location.href = `${process.env.PUBLIC_URL}/study/algorithm`;
+            window.location.href = `${process.env.PUBLIC_URL}/study/it`;
         } catch (err) {
             await Swal.fire({
                 icon: 'error',
@@ -108,7 +108,7 @@ const AlgorithmEditPage = () => {
             <button
                 type="button"
                 className="regist-list mr-auto"
-                onClick={() => window.location.href = `${process.env.PUBLIC_URL}/study/algorithm`}
+                onClick={() => window.location.href = `${process.env.PUBLIC_URL}/study/it`}
             >
                 목록
             </button>
