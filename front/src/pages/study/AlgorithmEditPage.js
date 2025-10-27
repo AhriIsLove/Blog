@@ -189,7 +189,7 @@ const AlgorithmEditPage = () => {
                     <button
                         type="button"
                         className="regist-cancel ml-auto"
-                        onClick={() => window.location.href = `${process.env.PUBLIC_URL}/study/algorithm/${algorithmId}`}
+                        onClick={() => window.location.href = `${process.env.PUBLIC_URL}/study/it/${algorithmId}`}
                     >
                         취소
                     </button>

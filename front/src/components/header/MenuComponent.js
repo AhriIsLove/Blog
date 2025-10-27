@@ -34,8 +34,8 @@ export const MenuComponent = {
             parent_id: null,
             search: [],
             sub_menus: [
-            { id: 301, name: "알고리즘", link: "/algorithm", parent_id: 3, search: [], sub_menus: [] },
-            // { id: 302, name: "네트워크", link: "/network", parent_id: 3, search: [], sub_menus: [] },
+            { id: 301, name: "IT", link: "/it", parent_id: 3, search: [], sub_menus: [] },
+            { id: 302, name: "재테크", link: "/money", parent_id: 3, search: [], sub_menus: [] },
             // { id: 303, name: "용어", link: "/term", parent_id: 3, search: [], sub_menus: [] },
             // { id: 304, name: "오답노트", link: "/mistake", parent_id: 3, search: [], sub_menus: [] },
             ],

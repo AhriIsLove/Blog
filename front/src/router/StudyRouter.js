@@ -7,7 +7,7 @@ const AlgorithmListPage = lazy(() => import("../pages/study/AlgorithmListPage"))
 const AlgorithmRegistPage = lazy(() => import("../pages/study/AlgorithmRegistPage"));
 const AlgorithmPage = lazy(() => import("../pages/study/AlgorithmPage"));
 const AlgorithmEditPage = lazy(() => import("../pages/study/AlgorithmEditPage"));
-const NetworkPage = lazy(() => import("../pages/study/NetworkPage"));
+const MoneyPage = lazy(() => import("../pages/study/MoneyPage"));
 const TermPage = lazy(() => import("../pages/study/TermPage"));
 const MistakePage = lazy(() => import("../pages/study/MistakePage"));
 
@@ -15,14 +15,14 @@ const StudyRouter = () => {
     return [
         {
             path:"",
-            element:<Navigate replace to="algorithm"></Navigate>
+            element:<Navigate replace to="it"></Navigate>
         },
         {
-            path:"algorithm",
+            path:"it",
             element:<Suspense fallback={Loading}><AlgorithmListPage/></Suspense>
         },
         {
-            path: "algorithm/regist",
+            path: "it/regist",
             element: sessionStorage.getItem("auth") === "admin" ? (
                 <Suspense fallback={Loading}><AlgorithmRegistPage /></Suspense>
             ) : (
@@ -30,11 +30,11 @@ const StudyRouter = () => {
             )
         },
         {
-            path:"algorithm/:id",
+            path:"it/:id",
             element:<Suspense fallback={Loading}><AlgorithmPage/></Suspense>
         },
         {
-            path: "algorithm/edit/:algorithmId",
+            path: "it/edit/:algorithmId",
             element: sessionStorage.getItem("auth") === "admin" ? (
                 <Suspense fallback={Loading}><AlgorithmEditPage /></Suspense>
             ) : (
@@ -42,8 +42,8 @@ const StudyRouter = () => {
             )
         },
         {
-            path:"network",
-            element:<Suspense fallback={Loading}><NetworkPage/></Suspense>
+            path:"money",
+            element:<Suspense fallback={Loading}><MoneyPage/></Suspense>
         },
         {
             path:"term",

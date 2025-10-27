@@ -39,7 +39,7 @@ const AlgorithmListPage = () => {
 
     // 알고리즘 선택 시 상세 페이지로 이동
     const handleRowClick = (id) => {
-        navigate(`/study/algorithm/${id}`);
+        navigate(`/study/it/${id}`);
     };
 
     const handleRowKeyDown = (e, id) => {
@@ -55,7 +55,7 @@ const AlgorithmListPage = () => {
             <div className="w-full flex justify-end">
                 <button
                     className="my-4 px-4 py-2 bg-myPointColor-700 text-white rounded hover:bg-myPointColor-400 transition-colors"
-                    onClick={() => navigate('/study/algorithm/regist')}
+                    onClick={() => navigate('/study/it/regist')}
                 >
                     새 알고리즘 공부 등록
                 </button>

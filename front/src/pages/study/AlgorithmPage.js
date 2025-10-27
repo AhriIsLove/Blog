@@ -58,7 +58,7 @@ const AlgorithmPage = () => {
                     <h1 className="text-4xl font-bold text-gray-900">{algorithm?.title}</h1>
                     <div className="flex gap-2">
                         <button className="regist-list mb-0" onClick={() => navigate(-1)}>목록</button>
-                        <button className="regist-submit" onClick={() => navigate(`/study/algorithm/edit/${id}`)}>수정</button>
+                        <button className="regist-submit" onClick={() => navigate(`/study/it/edit/${id}`)}>수정</button>
                         <button className="regist-delete ml-0" onClick={ async () => {
                                 if (sessionStorage.getItem("auth") !== "admin") {
                                     setShowLogin(true);
