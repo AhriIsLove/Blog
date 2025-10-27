@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from 'react-router-dom';
-import { getAlgorithmList } from "../../api/StudyAPI";
+import { getItList } from "../../api/StudyAPI";
 
 const AlgorithmListPage = () => {
     // 알고리즘 목록
@@ -16,7 +16,7 @@ const AlgorithmListPage = () => {
     // page가 변경될 때마다 호출되도록 useCallback 사용
     const loadAlgorithmData = useCallback(() => {
         // API에서 데이터 가져오기
-        getAlgorithmList(page, size).then(data => {
+        getItList(page, size).then(data => {
             if(data === undefined){
                 // console.log('데이터 형식이 올바르지 않습니다:', data);
                 setAlgorithms([]);

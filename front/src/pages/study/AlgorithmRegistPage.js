@@ -1,4 +1,4 @@
-import { postAlgorithmRegist } from "../../api/StudyAPI";
+import { postItRegist } from "../../api/StudyAPI";
 import Swal from "sweetalert2";
 import React, { useState } from 'react';
 import RichTextEditor from "../../components/container/RichTextEditor";
@@ -56,7 +56,7 @@ const AlgorithmRegistPage = () => {
         };
 
         try {
-            await postAlgorithmRegist(studyData);
+            await postItRegist(studyData);
             await Swal.fire({
                 icon: 'success',
                 title: '등록이 완료되었습니다.',

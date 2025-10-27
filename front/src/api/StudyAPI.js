@@ -4,14 +4,14 @@ import { API_SERVER_HOST } from "./MainAPI";
 export const prefix = `${API_SERVER_HOST}/study`;
 
 //알고리즘 등록 요청
-let isPostAlgorithmRegist = false; // 중복 호출 방지
-export const postAlgorithmRegist = async (formData) => {
-    if(isPostAlgorithmRegist) return;
-    isPostAlgorithmRegist = true;
+let isPostItRegist = false; // 중복 호출 방지
+export const postItRegist = async (formData) => {
+    if(isPostItRegist) return;
+    isPostItRegist = true;
 
     try{
         // 요청
-        const res = await fetch(`${prefix}/algorithm/regist`, {
+        const res = await fetch(`${prefix}/it/regist`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,18 +25,18 @@ export const postAlgorithmRegist = async (formData) => {
     } catch (error) {
         throw error;
     } finally {
-        isPostAlgorithmRegist = false;
+        isPostItRegist = false;
     }
 };
 
 //알고리즘 목록 요청
-let isGetAlgorithmList = false; // 중복 호출 방지
-export const getAlgorithmList = async (page=0, size=10) => {
-    if(isGetAlgorithmList) return;
-    isGetAlgorithmList = true;
+let isGetItList = false; // 중복 호출 방지
+export const getItList = async (page=0, size=10) => {
+    if(isGetItList) return;
+    isGetItList = true;
 
     try{
-        const res = await axios.get(`${prefix}/algorithm/list`, {
+        const res = await axios.get(`${prefix}/it/list`, {
             params: { page, size }
         });
 
@@ -47,18 +47,18 @@ export const getAlgorithmList = async (page=0, size=10) => {
         console.error('알고리즘 목록 조회 실패:', error);
         throw error;
     } finally {
-        isGetAlgorithmList = false;
+        isGetItList = false;
     }
 };
 
 //알고리즘 상세 요청
-let isGetAlgorithmDetail = false; // 중복 호출 방지
-export const getAlgorithmDetail = async (id) => {
-    if(isGetAlgorithmDetail) return;
-    isGetAlgorithmDetail = true;
+let isGetItDetail = false; // 중복 호출 방지
+export const getItDetail = async (id) => {
+    if(isGetItDetail) return;
+    isGetItDetail = true;
 
     try{
-        const res = await axios.get(`${prefix}/algorithm/detail`, {
+        const res = await axios.get(`${prefix}/it/detail`, {
             params: { id }
         });
         return res.data;
@@ -66,34 +66,34 @@ export const getAlgorithmDetail = async (id) => {
         console.error('알고리즘 상세 조회 실패:', error);
         throw error;
     } finally {
-        isGetAlgorithmDetail = false;
+        isGetItDetail = false;
     }
 };
 
 //알고리즘 수정 요청
-let isPutAlgorithmEdit = false; // 중복 호출 방지
-export const putAlgorithmEdit = async (formData) => {
-    if(isPutAlgorithmEdit) return;
-    isPutAlgorithmEdit = true;
+let isPutItEdit = false; // 중복 호출 방지
+export const putItEdit = async (formData) => {
+    if(isPutItEdit) return;
+    isPutItEdit = true;
     try{
         // 요청
-        const res = await axios.put(`${prefix}/algorithm/edit`, formData);
+        const res = await axios.put(`${prefix}/it/edit`, formData);
         return res.data;
     } catch (error) {
         throw error;
     } finally {
-        isPutAlgorithmEdit = false;
+        isPutItEdit = false;
     }
 };
 
 //알고리즘 삭제 요청
-let isDeleteAlgorithm = false; // 중복 호출 방지
-export const deleteAlgorithm = async (id) => {
-    if(isDeleteAlgorithm) return;
-    isDeleteAlgorithm = true;
+let isDeleteIt = false; // 중복 호출 방지
+export const deleteIt = async (id) => {
+    if(isDeleteIt) return;
+    isDeleteIt = true;
 
     try{
-        const res = await axios.delete(`${prefix}/algorithm/delete`, {
+        const res = await axios.delete(`${prefix}/it/delete`, {
             params: { id }
         });
         return res.data;
@@ -101,6 +101,6 @@ export const deleteAlgorithm = async (id) => {
         console.error('알고리즘 삭제 실패:', error);
         throw error;
     } finally {
-        isDeleteAlgorithm = false;
+        isDeleteIt = false;
     }
 };

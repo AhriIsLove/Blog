@@ -1,4 +1,4 @@
-import { putAlgorithmEdit, getAlgorithmDetail } from "../../api/StudyAPI";
+import { putItEdit, getItDetail } from "../../api/StudyAPI";
 import Swal from "sweetalert2";
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -19,7 +19,7 @@ const AlgorithmEditPage = () => {
     // 알고리즘 상세 정보
     useEffect(() => {
         // console.log("algorithmId:", algorithmId);
-        getAlgorithmDetail(algorithmId).then(data => {
+        getItDetail(algorithmId).then(data => {
             if (data !== undefined) {
                 // 알고리즘 정보 설정
                 setAlgorithm(data);
@@ -84,7 +84,7 @@ const AlgorithmEditPage = () => {
         }));
 
         try {
-            await putAlgorithmEdit(formData);
+            await putItEdit(formData);
             await Swal.fire({
                 icon: 'success',
                 title: '등록이 완료되었습니다.',

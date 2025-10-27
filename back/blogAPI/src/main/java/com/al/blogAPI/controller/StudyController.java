@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class StudyController {
 	private final StudyService studyService;
 
-	@PostMapping("/algorithm/regist")
+	@PostMapping("/it/regist")
 	public ResponseEntity<?> postAlgorithmRegist(@RequestBody StudyDTO dto) {		
 		// System.out.println(dto);
 		
@@ -38,7 +38,7 @@ public class StudyController {
 		return ResponseEntity.ok().body(studyDTO);
 	}
 
-	@GetMapping("/algorithm/list")
+	@GetMapping("/it/list")
 	public ResponseEntity<?> getStudyList(
 			@RequestParam(name = "page", defaultValue = "0") int page, // 요청할 페이지 번호 (0부터 시작)
 	        @RequestParam(name = "size", defaultValue = "10") int size) { // 한 페이지당 가져올 아이템 개수
@@ -69,7 +69,7 @@ public class StudyController {
 		return ResponseEntity.ok().body(pageDTO);
 	}
 
-	@GetMapping("/algorithm/detail")
+	@GetMapping("/it/detail")
 	public ResponseEntity<?> getStudyDetail(@RequestParam(name = "id") Long id) {
 		// System.out.println("getStudyDetail id : " + id);
 		
@@ -80,7 +80,7 @@ public class StudyController {
 		return ResponseEntity.ok().body(study);
 	}
 
-	@PutMapping("/algorithm/edit")
+	@PutMapping("/it/edit")
 	public ResponseEntity<?> putStudyEdit(@RequestPart(name = "studyDTO") StudyDTO dto) {
 		 // System.out.println("putStudyEdit : " + dto);
 
@@ -91,7 +91,7 @@ public class StudyController {
 	    return ResponseEntity.ok(result);
 	}
 
-	@DeleteMapping("/algorithm/delete")
+	@DeleteMapping("/it/delete")
 	public ResponseEntity<?> deleteStudyDelete(@RequestParam(name = "id") Long id) {
 		// System.out.println("deleteStudyDelete studyId : " + id);
 		

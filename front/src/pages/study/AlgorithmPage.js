@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getAlgorithmDetail, deleteAlgorithm } from '../../api/StudyAPI';
+import { getItDetail, deleteIt } from '../../api/StudyAPI';
 import LoginComponent from '../../components/container/LoginComponent';
 
 const AlgorithmPage = () => {
@@ -14,7 +14,7 @@ const AlgorithmPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getAlgorithmDetail(id).then(data => {
+        getItDetail(id).then(data => {
             if (data !== undefined) {
                 setAlgorithm(data);
                 console.log('알고리즘 상세 데이터:', data);
@@ -29,7 +29,7 @@ const AlgorithmPage = () => {
     // 삭제 확인 및 실제 삭제 함수
     const handleDeleteStudyConfirm = useCallback(async () => {
         if(window.confirm("정말 삭제하시겠습니까?")) {
-            const result = await deleteAlgorithm(algorithm.id);
+            const result = await deleteIt(algorithm.id);
             if(result) {
                 alert("삭제되었습니다.");
                 window.location.href = `${process.env.PUBLIC_URL}/study/algorithm`;
