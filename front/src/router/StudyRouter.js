@@ -3,10 +3,10 @@ import { Navigate } from "react-router-dom";
 import LoginComponent from "../components/container/LoginComponent";
 
 const Loading = <div>Loading...</div>
-const AlgorithmListPage = lazy(() => import("../pages/study/AlgorithmListPage"));
-const AlgorithmRegistPage = lazy(() => import("../pages/study/AlgorithmRegistPage"));
-const AlgorithmPage = lazy(() => import("../pages/study/AlgorithmPage"));
-const AlgorithmEditPage = lazy(() => import("../pages/study/AlgorithmEditPage"));
+const ItListPage = lazy(() => import("../pages/study/ItListPage"));
+const ItRegistPage = lazy(() => import("../pages/study/ItRegistPage"));
+const ItPage = lazy(() => import("../pages/study/ItPage"));
+const ItEditPage = lazy(() => import("../pages/study/ItEditPage"));
 const MoneyPage = lazy(() => import("../pages/study/MoneyPage"));
 const TermPage = lazy(() => import("../pages/study/TermPage"));
 const MistakePage = lazy(() => import("../pages/study/MistakePage"));
@@ -19,24 +19,24 @@ const StudyRouter = () => {
         },
         {
             path:"it",
-            element:<Suspense fallback={Loading}><AlgorithmListPage/></Suspense>
+            element:<Suspense fallback={Loading}><ItListPage/></Suspense>
         },
         {
             path: "it/regist",
             element: sessionStorage.getItem("auth") === "admin" ? (
-                <Suspense fallback={Loading}><AlgorithmRegistPage /></Suspense>
+                <Suspense fallback={Loading}><ItRegistPage /></Suspense>
             ) : (
                 <Suspense fallback={Loading}><LoginComponent /></Suspense>
             )
         },
         {
             path:"it/:id",
-            element:<Suspense fallback={Loading}><AlgorithmPage/></Suspense>
+            element:<Suspense fallback={Loading}><ItPage/></Suspense>
         },
         {
-            path: "it/edit/:algorithmId",
+            path: "it/edit/:itId",
             element: sessionStorage.getItem("auth") === "admin" ? (
-                <Suspense fallback={Loading}><AlgorithmEditPage /></Suspense>
+                <Suspense fallback={Loading}><ItEditPage /></Suspense>
             ) : (
                 <Suspense fallback={Loading}><LoginComponent /></Suspense>
             )

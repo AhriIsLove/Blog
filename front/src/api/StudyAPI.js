@@ -3,7 +3,7 @@ import { API_SERVER_HOST } from "./MainAPI";
 
 export const prefix = `${API_SERVER_HOST}/study`;
 
-//알고리즘 등록 요청
+//IT 등록 요청
 let isPostItRegist = false; // 중복 호출 방지
 export const postItRegist = async (formData) => {
     if(isPostItRegist) return;
@@ -29,7 +29,7 @@ export const postItRegist = async (formData) => {
     }
 };
 
-//알고리즘 목록 요청
+//IT 목록 요청
 let isGetItList = false; // 중복 호출 방지
 export const getItList = async (page=0, size=10) => {
     if(isGetItList) return;
@@ -44,14 +44,14 @@ export const getItList = async (page=0, size=10) => {
 
         return res.data;
     } catch (error) {
-        console.error('알고리즘 목록 조회 실패:', error);
+        console.error('IT 목록 조회 실패:', error);
         throw error;
     } finally {
         isGetItList = false;
     }
 };
 
-//알고리즘 상세 요청
+//IT 상세 요청
 let isGetItDetail = false; // 중복 호출 방지
 export const getItDetail = async (id) => {
     if(isGetItDetail) return;
@@ -63,14 +63,14 @@ export const getItDetail = async (id) => {
         });
         return res.data;
     } catch (error) {
-        console.error('알고리즘 상세 조회 실패:', error);
+        console.error('IT 상세 조회 실패:', error);
         throw error;
     } finally {
         isGetItDetail = false;
     }
 };
 
-//알고리즘 수정 요청
+//IT 수정 요청
 let isPutItEdit = false; // 중복 호출 방지
 export const putItEdit = async (formData) => {
     if(isPutItEdit) return;
@@ -86,7 +86,7 @@ export const putItEdit = async (formData) => {
     }
 };
 
-//알고리즘 삭제 요청
+//IT 삭제 요청
 let isDeleteIt = false; // 중복 호출 방지
 export const deleteIt = async (id) => {
     if(isDeleteIt) return;
@@ -98,7 +98,7 @@ export const deleteIt = async (id) => {
         });
         return res.data;
     } catch (error) {
-        console.error('알고리즘 삭제 실패:', error);
+        console.error('IT 삭제 실패:', error);
         throw error;
     } finally {
         isDeleteIt = false;

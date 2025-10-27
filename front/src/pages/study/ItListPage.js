@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getItList } from "../../api/StudyAPI";
 
-const AlgorithmListPage = () => {
-    // 알고리즘 목록
-    const [algorithms, setAlgorithms] = useState([]);
+const ItListPage = () => {
+    // IT 목록
+    const [its, setIts] = useState([]);
     const [totalCount, setTotalCount] = useState(0);
     // 페이지 번호 상태 (0-based)
     const [page, setPage] = useState(0);
@@ -12,19 +12,19 @@ const AlgorithmListPage = () => {
     const [size] = useState(10);
     const [hasMore, setHasMore] = useState(false);
 
-    // 알고리즘 데이터 로드 함수
+    // IT 데이터 로드 함수
     // page가 변경될 때마다 호출되도록 useCallback 사용
-    const loadAlgorithmData = useCallback(() => {
+    const loadItData = useCallback(() => {
         // API에서 데이터 가져오기
         getItList(page, size).then(data => {
             if(data === undefined){
                 // console.log('데이터 형식이 올바르지 않습니다:', data);
-                setAlgorithms([]);
+                setIts([]);
                 setHasMore(false);
             }
             else{
                 // console.log('데이터 로드 성공:', data);
-                setAlgorithms(data.items);
+                setIts(data.items);
                 setTotalCount(data.totalCount);
                 setHasMore(page + 1 < data.totalPages);
             }
@@ -32,12 +32,12 @@ const AlgorithmListPage = () => {
     }, [page, size]);
     // 초기 데이터 로딩
     useEffect(() => {
-        loadAlgorithmData();
-    }, [loadAlgorithmData]);
+        loadItData();
+    }, [loadItData]);
 
     const navigate = useNavigate();
 
-    // 알고리즘 선택 시 상세 페이지로 이동
+    // IT 선택 시 상세 페이지로 이동
     const handleRowClick = (id) => {
         navigate(`/study/it/${id}`);
     };
@@ -51,13 +51,13 @@ const AlgorithmListPage = () => {
     //화면 리턴
     return (
         <div className="w-full flex flex-col items-center">
-            <div className="pb-3 text-5xl underline underline-offset-8">알고리즘</div>
+            <div className="pb-3 text-5xl underline underline-offset-8">IT</div>
             <div className="w-full flex justify-end">
                 <button
                     className="my-4 px-4 py-2 bg-myPointColor-700 text-white rounded hover:bg-myPointColor-400 transition-colors"
                     onClick={() => navigate('/study/it/regist')}
                 >
-                    새 알고리즘 공부 등록
+                    새 IT 공부 등록
                 </button>
             </div>
             {/* 페이징 컨트롤 */}
@@ -109,7 +109,7 @@ const AlgorithmListPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {algorithms.map((algo, index) => (
+                        {its.map((algo, index) => (
                             <tr
                                 key={algo.id}
                                 role="button"
@@ -130,4 +130,4 @@ const AlgorithmListPage = () => {
     );
 }
 
-export default AlgorithmListPage;
+export default ItListPage;
