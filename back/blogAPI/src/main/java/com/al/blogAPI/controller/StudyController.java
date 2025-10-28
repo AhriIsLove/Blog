@@ -28,11 +28,11 @@ public class StudyController {
 	private final StudyService studyService;
 
 	@PostMapping("/it/regist")
-	public ResponseEntity<?> postAlgorithmRegist(@RequestBody StudyDTO dto) {		
+	public ResponseEntity<?> postItRegist(@RequestBody StudyDTO dto) {		
 		// System.out.println(dto);
 		
 		// 공부 등록
-		StudyDTO studyDTO = studyService.postAlgorithmRegist(dto);
+		StudyDTO studyDTO = studyService.postItRegist(dto);
 
 		// 공부 등록 결과 반환
 		return ResponseEntity.ok().body(studyDTO);

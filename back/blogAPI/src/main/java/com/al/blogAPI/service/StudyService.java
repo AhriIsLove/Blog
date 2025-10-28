@@ -8,7 +8,7 @@ import com.al.blogAPI.dto.StudyDTO;
 
 public interface StudyService {
 
-	StudyDTO postAlgorithmRegist(StudyDTO dto);
+	StudyDTO postItRegist(StudyDTO dto);
 
 	List<StudyDTO> getStudyList(Pageable pageable);
 

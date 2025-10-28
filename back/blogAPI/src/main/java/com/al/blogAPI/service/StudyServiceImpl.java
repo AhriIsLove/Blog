@@ -25,7 +25,7 @@ public class StudyServiceImpl implements StudyService {
 	private final StudyRepository studyRepository;
 
 	@Override
-	public StudyDTO postAlgorithmRegist(StudyDTO dto) {
+	public StudyDTO postItRegist(StudyDTO dto) {
 		// DTO -> Entity
 		Study study = Study.builder()
 		        .title(dto.getTitle())
@@ -172,7 +172,7 @@ public class StudyServiceImpl implements StudyService {
 			studyRepository.delete(existingStudy);
 			return true;
 		}
-		
+
 		return false;
 	}
 }

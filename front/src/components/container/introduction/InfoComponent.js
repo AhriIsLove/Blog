@@ -43,7 +43,7 @@ const InfoComponent = () => {
                         <tr>
                             <td></td>
                             <td className="tableHeader" >나이</td>
-                            <td className="tableData" >35</td>
+                            <td className="tableData" >32</td>
                             <td className="tableHeader" >생년월일</td>
                             <td className="tableData" >1993.09.19</td>
                         </tr>
