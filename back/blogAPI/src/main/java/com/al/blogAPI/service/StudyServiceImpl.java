@@ -25,7 +25,7 @@ public class StudyServiceImpl implements StudyService {
 	private final StudyRepository studyRepository;
 
 	@Override
-	public StudyDTO postItRegist(StudyDTO dto) {
+	public StudyDTO postStudyRegist(StudyDTO dto) {
 		// DTO -> Entity
 		Study study = Study.builder()
 		        .title(dto.getTitle())
@@ -64,12 +64,13 @@ public class StudyServiceImpl implements StudyService {
 	}
 
 	@Override
-	public List<StudyDTO> getStudyList(Pageable pageable) {
+	public List<StudyDTO> getItList(Pageable pageable) {
 		List<Study> studyList;
 		
 		// 페이징 처리가 없으면 전체 조회(개수만 필요)
 		if(pageable.isUnpaged()) {
-			studyList = studyRepository.findAll();
+			// type이 it인 것만 조회
+			studyList = studyRepository.findByType(3/*It*/);
 		}
 		else {
 	        int pageSize = pageable.getPageSize();
@@ -77,7 +78,7 @@ public class StudyServiceImpl implements StudyService {
 	        int startRow = pageNumber * pageSize;
 	        int endRow = startRow + pageSize;
 	        
-	        studyList = studyRepository.findAllWithPaging(startRow, endRow);
+	        studyList = studyRepository.findByTypeWithPaging(3/*It*/, startRow, endRow);
 		}
 		
         // Entity -> DTO

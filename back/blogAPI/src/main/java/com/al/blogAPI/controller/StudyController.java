@@ -28,18 +28,18 @@ public class StudyController {
 	private final StudyService studyService;
 
 	@PostMapping("/it/regist")
-	public ResponseEntity<?> postItRegist(@RequestBody StudyDTO dto) {		
+	public ResponseEntity<?> postStudyRegist(@RequestBody StudyDTO dto) {		
 		// System.out.println(dto);
 		
 		// 공부 등록
-		StudyDTO studyDTO = studyService.postItRegist(dto);
+		StudyDTO studyDTO = studyService.postStudyRegist(dto);
 
 		// 공부 등록 결과 반환
 		return ResponseEntity.ok().body(studyDTO);
 	}
 
 	@GetMapping("/it/list")
-	public ResponseEntity<?> getStudyList(
+	public ResponseEntity<?> getItList(
 			@RequestParam(name = "page", defaultValue = "0") int page, // 요청할 페이지 번호 (0부터 시작)
 	        @RequestParam(name = "size", defaultValue = "10") int size) { // 한 페이지당 가져올 아이템 개수
 	        // @RequestParam(defaultValue = "id,desc") String[] sort) { // 정렬 기준 (예: "id,desc" -> id 기준 내림차순
@@ -48,13 +48,13 @@ public class StudyController {
 //		System.out.println("getStudyList size : " + size);
 		
 		// 전체 개수 조회
-		int totalCount = studyService.getStudyList(Pageable.unpaged()).size();
+		int totalCount = studyService.getItList(Pageable.unpaged()).size();
 
 		// Pageable : JPA 조회를 지원
 		Pageable pageable = PageRequest.of(page, size);
 		
 		// 공부 목록 가져오기
-		List<StudyDTO> studyList = studyService.getStudyList(pageable);
+		List<StudyDTO> studyList = studyService.getItList(pageable);
 
 		PageDTO pageDTO = PageDTO.builder()
 				.items(studyList)
