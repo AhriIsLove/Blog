@@ -44,6 +44,22 @@ const GameListPage = () => {
         setPage(prevPage => prevPage + 1);
     };
 
+    // 검색어 입력 시 엔터키로 검색
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+    const handleSearch = () => {
+        // 초기화
+        setGames([]);
+        setHasMore(true);
+        setPage(0);
+        // 조건에 맞는 검색
+        const keyword = document.querySelector('input[name="keyword"]').value;
+        loadGameData(keyword);
+    };
+
     // 카드 클릭 시 상세 페이지로 이동
     const handleCardClick = (gameId) => {
         window.location.href = `${process.env.PUBLIC_URL}/hobby/game/${gameId}`;
@@ -63,17 +79,10 @@ const GameListPage = () => {
                 >
                     게임 등록
                 </button>
-                <input name="keyword" type="text" placeholder="게임 검색" className="border border-myFontColor-300 rounded p-2" />
+                <input name="keyword" type="text" placeholder="게임 검색" className="border border-myFontColor-300 rounded p-2" 
+                onKeyDown={handleKeyDown}/>
                 <button className="ml-2 px-4 py-2 bg-myPointColor-300 rounded hover:bg-myPointColor-500 transition border border-myPointColor-600"
-                    onClick={() => {
-                        // 초기화
-                        setGames([]);
-                        setHasMore(true);
-                        setPage(0);
-                        // 조건에 맞는 검색
-                        const keyword = document.querySelector('input[name="keyword"]').value;
-                        loadGameData(keyword);
-                    }}
+                    onClick={handleSearch}
                 >
                     검색
                 </button>
