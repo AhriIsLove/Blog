@@ -125,4 +125,8 @@ AnimatePresence/Framer Motion : 고성능, react전용 */
     .regist-reset {
         @apply bg-myPointColor-800 text-white py-2 px-4 rounded hover:bg-myPointColor-900 transition-colors duration-300 ml-2
     }
+    .rich-text-viewer h1, .rich-text-viewer h2, .rich-text-viewer h3, .rich-text-viewer ol, .rich-text-viewer ul, .rich-text-viewer li, .rich-text-viewer img, .rich-text-viewer p {
+        margin: 0; /* 기본 P 태그 margin 제거 */
+        line-height: 1.4; /* 글간 간격 좁게 */
+    }
 }

@@ -6,6 +6,7 @@ const ItListPage = () => {
     // IT 목록
     const [its, setIts] = useState([]);
     const [totalCount, setTotalCount] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
     // 페이지 번호 상태 (0-based)
     const [page, setPage] = useState(0);
     // const [size, setSize] = useState(10);
@@ -26,6 +27,7 @@ const ItListPage = () => {
                 // console.log('데이터 로드 성공:', data);
                 setIts(data.items);
                 setTotalCount(data.totalCount);
+                setTotalPages(data.totalPages);
                 setHasMore(page + 1 < data.totalPages);
             }
         });
@@ -73,7 +75,14 @@ const ItListPage = () => {
                     </button>
                     <button
                         className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-                        onClick={() => { if(hasMore) setPage(p => p + 1); }}
+                        onClick={() => {
+                            // go to next page but not beyond totalPages-1
+                            setPage(p => {
+                                const maxIndex = Math.max(0, (totalPages ? totalPages - 1 : (hasMore ? p + 1 : p)));
+                                const next = Math.min(maxIndex, p + 1);
+                                return next;
+                            });
+                        }}
                         disabled={!hasMore}
                     >
                         Next
@@ -81,6 +90,7 @@ const ItListPage = () => {
                     <div className="flex items-center gap-1">
                         <input
                             type="number"
+                            name="pageInput"
                             // value={page + 1}
                             min={1}
                             className="w-20 px-2 py-1 border rounded"
@@ -88,13 +98,22 @@ const ItListPage = () => {
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
                                     const v = parseInt(e.target.value, 10);
-                                    if (!isNaN(v) && v > 0) setPage(v - 1);
+                                    if (!isNaN(v) && v > 0) {
+                                        const target = Math.min(Math.max(1, v), Math.max(1, totalPages || v));
+                                        setPage(target - 1);
+                                        e.target.value = target;
+                                    }
                                 }
                             }}
                         />
                         <button className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50" onClick={() => {
-                            const v = parseInt(document.querySelector('input[type="number"]').value, 10);
-                            if (!isNaN(v) && v > 0) setPage(v - 1);
+                            const pageInput = document.querySelector('input[name="pageInput"]');
+                            const v = parseInt(pageInput.value, 10);
+                            if (!isNaN(v) && v > 0) {
+                                const target = Math.min(Math.max(1, v), Math.max(1, totalPages || v));
+                                setPage(target - 1);
+                                pageInput.value = target;
+                            }
                         }}>이동</button>
                     </div>
                 </div>

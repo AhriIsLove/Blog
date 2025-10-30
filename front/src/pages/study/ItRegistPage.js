@@ -45,8 +45,6 @@ const ItRegistPage = () => {
         const form = e.target;
 //        const formData = new FormData();
 
-        // console.log("Editor Content:", editorContent); // 디버그용 출력
-
         // JSON 데이터를 studyDTO라는 이름으로 추가
         const studyData = {
             title: form.itTitle.value,

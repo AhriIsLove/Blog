@@ -75,7 +75,8 @@ const ItPage = () => {
                     <span className="inline-block bg-myPointColor-100 text-myPointColor-700 px-3 py-1 rounded-full text-sm font-medium">{it?.type}</span>
                 </div>
 
-                <div className="bg-white shadow rounded-lg p-6 prose max-w-none">
+                <div className="rich-text-viewer 
+                bg-white shadow rounded-lg p-6 prose max-w-none">
                     <div dangerouslySetInnerHTML={{ __html: it?.content || '<p>내용이 없습니다.</p>' }} />
                 </div>
 
