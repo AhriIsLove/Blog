@@ -22,7 +22,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 			+ 			"OR UPPER(PLATFORM) LIKE UPPER('%' || :keyword || '%') "
 			// + 			"OR UPPER(REVIEW) LIKE UPPER('%' || :keyword || '%') "
 			+ 			"OR ID IN (SELECT GAME_ID FROM GAME_TAG WHERE UPPER(TAG) LIKE UPPER('%' || :keyword || '%')) "
-			+ 			"ORDER BY ID DESC ) A "
+			+ 			"ORDER BY LAST_PLAY_DATE DESC ) A "
 			+ 		"WHERE ROWNUM <= :endRow) "
 			+ 	"WHERE RNUM > :startRow"
 			, nativeQuery = true)
