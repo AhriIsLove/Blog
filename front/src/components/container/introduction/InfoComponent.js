@@ -29,7 +29,7 @@ const InfoComponent = () => {
                         <tr>
                             <td></td>
                             <td className="tableHeader" >영문</td>
-                            <td className="tableData" colSpan={3}>An Do Geun</td>
+                            <td className="tableData" colSpan={3}>An Do Geon</td>
                             {/* <td></td> */}
                             {/* <td></td> */}
                         </tr>
@@ -66,10 +66,13 @@ const InfoComponent = () => {
                         <td className="tableData" >010-2944-3756</td>
                     </tr>
                     <tr>
+                        <td className="tableHeader" >Github</td>
+                        <td className="tableData" >https://github.com/AhriIsLove</td>
+                    </tr>
+                    <tr>
                         <td className="tableHeader" >Youtube</td>
                         <td className="tableData" >https://www.youtube.com/@AhriLove</td>
                     </tr>
-
                 </tbody>
             </table>
             <div className='w-full mt-10
