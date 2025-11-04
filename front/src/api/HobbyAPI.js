@@ -36,8 +36,6 @@ export const getGameList = async (page=0, size=10, keyword='', sort='lastPlayDat
             params: { page, size, keyword, sort }
         });
 
-        // console.log(res.data);
-
         return res.data;
     } catch (error) {
         console.error('게임 목록 조회 실패:', error);

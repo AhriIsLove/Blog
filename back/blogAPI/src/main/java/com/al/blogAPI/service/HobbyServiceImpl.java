@@ -69,15 +69,18 @@ public class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public List<GameDTO> getGameList(Pageable pageable, String keyword) {
+	public List<GameDTO> getGameList(Pageable pageable, String keyword, String[] sort) {
 		// 페이지 정보 계산
         int pageSize = pageable.getPageSize();
         int pageNumber = pageable.getPageNumber();
         int startRow = pageNumber * pageSize;
         int endRow = startRow + pageSize;
+        String sortField = pageable.getSort().toString();
+        System.out.println("Sort Field: " + sortField);
+        String sortDirection = pageable.getSort().isSorted() ? pageable.getSort().toString() : "lastPlayDate,desc";
         
         // 게임 목록 조회
-        List<Game> gameList = gameRepository.findAllWithPaging(startRow, endRow, keyword);
+        List<Game> gameList = gameRepository.findAllWithPaging(startRow, endRow, keyword, sort[0], sort[1]);
         
         // Entity -> DTO
         List<GameDTO> gameDTOs = gameList.stream().map(game -> GameDTO.builder()

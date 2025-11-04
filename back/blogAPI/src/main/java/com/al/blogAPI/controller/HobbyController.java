@@ -61,9 +61,9 @@ public class HobbyController {
 		Pageable pageable = PageRequest.of(page, size, sortOrder);
 		
 		// 게임 목록 가져오기
-		List<GameDTO> gameList = hobbyService.getGameList(pageable, keyword);
+		List<GameDTO> gameList = hobbyService.getGameList(pageable, keyword, sort);
 
-		// System.out.println(gameList);
+		System.out.println(gameList);
 		
 	    // 게임 목록 반환
 	    return ResponseEntity.ok(gameList);

@@ -12,7 +12,7 @@ public interface HobbyService {
 
 	boolean gameRegist(GameDTO dto);
 
-	List<GameDTO> getGameList(Pageable pageable, String keyword);
+	List<GameDTO> getGameList(Pageable pageable, String keyword, String[] sort);
 
 	GameDTO getGameDetail(Long gameId);
 
